@@ -8,7 +8,7 @@ your browser.
 
 [Open the live app](https://retroforge-iota.vercel.app/) · [Run locally](#run-locally) · [View the roadmap](#roadmap)
 
-![RetroForge 3D builder](./docs/media/builder.png)
+![RetroForge home screen](./docs/media/home.png)
 
 ## What you can do
 
@@ -19,9 +19,15 @@ your browser.
 - Save named builds to the browser and load them later.
 - Use the builder on desktop or mobile in light or dark mode.
 
-The product tour shows the builder, preconfigured systems, and guides:
+## Product preview
 
-[![Animated RetroForge product tour](./docs/media/retroforge-tour.gif)](./docs/media/retroforge-tour.mp4)
+### 3D builder
+
+![RetroForge compatibility-aware 3D builder](./docs/media/builder.png)
+
+### Preconfigured systems
+
+![RetroForge preconfigured systems](./docs/media/prebuilts.png)
 
 ## Compatibility coverage
 
