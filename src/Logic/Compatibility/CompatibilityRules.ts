@@ -211,7 +211,7 @@ export function compatibilityRules() {
       target: motherboards,
     },
     PSU: {
-      check: (gpu: GPU, psu: PSU) => psuCompatibility(psu, gpu),
+      check: (psu:PSU, gpu: GPU) => psuCompatibility(psu, gpu),
       target: gpus,
     },
     Case: {
