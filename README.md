@@ -55,16 +55,20 @@ for the estimate, assumptions, and limits.
 ### Requirements
 
 - Node.js 22.12 or newer
-- npm or pnpm
+- npm (the repository uses `package-lock.json`)
 
 ```bash
 git clone https://github.com/Nihar-potdar/retroforge.git
 cd retroforge
-npm install
+npm ci
 npm run dev
 ```
 
 Vite will print the local address. Open it and select **Start Build**.
+
+Vercel uses the same `npm ci` install command as CI, configured in
+`vercel.json`. Keep `package-lock.json` updated whenever dependencies change;
+do not add a second package manager's lockfile.
 
 ### Commands
 
