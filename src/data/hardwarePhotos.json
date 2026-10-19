@@ -1,0 +1,274 @@
+{
+  "cpu": {
+    "src": "/images/photography/cpu-1600.webp",
+    "width": 1600,
+    "height": 1600,
+    "srcSet": "/images/photography/cpu-800.webp 800w, /images/photography/cpu-1600.webp 1600w, /images/photography/cpu-2000.webp 2000w",
+    "alt": "Top view of a real Intel Core i7-6700K processor, showing its metal heat spreader and green substrate. Educational example from 2015.",
+    "title": "Intel Core i7-6700K · 2015",
+    "author": "Eric Gaba (Sting - fr:Sting)",
+    "source": "https://commons.wikimedia.org/wiki/File:Intel_CPU_Core_i7_6700K_Skylake_top.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Proportionally resized and converted to WebP; original framing and colors retained. No generative alteration or upscaling.",
+    "example": true,
+    "variants": [
+      {
+        "src": "/images/photography/cpu-800.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 192280
+      },
+      {
+        "src": "/images/photography/cpu-1600.webp",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 870468
+      },
+      {
+        "src": "/images/photography/cpu-2000.webp",
+        "width": 2000,
+        "height": 2000,
+        "bytes": 1323554
+      }
+    ]
+  },
+  "gpu": {
+    "src": "/images/photography/gpu-1600.webp",
+    "width": 1600,
+    "height": 1191,
+    "srcSet": "/images/photography/gpu-800.webp 800w, /images/photography/gpu-1600.webp 1600w, /images/photography/gpu-2400.webp 2400w",
+    "alt": "Studio photograph of an NVIDIA GeForce GTX 1070 Founders Edition graphics card with a silver shroud and blower fan. Educational example from 2016.",
+    "title": "NVIDIA GeForce GTX 1070 Founders Edition · 2016",
+    "author": "Evan-Amos",
+    "source": "https://commons.wikimedia.org/wiki/File:NVIDIA-GTX-1070-FoundersEdition-FL.jpg",
+    "license": "Public domain",
+    "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Copyright_tags#Public_domain",
+    "changes": "Proportionally resized and converted to WebP; original framing and colors retained. No generative alteration or upscaling.",
+    "example": true,
+    "variants": [
+      {
+        "src": "/images/photography/gpu-800.webp",
+        "width": 800,
+        "height": 596,
+        "bytes": 34724
+      },
+      {
+        "src": "/images/photography/gpu-1600.webp",
+        "width": 1600,
+        "height": 1191,
+        "bytes": 103188
+      },
+      {
+        "src": "/images/photography/gpu-2400.webp",
+        "width": 2400,
+        "height": 1787,
+        "bytes": 199560
+      }
+    ]
+  },
+  "ram": {
+    "src": "/images/photography/ram-1600.webp",
+    "width": 1600,
+    "height": 612,
+    "srcSet": "/images/photography/ram-800.webp 800w, /images/photography/ram-1600.webp 1600w, /images/photography/ram-2400.webp 2400w",
+    "alt": "A real red G.Skill Ripjaws V DDR4 memory module with its gold edge connector visible. Educational example.",
+    "title": "G.Skill Ripjaws V DDR4 memory",
+    "author": "ElooKoN",
+    "source": "https://commons.wikimedia.org/wiki/File:RAM_Module_(SDRAM-DDR4).jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Proportionally resized and converted to WebP; original framing and colors retained. No generative alteration or upscaling.",
+    "example": true,
+    "variants": [
+      {
+        "src": "/images/photography/ram-800.webp",
+        "width": 800,
+        "height": 306,
+        "bytes": 16724
+      },
+      {
+        "src": "/images/photography/ram-1600.webp",
+        "width": 1600,
+        "height": 612,
+        "bytes": 49644
+      },
+      {
+        "src": "/images/photography/ram-2400.webp",
+        "width": 2400,
+        "height": 919,
+        "bytes": 101858
+      }
+    ]
+  },
+  "storage": {
+    "src": "/images/photography/storage-1600.webp",
+    "width": 1600,
+    "height": 571,
+    "srcSet": "/images/photography/storage-800.webp 800w, /images/photography/storage-1600.webp 1600w, /images/photography/storage-2400.webp 2400w",
+    "alt": "Top view of a real Samsung 980 PRO 1 TB M.2 NVMe solid-state drive. Educational example.",
+    "title": "Samsung 980 PRO · 1 TB NVMe SSD",
+    "author": "D-Kuru",
+    "source": "https://commons.wikimedia.org/wiki/File:Samsung_980_PRO_PCIe_4.0_NVMe_SSD_1TB-top_PNr%C2%B00915.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Proportionally resized and converted to WebP; original framing and colors retained. No generative alteration or upscaling.",
+    "example": true,
+    "variants": [
+      {
+        "src": "/images/photography/storage-800.webp",
+        "width": 800,
+        "height": 286,
+        "bytes": 27838
+      },
+      {
+        "src": "/images/photography/storage-1600.webp",
+        "width": 1600,
+        "height": 571,
+        "bytes": 77240
+      },
+      {
+        "src": "/images/photography/storage-2400.webp",
+        "width": 2400,
+        "height": 857,
+        "bytes": 137536
+      }
+    ]
+  },
+  "motherboard": {
+    "src": "/images/photography/motherboard-1600.webp",
+    "width": 1600,
+    "height": 1327,
+    "srcSet": "/images/photography/motherboard-800.webp 800w, /images/photography/motherboard-1600.webp 1600w, /images/photography/motherboard-2400.webp 2400w",
+    "alt": "Detailed top view of a real ASUS Crosshair IV Formula motherboard, showing its CPU socket, memory slots and expansion slots. Educational example from the 2010 era.",
+    "title": "ASUS Crosshair IV Formula · 2010 era",
+    "author": "D-Kuru",
+    "source": "https://commons.wikimedia.org/wiki/File:ASUS_Crosshair_IV_Formula-top_PNr%C2%B00301.jpg",
+    "license": "CC BY-SA 3.0 at",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en",
+    "changes": "Proportionally resized and converted to WebP; original framing and colors retained. No generative alteration or upscaling.",
+    "example": true,
+    "variants": [
+      {
+        "src": "/images/photography/motherboard-800.webp",
+        "width": 800,
+        "height": 664,
+        "bytes": 147016
+      },
+      {
+        "src": "/images/photography/motherboard-1600.webp",
+        "width": 1600,
+        "height": 1327,
+        "bytes": 435204
+      },
+      {
+        "src": "/images/photography/motherboard-2400.webp",
+        "width": 2400,
+        "height": 1990,
+        "bytes": 727150
+      }
+    ]
+  },
+  "psu": {
+    "src": "/images/photography/psu-1600.webp",
+    "width": 1600,
+    "height": 1138,
+    "srcSet": "/images/photography/psu-800.webp 800w, /images/photography/psu-1600.webp 1600w, /images/photography/psu-1920.webp 1920w",
+    "alt": "A real Acer Aspire Z5763 power supply photographed on a light background with its enclosure, fan vent and attached cables visible. Educational example.",
+    "title": "Acer Aspire Z5763 ATX power supply",
+    "author": "Dmitry Makeev",
+    "source": "https://commons.wikimedia.org/wiki/File:ATX_Computer_power_supply_unit.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Proportionally resized and converted to WebP; original framing and colors retained. No generative alteration or upscaling.",
+    "example": true,
+    "variants": [
+      {
+        "src": "/images/photography/psu-800.webp",
+        "width": 800,
+        "height": 569,
+        "bytes": 45544
+      },
+      {
+        "src": "/images/photography/psu-1600.webp",
+        "width": 1600,
+        "height": 1138,
+        "bytes": 152320
+      },
+      {
+        "src": "/images/photography/psu-1920.webp",
+        "width": 1920,
+        "height": 1365,
+        "bytes": 212374
+      }
+    ]
+  },
+  "case": {
+    "src": "/images/photography/case-1600.webp",
+    "width": 1600,
+    "height": 1354,
+    "srcSet": "/images/photography/case-800.webp 800w, /images/photography/case-1600.webp 1600w, /images/photography/case-2400.webp 2400w",
+    "alt": "A real blue Fractal Design Focus G computer chassis with its side panel removed to show the empty interior. Educational example.",
+    "title": "Fractal Design Focus G chassis",
+    "author": "Tiia Monto",
+    "source": "https://commons.wikimedia.org/wiki/File:Fractal_Design_Focus_G.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Proportionally resized and converted to WebP; original framing and colors retained. No generative alteration or upscaling.",
+    "example": true,
+    "variants": [
+      {
+        "src": "/images/photography/case-800.webp",
+        "width": 800,
+        "height": 677,
+        "bytes": 108340
+      },
+      {
+        "src": "/images/photography/case-1600.webp",
+        "width": 1600,
+        "height": 1354,
+        "bytes": 367458
+      },
+      {
+        "src": "/images/photography/case-2400.webp",
+        "width": 2400,
+        "height": 2031,
+        "bytes": 715756
+      }
+    ]
+  },
+  "assembly": {
+    "src": "/images/photography/assembly-1600.webp",
+    "width": 1600,
+    "height": 1200,
+    "srcSet": "/images/photography/assembly-800.webp 800w, /images/photography/assembly-1600.webp 1600w, /images/photography/assembly-2400.webp 2400w",
+    "alt": "A real assembled computer with an ASUS ROG Strix RTX 4090 graphics card, CPU cooler and illuminated memory. Educational example.",
+    "title": "Custom PC with ASUS ROG Strix RTX 4090",
+    "author": "Benlisquare",
+    "source": "https://commons.wikimedia.org/wiki/File:Asus_Strix_RTX_4090_operational.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Proportionally resized and converted to WebP; original framing and colors retained. No generative alteration or upscaling.",
+    "example": true,
+    "variants": [
+      {
+        "src": "/images/photography/assembly-800.webp",
+        "width": 800,
+        "height": 600,
+        "bytes": 65834
+      },
+      {
+        "src": "/images/photography/assembly-1600.webp",
+        "width": 1600,
+        "height": 1200,
+        "bytes": 196084
+      },
+      {
+        "src": "/images/photography/assembly-2400.webp",
+        "width": 2400,
+        "height": 1800,
+        "bytes": 333846
+      }
+    ]
+  }
+}

@@ -5,8 +5,15 @@ import { ramKits } from "../data/ram";
 import { gpus } from "../data/gpu";
 import { cases } from "../data/case";
 import { storageDevices } from "../data/storage";
-import { validateBuild } from "../Logic/Compatibility/Compatibility";
-import type { CompatibleComponent, CompatibilityResult, ComponentType } from "../data/type";
+import { assessBuild } from "../Logic/Compatibility/BuildAssessment";
+import { buildWithCandidate } from "../Logic/Compatibility/CandidateCompatibility";
+import { PowerSummary } from "./PowerSummary";
+import type {
+  BUILD,
+  BuildAssessment,
+  CompatibleComponent,
+  ComponentType,
+} from "../data/type";
 import { psus } from "../data/psu";
 
 const componentOptions: Record<ComponentType, CompatibleComponent[]> = {
@@ -30,9 +37,11 @@ const componentTypes: ComponentType[] = [
 ];
 
 export default function CompatibilityTester() {
-  const [selectedIds, setSelectedIds] = useState<Partial<Record<ComponentType, string>>>({});
+  const [selectedIds, setSelectedIds] = useState<
+    Partial<Record<ComponentType, string>>
+  >({});
 
-  const [results, setResults] = useState<CompatibilityResult[] | null>(null);
+  const [results, setResults] = useState<BuildAssessment | null>(null);
 
   function handleValidate() {
     const selectedBuild = componentTypes.flatMap((type) => {
@@ -40,12 +49,17 @@ export default function CompatibilityTester() {
 
       if (!selectedId) return [];
 
-      const component = componentOptions[type].find((option) => option.id === Number(selectedId));
+      const component = componentOptions[type].find(
+        (option) => option.id === Number(selectedId),
+      );
 
       return component ? [component] : [];
     });
 
-    setResults(validateBuild(selectedBuild));
+    const build = selectedBuild.reduce<BUILD>(buildWithCandidate, {
+      STORAGE: [],
+    });
+    setResults(assessBuild(build));
   }
 
   return (
@@ -90,19 +104,21 @@ export default function CompatibilityTester() {
         <section>
           <h2>Results</h2>
 
-          {results.length === 0 ? (
-            <p>Select the parts required for a comparison.</p>
+          <PowerSummary power={results.power} />
+          {results.issues.length === 0 ? (
+            <p>
+              No supported compatibility issues found in the selected parts.
+            </p>
           ) : (
             <ul>
-              {results.map((result, index) => (
+              {results.issues.map((issue) => (
                 <li
-                  key={`${result.selectedComponent}-${result.targetComponent}-${index}`}
-                  style={{
-                    color: result.isCompatible ? "green" : "red",
-                  }}
+                  key={issue.key}
+                  className={
+                    issue.type === "error" ? "text-danger" : "text-amber-600"
+                  }
                 >
-                  {result.selectedComponent} + {result.targetComponent}:{" "}
-                  {result.isCompatible ? "Compatible" : "Not compatible"}
+                  {issue.type}: {issue.compatibilityIssue}
                 </li>
               ))}
             </ul>

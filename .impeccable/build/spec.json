@@ -1,0 +1,1678 @@
+{
+  "tool": "comp-spec",
+  "version": 1,
+  "createdAt": "2026-10-19T09:29:12.462Z",
+  "comp": ".impeccable/mocks/redline.png",
+  "warnings": [
+    "region cpu-photo: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)",
+    "region gpu-photo: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)",
+    "region ram-photo: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)",
+    "region storage-photo: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)",
+    "region processor-tab: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region graphics-tab: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region memory-tab: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region storage-tab: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region learning-photo: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)"
+  ],
+  "uncoveredInkCells": [
+    "E7",
+    "A9",
+    "B9"
+  ],
+  "compSize": {
+    "width": 1536,
+    "height": 1024
+  },
+  "aspect": 1.5,
+  "orientation": "landscape",
+  "palette": [
+    {
+      "hex": "#f6f6e8",
+      "coverage": 0.4556
+    },
+    {
+      "hex": "#161616",
+      "coverage": 0.3677
+    },
+    {
+      "hex": "#515052",
+      "coverage": 0.0733
+    },
+    {
+      "hex": "#ea3819",
+      "coverage": 0.0606
+    },
+    {
+      "hex": "#0849e9",
+      "coverage": 0.0428
+    }
+  ],
+  "bands": [
+    {
+      "y": 0.0118,
+      "strength": 0.4773
+    },
+    {
+      "y": 0.0471,
+      "strength": 0.4775
+    },
+    {
+      "y": 0.0824,
+      "strength": 1
+    },
+    {
+      "y": 0.1059,
+      "strength": 0.3152
+    },
+    {
+      "y": 0.1882,
+      "strength": 0.2344
+    },
+    {
+      "y": 0.2118,
+      "strength": 1
+    },
+    {
+      "y": 0.2353,
+      "strength": 0.5877
+    },
+    {
+      "y": 0.2706,
+      "strength": 1
+    },
+    {
+      "y": 0.4824,
+      "strength": 0.2723
+    },
+    {
+      "y": 0.5176,
+      "strength": 0.2857
+    },
+    {
+      "y": 0.5412,
+      "strength": 0.2418
+    },
+    {
+      "y": 0.5647,
+      "strength": 1
+    },
+    {
+      "y": 0.5882,
+      "strength": 0.4017
+    },
+    {
+      "y": 0.6353,
+      "strength": 0.5637
+    },
+    {
+      "y": 0.6824,
+      "strength": 0.2517
+    },
+    {
+      "y": 0.7176,
+      "strength": 1
+    },
+    {
+      "y": 0.7529,
+      "strength": 0.6729
+    },
+    {
+      "y": 0.8,
+      "strength": 0.7997
+    },
+    {
+      "y": 0.8235,
+      "strength": 0.4148
+    },
+    {
+      "y": 0.8706,
+      "strength": 0.4003
+    },
+    {
+      "y": 0.8941,
+      "strength": 1
+    },
+    {
+      "y": 0.9412,
+      "strength": 0.3082
+    }
+  ],
+  "regions": [
+    {
+      "id": "brand",
+      "kind": "text",
+      "note": "RetroForge slanted wordmark, black and signal red",
+      "grid": null,
+      "box": {
+        "x": 0.0228,
+        "y": 0.0127,
+        "w": 0.2227,
+        "h": 0.0391
+      },
+      "px": {
+        "x": 35,
+        "y": 13,
+        "w": 342,
+        "h": 40
+      },
+      "aspect": 8.55,
+      "palette": [
+        {
+          "hex": "#f7f6eb",
+          "coverage": 0.4353
+        },
+        {
+          "hex": "#ea341a",
+          "coverage": 0.2562
+        },
+        {
+          "hex": "#15171b",
+          "coverage": 0.2414
+        },
+        {
+          "hex": "#f1b6a4",
+          "coverage": 0.0355
+        },
+        {
+          "hex": "#9fa3a2",
+          "coverage": 0.0315
+        }
+      ],
+      "detail": {
+        "energy": 72.3275
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": null,
+        "measuredAt": "2026-10-19T09:31:04.558Z",
+        "note": "no separable lettering in the crop; size by the region box"
+      }
+    },
+    {
+      "id": "navigation",
+      "kind": "control",
+      "note": "Builder active red tab with Parts, Guides, Saved builds, Help links",
+      "grid": null,
+      "box": {
+        "x": 0.4245,
+        "y": 0.0117,
+        "w": 0.332,
+        "h": 0.0459
+      },
+      "px": {
+        "x": 652,
+        "y": 12,
+        "w": 510,
+        "h": 47
+      },
+      "aspect": 10.8511,
+      "palette": [
+        {
+          "hex": "#f8f8e9",
+          "coverage": 0.7922
+        },
+        {
+          "hex": "#ec3719",
+          "coverage": 0.1494
+        },
+        {
+          "hex": "#0a0a0a",
+          "coverage": 0.0216
+        },
+        {
+          "hex": "#6e6f6f",
+          "coverage": 0.019
+        },
+        {
+          "hex": "#bbbbbb",
+          "coverage": 0.0178
+        }
+      ],
+      "detail": {
+        "energy": 31.1929
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "theme-control",
+      "kind": "control",
+      "note": "Light-theme control and sun icon",
+      "grid": null,
+      "box": {
+        "x": 0.9023,
+        "y": 0.0137,
+        "w": 0.0781,
+        "h": 0.041
+      },
+      "px": {
+        "x": 1386,
+        "y": 14,
+        "w": 120,
+        "h": 42
+      },
+      "aspect": 2.8571,
+      "palette": [
+        {
+          "hex": "#f8f7e9",
+          "coverage": 0.8674
+        },
+        {
+          "hex": "#0b0c10",
+          "coverage": 0.0609
+        },
+        {
+          "hex": "#bdbdbc",
+          "coverage": 0.0376
+        },
+        {
+          "hex": "#868684",
+          "coverage": 0.0233
+        },
+        {
+          "hex": "#606063",
+          "coverage": 0.0108
+        }
+      ],
+      "detail": {
+        "energy": 23.3778
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "note": "Your next PC. Built different. one full-width condensed black and red heading",
+      "grid": null,
+      "box": {
+        "x": 0.0384,
+        "y": 0.0801,
+        "w": 0.9245,
+        "h": 0.1357
+      },
+      "px": {
+        "x": 59,
+        "y": 82,
+        "w": 1420,
+        "h": 139
+      },
+      "aspect": 10.2158,
+      "palette": [
+        {
+          "hex": "#e93718",
+          "coverage": 0.3542
+        },
+        {
+          "hex": "#f8f7ea",
+          "coverage": 0.3411
+        },
+        {
+          "hex": "#171719",
+          "coverage": 0.2829
+        },
+        {
+          "hex": "#2c3132",
+          "coverage": 0.0117
+        },
+        {
+          "hex": "#e85740",
+          "coverage": 0.0102
+        }
+      ],
+      "detail": {
+        "energy": 77.3901
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": null,
+        "measuredAt": "2026-10-19T09:31:04.604Z",
+        "note": "no separable lettering in the crop; size by the region box"
+      }
+    },
+    {
+      "id": "description",
+      "kind": "text",
+      "note": "Pick your parts. Learn what they do. See your machine come together.",
+      "grid": null,
+      "box": {
+        "x": 0.2083,
+        "y": 0.2266,
+        "w": 0.5807,
+        "h": 0.0273
+      },
+      "px": {
+        "x": 320,
+        "y": 232,
+        "w": 892,
+        "h": 28
+      },
+      "aspect": 31.8571,
+      "palette": [
+        {
+          "hex": "#f7f5ec",
+          "coverage": 0.7476
+        },
+        {
+          "hex": "#13151a",
+          "coverage": 0.122
+        },
+        {
+          "hex": "#b2b2b0",
+          "coverage": 0.0516
+        },
+        {
+          "hex": "#424547",
+          "coverage": 0.0448
+        },
+        {
+          "hex": "#757979",
+          "coverage": 0.034
+        }
+      ],
+      "detail": {
+        "energy": 126.2409
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 54,
+          "capHeightPx": 22,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.5688,
+          "advTall": 0.5688,
+          "advX": 0.5916,
+          "gap": 0.1138,
+          "xRatio": 0.6779,
+          "stemW": 0.1401,
+          "contrast": 1.0687,
+          "serif": 0.9618,
+          "densTall": 0.4478,
+          "densX": 0.5251,
+          "weight": 0.4478
+        },
+        "widthClass": "normal",
+        "weightClass": "regular",
+        "chosen": {
+          "family": "Ubuntu Mono",
+          "weight": 400,
+          "fontSizePx": 31,
+          "source": "catalog",
+          "estimatedSize": true,
+          "stamp": "f9429ecb28d0"
+        }
+      }
+    },
+    {
+      "id": "cpu-photo",
+      "kind": "image",
+      "note": "Real processor photograph in the continuous hardware workbench, actual sourced example replaces concept hardware",
+      "grid": null,
+      "bleed": true,
+      "box": {
+        "x": 0,
+        "y": 0.2666,
+        "w": 0.2148,
+        "h": 0.2988
+      },
+      "px": {
+        "x": 0,
+        "y": 273,
+        "w": 330,
+        "h": 306
+      },
+      "aspect": 1.0784,
+      "palette": [
+        {
+          "hex": "#706c6f",
+          "coverage": 0.3612
+        },
+        {
+          "hex": "#171412",
+          "coverage": 0.2565
+        },
+        {
+          "hex": "#cfc7c6",
+          "coverage": 0.1331
+        },
+        {
+          "hex": "#453f40",
+          "coverage": 0.1249
+        },
+        {
+          "hex": "#9a7964",
+          "coverage": 0.1243
+        }
+      ],
+      "detail": {
+        "energy": 37.3508
+      },
+      "medium": "raster",
+      "plate": "assets/plates/cpu-photo.png",
+      "text": null
+    },
+    {
+      "id": "gpu-photo",
+      "kind": "image",
+      "note": "Detailed graphics card photograph at the center of the wide hardware workbench, source actual hardware",
+      "grid": null,
+      "bleed": true,
+      "box": {
+        "x": 0.2148,
+        "y": 0.2666,
+        "w": 0.4004,
+        "h": 0.2988
+      },
+      "px": {
+        "x": 330,
+        "y": 273,
+        "w": 615,
+        "h": 306
+      },
+      "aspect": 2.0098,
+      "palette": [
+        {
+          "hex": "#121010",
+          "coverage": 0.4195
+        },
+        {
+          "hex": "#084aea",
+          "coverage": 0.2691
+        },
+        {
+          "hex": "#47474b",
+          "coverage": 0.156
+        },
+        {
+          "hex": "#757377",
+          "coverage": 0.0937
+        },
+        {
+          "hex": "#37291a",
+          "coverage": 0.0617
+        }
+      ],
+      "detail": {
+        "energy": 49.6225
+      },
+      "medium": "raster",
+      "plate": "assets/plates/gpu-photo.png",
+      "text": null
+    },
+    {
+      "id": "ram-photo",
+      "kind": "image",
+      "note": "Photographed memory module in the hardware workbench",
+      "grid": null,
+      "bleed": true,
+      "box": {
+        "x": 0.6152,
+        "y": 0.2666,
+        "w": 0.1855,
+        "h": 0.2988
+      },
+      "px": {
+        "x": 945,
+        "y": 273,
+        "w": 285,
+        "h": 306
+      },
+      "aspect": 0.9314,
+      "palette": [
+        {
+          "hex": "#171615",
+          "coverage": 0.5339
+        },
+        {
+          "hex": "#454547",
+          "coverage": 0.1609
+        },
+        {
+          "hex": "#a37d63",
+          "coverage": 0.1571
+        },
+        {
+          "hex": "#747172",
+          "coverage": 0.0954
+        },
+        {
+          "hex": "#704d36",
+          "coverage": 0.0527
+        }
+      ],
+      "detail": {
+        "energy": 37.0057
+      },
+      "medium": "raster",
+      "plate": "assets/plates/ram-photo.png",
+      "text": null
+    },
+    {
+      "id": "storage-photo",
+      "kind": "image",
+      "note": "Photographed NVMe storage drive in the hardware workbench",
+      "grid": null,
+      "bleed": true,
+      "box": {
+        "x": 0.8008,
+        "y": 0.2666,
+        "w": 0.1992,
+        "h": 0.2988
+      },
+      "px": {
+        "x": 1230,
+        "y": 273,
+        "w": 306,
+        "h": 306
+      },
+      "aspect": 1,
+      "palette": [
+        {
+          "hex": "#161514",
+          "coverage": 0.4856
+        },
+        {
+          "hex": "#ab8872",
+          "coverage": 0.2735
+        },
+        {
+          "hex": "#7e583f",
+          "coverage": 0.1018
+        },
+        {
+          "hex": "#454548",
+          "coverage": 0.101
+        },
+        {
+          "hex": "#4b321e",
+          "coverage": 0.038
+        }
+      ],
+      "detail": {
+        "energy": 31.6249
+      },
+      "medium": "raster",
+      "plate": "assets/plates/storage-photo.png",
+      "text": null
+    },
+    {
+      "id": "processor-tab",
+      "kind": "control",
+      "note": "Black angled Processor selector label",
+      "grid": null,
+      "codeDrawn": true,
+      "box": {
+        "x": 0.0143,
+        "y": 0.4746,
+        "w": 0.1237,
+        "h": 0.0459
+      },
+      "px": {
+        "x": 22,
+        "y": 486,
+        "w": 190,
+        "h": 47
+      },
+      "aspect": 4.0426,
+      "palette": [
+        {
+          "hex": "#16171a",
+          "coverage": 0.6616
+        },
+        {
+          "hex": "#716f70",
+          "coverage": 0.1396
+        },
+        {
+          "hex": "#f6f6f6",
+          "coverage": 0.1104
+        },
+        {
+          "hex": "#b5b1b0",
+          "coverage": 0.0482
+        },
+        {
+          "hex": "#4a464e",
+          "coverage": 0.0402
+        }
+      ],
+      "detail": {
+        "energy": 36.9522
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": true,
+        "rules": false
+      }
+    },
+    {
+      "id": "graphics-tab",
+      "kind": "control",
+      "note": "Electric-blue selected Graphics tab",
+      "grid": null,
+      "codeDrawn": true,
+      "box": {
+        "x": 0.2799,
+        "y": 0.4385,
+        "w": 0.151,
+        "h": 0.0469
+      },
+      "px": {
+        "x": 430,
+        "y": 449,
+        "w": 232,
+        "h": 48
+      },
+      "aspect": 4.8333,
+      "palette": [
+        {
+          "hex": "#0849ea",
+          "coverage": 0.7475
+        },
+        {
+          "hex": "#f7f7f7",
+          "coverage": 0.1137
+        },
+        {
+          "hex": "#0b0a09",
+          "coverage": 0.0636
+        },
+        {
+          "hex": "#093392",
+          "coverage": 0.0394
+        },
+        {
+          "hex": "#2e1d13",
+          "coverage": 0.0358
+        }
+      ],
+      "detail": {
+        "energy": 28.3267
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": true,
+        "rules": false
+      }
+    },
+    {
+      "id": "memory-tab",
+      "kind": "control",
+      "note": "Black angled Memory selector label",
+      "grid": null,
+      "codeDrawn": true,
+      "box": {
+        "x": 0.6146,
+        "y": 0.4766,
+        "w": 0.1432,
+        "h": 0.043
+      },
+      "px": {
+        "x": 944,
+        "y": 488,
+        "w": 220,
+        "h": 44
+      },
+      "aspect": 5,
+      "palette": [
+        {
+          "hex": "#18181a",
+          "coverage": 0.6566
+        },
+        {
+          "hex": "#7a7a7f",
+          "coverage": 0.1366
+        },
+        {
+          "hex": "#b08e78",
+          "coverage": 0.0878
+        },
+        {
+          "hex": "#f1f2f3",
+          "coverage": 0.0634
+        },
+        {
+          "hex": "#4b4a4e",
+          "coverage": 0.0556
+        }
+      ],
+      "detail": {
+        "energy": 31.5771
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": true,
+        "rules": false
+      }
+    },
+    {
+      "id": "storage-tab",
+      "kind": "control",
+      "note": "Black angled Storage selector label",
+      "grid": null,
+      "codeDrawn": true,
+      "box": {
+        "x": 0.8464,
+        "y": 0.4766,
+        "w": 0.1237,
+        "h": 0.043
+      },
+      "px": {
+        "x": 1300,
+        "y": 488,
+        "w": 190,
+        "h": 44
+      },
+      "aspect": 4.3182,
+      "palette": [
+        {
+          "hex": "#18191a",
+          "coverage": 0.7903
+        },
+        {
+          "hex": "#9a6e50",
+          "coverage": 0.0889
+        },
+        {
+          "hex": "#f7f7f7",
+          "coverage": 0.0692
+        },
+        {
+          "hex": "#3f3f42",
+          "coverage": 0.0285
+        },
+        {
+          "hex": "#858686",
+          "coverage": 0.0231
+        }
+      ],
+      "detail": {
+        "energy": 31.0328
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": true,
+        "rules": false
+      }
+    },
+    {
+      "id": "explainer-field",
+      "kind": "chrome",
+      "note": "Blue selected-part explanation field",
+      "grid": null,
+      "box": {
+        "x": 0.2799,
+        "y": 0.4844,
+        "w": 0.3092,
+        "h": 0.1006
+      },
+      "px": {
+        "x": 430,
+        "y": 496,
+        "w": 475,
+        "h": 103
+      },
+      "aspect": 4.6117,
+      "palette": [
+        {
+          "hex": "#084ae9",
+          "coverage": 0.8931
+        },
+        {
+          "hex": "#edf2f8",
+          "coverage": 0.0364
+        },
+        {
+          "hex": "#b1caf7",
+          "coverage": 0.0252
+        },
+        {
+          "hex": "#6494ed",
+          "coverage": 0.0243
+        },
+        {
+          "hex": "#3571e9",
+          "coverage": 0.021
+        }
+      ],
+      "detail": {
+        "energy": 31.0813
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": true
+      }
+    },
+    {
+      "id": "explainer-copy",
+      "kind": "text",
+      "note": "Three lines explaining what the selected graphics card does, factual guidance only",
+      "grid": null,
+      "box": {
+        "x": 0.293,
+        "y": 0.5029,
+        "w": 0.2799,
+        "h": 0.0625
+      },
+      "px": {
+        "x": 450,
+        "y": 515,
+        "w": 430,
+        "h": 64
+      },
+      "aspect": 6.7188,
+      "palette": [
+        {
+          "hex": "#094bea",
+          "coverage": 0.8102
+        },
+        {
+          "hex": "#ebf2f8",
+          "coverage": 0.0588
+        },
+        {
+          "hex": "#2f6be7",
+          "coverage": 0.0505
+        },
+        {
+          "hex": "#bfd0f8",
+          "coverage": 0.0431
+        },
+        {
+          "hex": "#86aaf3",
+          "coverage": 0.0374
+        }
+      ],
+      "detail": {
+        "energy": 59.1107
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": true,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 3,
+          "glyphs": 112,
+          "capHeightPx": 13.8,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.5391,
+          "advTall": 0.5373,
+          "advX": 0.5391,
+          "gap": 0.1075,
+          "xRatio": 0.6878,
+          "stemW": 0.1418,
+          "contrast": 1.0045,
+          "serif": 0.5201,
+          "densTall": 0.4733,
+          "densX": 0.5638,
+          "weight": 0.4733
+        },
+        "widthClass": "condensed",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "launcher-field",
+      "kind": "chrome",
+      "note": "Dark build launcher band with a signal-red angled end",
+      "grid": null,
+      "box": {
+        "x": 0.0163,
+        "y": 0.5762,
+        "w": 0.9701,
+        "h": 0.1445
+      },
+      "px": {
+        "x": 25,
+        "y": 590,
+        "w": 1490,
+        "h": 148
+      },
+      "aspect": 10.0676,
+      "palette": [
+        {
+          "hex": "#171718",
+          "coverage": 0.8614
+        },
+        {
+          "hex": "#f6f6f2",
+          "coverage": 0.0849
+        },
+        {
+          "hex": "#eb4828",
+          "coverage": 0.0223
+        },
+        {
+          "hex": "#0848e8",
+          "coverage": 0.0195
+        },
+        {
+          "hex": "#797b7b",
+          "coverage": 0.0118
+        }
+      ],
+      "detail": {
+        "energy": 33.9948
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "start-building",
+      "kind": "control",
+      "note": "Start building main action with simple outline case icon, clear white text on dark field",
+      "grid": null,
+      "box": {
+        "x": 0.0436,
+        "y": 0.5996,
+        "w": 0.293,
+        "h": 0.0898
+      },
+      "px": {
+        "x": 67,
+        "y": 614,
+        "w": 450,
+        "h": 92
+      },
+      "aspect": 4.8913,
+      "palette": [
+        {
+          "hex": "#161719",
+          "coverage": 0.6765
+        },
+        {
+          "hex": "#f6f6f6",
+          "coverage": 0.2781
+        },
+        {
+          "hex": "#808284",
+          "coverage": 0.0205
+        },
+        {
+          "hex": "#babbba",
+          "coverage": 0.0145
+        },
+        {
+          "hex": "#434546",
+          "coverage": 0.0104
+        }
+      ],
+      "detail": {
+        "energy": 67.6838
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "launcher-parts",
+      "kind": "text",
+      "note": "Choose compatible parts, guidance explains supported checks rather than guaranteed fit",
+      "grid": null,
+      "box": {
+        "x": 0.4655,
+        "y": 0.6309,
+        "w": 0.1432,
+        "h": 0.0439
+      },
+      "px": {
+        "x": 715,
+        "y": 646,
+        "w": 220,
+        "h": 45
+      },
+      "aspect": 4.8889,
+      "palette": [
+        {
+          "hex": "#161719",
+          "coverage": 0.8156
+        },
+        {
+          "hex": "#f3f4f4",
+          "coverage": 0.059
+        },
+        {
+          "hex": "#494b4d",
+          "coverage": 0.0445
+        },
+        {
+          "hex": "#c7c9cb",
+          "coverage": 0.0436
+        },
+        {
+          "hex": "#949496",
+          "coverage": 0.0372
+        }
+      ],
+      "detail": {
+        "energy": 52.2834
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 42,
+          "capHeightPx": 11.6,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.5226,
+          "advTall": 0.4611,
+          "advX": 0.5534,
+          "gap": 0.0922,
+          "xRatio": 0.7111,
+          "stemW": 0.1723,
+          "contrast": 1.083,
+          "serif": 0.5068,
+          "densTall": 0.5323,
+          "densX": 0.6504,
+          "weight": 0.5323
+        },
+        "widthClass": "condensed",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "launcher-learn",
+      "kind": "text",
+      "note": "Learn as you go, clear explanations for every part",
+      "grid": null,
+      "box": {
+        "x": 0.6745,
+        "y": 0.6309,
+        "w": 0.1432,
+        "h": 0.0439
+      },
+      "px": {
+        "x": 1036,
+        "y": 646,
+        "w": 220,
+        "h": 45
+      },
+      "aspect": 4.8889,
+      "palette": [
+        {
+          "hex": "#171819",
+          "coverage": 0.8364
+        },
+        {
+          "hex": "#f6f6f6",
+          "coverage": 0.0539
+        },
+        {
+          "hex": "#c2c3c3",
+          "coverage": 0.0439
+        },
+        {
+          "hex": "#363639",
+          "coverage": 0.042
+        },
+        {
+          "hex": "#848588",
+          "coverage": 0.0238
+        }
+      ],
+      "detail": {
+        "energy": 42.8476
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 33,
+          "capHeightPx": 14.8,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.3619,
+          "advTall": 0.7263,
+          "advX": 0.3619,
+          "gap": 0.0603,
+          "xRatio": 0.5433,
+          "stemW": 0.1012,
+          "contrast": 0.6911,
+          "serif": 1.3159,
+          "densTall": 0.7832,
+          "densX": 0.5613,
+          "weight": 0.7832
+        },
+        "widthClass": "compressed",
+        "weightClass": "black"
+      }
+    },
+    {
+      "id": "launcher-save",
+      "kind": "text",
+      "note": "Save your build in this browser",
+      "grid": null,
+      "box": {
+        "x": 0.8822,
+        "y": 0.6299,
+        "w": 0.1009,
+        "h": 0.0596
+      },
+      "px": {
+        "x": 1355,
+        "y": 645,
+        "w": 155,
+        "h": 61
+      },
+      "aspect": 2.541,
+      "palette": [
+        {
+          "hex": "#161718",
+          "coverage": 0.5476
+        },
+        {
+          "hex": "#eb4728",
+          "coverage": 0.2229
+        },
+        {
+          "hex": "#f7f7e8",
+          "coverage": 0.2034
+        },
+        {
+          "hex": "#828186",
+          "coverage": 0.0159
+        },
+        {
+          "hex": "#b8b8bb",
+          "coverage": 0.0103
+        }
+      ],
+      "detail": {
+        "energy": 16.653
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": null,
+        "measuredAt": "2026-10-19T09:31:04.837Z",
+        "note": "no separable lettering in the crop; size by the region box"
+      }
+    },
+    {
+      "id": "learn-heading",
+      "kind": "text",
+      "note": "Know your hardware condensed heading",
+      "grid": null,
+      "box": {
+        "x": 0.0202,
+        "y": 0.7471,
+        "w": 0.3516,
+        "h": 0.0586
+      },
+      "px": {
+        "x": 31,
+        "y": 765,
+        "w": 540,
+        "h": 60
+      },
+      "aspect": 9,
+      "palette": [
+        {
+          "hex": "#15171c",
+          "coverage": 0.5581
+        },
+        {
+          "hex": "#f5f4ec",
+          "coverage": 0.3715
+        },
+        {
+          "hex": "#b4b4b1",
+          "coverage": 0.0265
+        },
+        {
+          "hex": "#343636",
+          "coverage": 0.0242
+        },
+        {
+          "hex": "#6c6d6d",
+          "coverage": 0.0198
+        }
+      ],
+      "detail": {
+        "energy": 101.0111
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": null,
+        "measuredAt": "2026-10-19T09:31:04.878Z",
+        "note": "no separable lettering in the crop; size by the region box"
+      }
+    },
+    {
+      "id": "learn-description",
+      "kind": "text",
+      "note": "Explore each part and learn its purpose in plain language",
+      "grid": null,
+      "box": {
+        "x": 0.3854,
+        "y": 0.7559,
+        "w": 0.3646,
+        "h": 0.043
+      },
+      "px": {
+        "x": 592,
+        "y": 774,
+        "w": 560,
+        "h": 44
+      },
+      "aspect": 12.7273,
+      "palette": [
+        {
+          "hex": "#f7f6ea",
+          "coverage": 0.8977
+        },
+        {
+          "hex": "#202123",
+          "coverage": 0.0443
+        },
+        {
+          "hex": "#b5b4b2",
+          "coverage": 0.0299
+        },
+        {
+          "hex": "#71706f",
+          "coverage": 0.0202
+        },
+        {
+          "hex": "#404246",
+          "coverage": 0.0079
+        }
+      ],
+      "detail": {
+        "energy": 46.2682
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 70,
+          "capHeightPx": 13.6,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.5396,
+          "advTall": 0.2799,
+          "advX": 0.5598,
+          "gap": 0.112,
+          "xRatio": 0.6992,
+          "stemW": 0.1478,
+          "contrast": 1.0679,
+          "serif": 0.5049,
+          "densTall": 0.5846,
+          "densX": 0.5589,
+          "weight": 0.5846
+        },
+        "widthClass": "condensed",
+        "weightClass": "bold"
+      }
+    },
+    {
+      "id": "explore-all",
+      "kind": "control",
+      "note": "Explore all parts link",
+      "grid": null,
+      "box": {
+        "x": 0.8854,
+        "y": 0.7666,
+        "w": 0.0918,
+        "h": 0.0342
+      },
+      "px": {
+        "x": 1360,
+        "y": 785,
+        "w": 141,
+        "h": 35
+      },
+      "aspect": 4.0286,
+      "palette": [
+        {
+          "hex": "#f8f8ea",
+          "coverage": 0.8776
+        },
+        {
+          "hex": "#082ede",
+          "coverage": 0.0334
+        },
+        {
+          "hex": "#8ca4ea",
+          "coverage": 0.0334
+        },
+        {
+          "hex": "#b2c4ed",
+          "coverage": 0.0297
+        },
+        {
+          "hex": "#3e72e6",
+          "coverage": 0.026
+        }
+      ],
+      "detail": {
+        "energy": 26.008
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "part-tabs",
+      "kind": "control",
+      "note": "Full-width component category tabs, limited to seven supported categories",
+      "grid": null,
+      "box": {
+        "x": 0.0195,
+        "y": 0.8223,
+        "w": 0.9603,
+        "h": 0.0498
+      },
+      "px": {
+        "x": 30,
+        "y": 842,
+        "w": 1475,
+        "h": 51
+      },
+      "aspect": 28.9216,
+      "palette": [
+        {
+          "hex": "#eae9da",
+          "coverage": 0.8223
+        },
+        {
+          "hex": "#0848e8",
+          "coverage": 0.0957
+        },
+        {
+          "hex": "#b9b8b3",
+          "coverage": 0.0474
+        },
+        {
+          "hex": "#676b6e",
+          "coverage": 0.019
+        },
+        {
+          "hex": "#363a3d",
+          "coverage": 0.0156
+        }
+      ],
+      "detail": {
+        "energy": 29.6958
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "processor-heading",
+      "kind": "text",
+      "note": "Processor heading starting the next section",
+      "grid": null,
+      "box": {
+        "x": 0.0202,
+        "y": 0.8965,
+        "w": 0.1641,
+        "h": 0.0498
+      },
+      "px": {
+        "x": 31,
+        "y": 918,
+        "w": 252,
+        "h": 51
+      },
+      "aspect": 4.9412,
+      "palette": [
+        {
+          "hex": "#15171c",
+          "coverage": 0.4504
+        },
+        {
+          "hex": "#f7f7ec",
+          "coverage": 0.4454
+        },
+        {
+          "hex": "#6f7170",
+          "coverage": 0.0688
+        },
+        {
+          "hex": "#9e9f9d",
+          "coverage": 0.0191
+        },
+        {
+          "hex": "#c7c8c4",
+          "coverage": 0.0163
+        }
+      ],
+      "detail": {
+        "energy": 56.8936
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": null,
+        "measuredAt": "2026-10-19T09:31:04.966Z",
+        "note": "no separable lettering in the crop; size by the region box"
+      }
+    },
+    {
+      "id": "processor-description",
+      "kind": "text",
+      "note": "Processor role explained in readable body copy",
+      "grid": null,
+      "box": {
+        "x": 0.0208,
+        "y": 0.9512,
+        "w": 0.2715,
+        "h": 0.0488
+      },
+      "px": {
+        "x": 32,
+        "y": 974,
+        "w": 417,
+        "h": 50
+      },
+      "aspect": 8.34,
+      "palette": [
+        {
+          "hex": "#f7f6eb",
+          "coverage": 0.8318
+        },
+        {
+          "hex": "#a1a19f",
+          "coverage": 0.0532
+        },
+        {
+          "hex": "#4f4f4f",
+          "coverage": 0.0532
+        },
+        {
+          "hex": "#1a1b1e",
+          "coverage": 0.0402
+        },
+        {
+          "hex": "#cac8c0",
+          "coverage": 0.0216
+        }
+      ],
+      "detail": {
+        "energy": 71.0028
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 87,
+          "capHeightPx": 13.5,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.5195,
+          "advTall": 0.3711,
+          "advX": 0.5532,
+          "gap": 0.1106,
+          "xRatio": 0.7187,
+          "stemW": 0.1481,
+          "contrast": 1.0028,
+          "serif": 0.4465,
+          "densTall": 0.483,
+          "densX": 0.5294,
+          "weight": 0.483
+        },
+        "widthClass": "condensed",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "learning-photo",
+      "kind": "image",
+      "note": "Close-up hardware photographs beginning the learning section, use real sourced images",
+      "grid": null,
+      "bleed": true,
+      "box": {
+        "x": 0.3307,
+        "y": 0.8945,
+        "w": 0.6497,
+        "h": 0.1055
+      },
+      "px": {
+        "x": 508,
+        "y": 916,
+        "w": 998,
+        "h": 108
+      },
+      "aspect": 9.2407,
+      "palette": [
+        {
+          "hex": "#131414",
+          "coverage": 0.4722
+        },
+        {
+          "hex": "#bcb2ad",
+          "coverage": 0.1861
+        },
+        {
+          "hex": "#eeeae2",
+          "coverage": 0.1207
+        },
+        {
+          "hex": "#444344",
+          "coverage": 0.1198
+        },
+        {
+          "hex": "#765c4b",
+          "coverage": 0.1012
+        }
+      ],
+      "detail": {
+        "energy": 47.9187
+      },
+      "medium": "raster",
+      "plate": "assets/plates/learning-photo.png",
+      "text": null
+    }
+  ],
+  "compSha256": "c9d8b9667f58f12ae527ff6be33a06266a3b2241275d6329cbe96b09b456577e",
+  "regionsSource": {
+    "path": ".impeccable/mocks/redline-regions.json",
+    "sha256": "6f5dc1688783e8b584da0258dad59042a35cf56d9c8cae02c0baa19196dbe469"
+  }
+}

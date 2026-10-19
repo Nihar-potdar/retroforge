@@ -1,0 +1,131 @@
+{
+  "conditions": "One cold visit/device; 80ms latency, 1MB/s; phone 4x CPU; software GPU. Times since navigation.",
+  "runs": [
+    {
+      "device": "desktop",
+      "errors": [],
+      "canvas": 1883,
+      "models": [
+        {
+          "url": "case-c6b0def6486b.glb",
+          "start": 1843.6000000005588,
+          "end": 3014.800000000745,
+          "transfer": 427000
+        },
+        {
+          "url": "motherboard-763f86cd12f9.glb",
+          "start": 1845.6000000005588,
+          "end": 3489.9000000003725,
+          "transfer": 651004
+        },
+        {
+          "url": "case-c6b0def6486b.glb",
+          "start": 2407,
+          "end": 3015,
+          "transfer": 300
+        },
+        {
+          "url": "motherboard-763f86cd12f9.glb",
+          "start": 2407.300000000745,
+          "end": 3490.100000000559,
+          "transfer": 300
+        },
+        {
+          "url": "cpu-5585aa97fea2.glb",
+          "start": 2407.4000000003725,
+          "end": 2519.7000000001863,
+          "transfer": 6152
+        },
+        {
+          "url": "ram-1621cca997af.glb",
+          "start": 2407.600000000559,
+          "end": 2606.800000000745,
+          "transfer": 35076
+        },
+        {
+          "url": "gpu-6d6e7cb3e45f.glb",
+          "start": 2407.800000000745,
+          "end": 3586.7000000001863,
+          "transfer": 431536
+        },
+        {
+          "url": "psu-56da589fe230.glb",
+          "start": 2408,
+          "end": 3080.800000000745,
+          "transfer": 103160
+        }
+      ],
+      "ready": [
+        3031,
+        3033.2000000001863,
+        5022.5,
+        6007.700000000186,
+        6985.200000000186,
+        6995.600000000559
+      ]
+    },
+    {
+      "device": "phone",
+      "errors": [],
+      "canvas": 2467.300000000745,
+      "models": [
+        {
+          "url": "case-c6b0def6486b.glb",
+          "start": 2352.300000000745,
+          "end": 3451.800000000745,
+          "transfer": 427000
+        },
+        {
+          "url": "motherboard-763f86cd12f9.glb",
+          "start": 2357.600000000559,
+          "end": 3967.9000000003725,
+          "transfer": 651004
+        },
+        {
+          "url": "case-c6b0def6486b.glb",
+          "start": 2981.5,
+          "end": 3452,
+          "transfer": 300
+        },
+        {
+          "url": "motherboard-763f86cd12f9.glb",
+          "start": 2982.800000000745,
+          "end": 3968.100000000559,
+          "transfer": 300
+        },
+        {
+          "url": "cpu-5585aa97fea2.glb",
+          "start": 2983.800000000745,
+          "end": 3095,
+          "transfer": 6152
+        },
+        {
+          "url": "ram-1621cca997af.glb",
+          "start": 2986.800000000745,
+          "end": 3185.2000000001863,
+          "transfer": 35076
+        },
+        {
+          "url": "gpu-6d6e7cb3e45f.glb",
+          "start": 2988,
+          "end": 4095.7000000001863,
+          "transfer": 431536
+        },
+        {
+          "url": "psu-56da589fe230.glb",
+          "start": 2989.4000000003725,
+          "end": 3623,
+          "transfer": 103160
+        }
+      ],
+      "ready": [
+        3567.2000000001863,
+        3584.9000000003725,
+        4644.800000000745,
+        4869.100000000559,
+        5265.4000000003725,
+        5284.4000000003725
+      ]
+    }
+  ]
+}

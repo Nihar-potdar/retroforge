@@ -1,0 +1,310 @@
+{
+  "regions": [
+    {
+      "id": "brand",
+      "kind": "text",
+      "pixelBox": {
+        "x": 35,
+        "y": 13,
+        "w": 342,
+        "h": 40
+      },
+      "note": "RetroForge slanted wordmark, black and signal red"
+    },
+    {
+      "id": "navigation",
+      "kind": "control",
+      "pixelBox": {
+        "x": 652,
+        "y": 12,
+        "w": 510,
+        "h": 47
+      },
+      "note": "Builder active red tab with Parts, Guides, Saved builds, Help links"
+    },
+    {
+      "id": "theme-control",
+      "kind": "control",
+      "pixelBox": {
+        "x": 1386,
+        "y": 14,
+        "w": 120,
+        "h": 42
+      },
+      "note": "Light-theme control and sun icon"
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "pixelBox": {
+        "x": 59,
+        "y": 82,
+        "w": 1420,
+        "h": 139
+      },
+      "note": "Your next PC. Built different. one full-width condensed black and red heading"
+    },
+    {
+      "id": "description",
+      "kind": "text",
+      "pixelBox": {
+        "x": 320,
+        "y": 232,
+        "w": 892,
+        "h": 28
+      },
+      "note": "Pick your parts. Learn what they do. See your machine come together."
+    },
+    {
+      "id": "cpu-photo",
+      "kind": "image",
+      "pixelBox": {
+        "x": 0,
+        "y": 273,
+        "w": 330,
+        "h": 306
+      },
+      "bleed": true,
+      "note": "Real processor photograph in the continuous hardware workbench, actual sourced example replaces concept hardware"
+    },
+    {
+      "id": "gpu-photo",
+      "kind": "image",
+      "pixelBox": {
+        "x": 330,
+        "y": 273,
+        "w": 615,
+        "h": 306
+      },
+      "bleed": true,
+      "note": "Detailed graphics card photograph at the center of the wide hardware workbench, source actual hardware"
+    },
+    {
+      "id": "ram-photo",
+      "kind": "image",
+      "pixelBox": {
+        "x": 945,
+        "y": 273,
+        "w": 285,
+        "h": 306
+      },
+      "bleed": true,
+      "note": "Photographed memory module in the hardware workbench"
+    },
+    {
+      "id": "storage-photo",
+      "kind": "image",
+      "pixelBox": {
+        "x": 1230,
+        "y": 273,
+        "w": 306,
+        "h": 306
+      },
+      "bleed": true,
+      "note": "Photographed NVMe storage drive in the hardware workbench"
+    },
+    {
+      "id": "processor-tab",
+      "kind": "control",
+      "pixelBox": {
+        "x": 22,
+        "y": 486,
+        "w": 190,
+        "h": 47
+      },
+      "note": "Black angled Processor selector label",
+      "codeDrawn": true
+    },
+    {
+      "id": "graphics-tab",
+      "kind": "control",
+      "pixelBox": {
+        "x": 430,
+        "y": 449,
+        "w": 232,
+        "h": 48
+      },
+      "note": "Electric-blue selected Graphics tab",
+      "codeDrawn": true
+    },
+    {
+      "id": "memory-tab",
+      "kind": "control",
+      "pixelBox": {
+        "x": 944,
+        "y": 488,
+        "w": 220,
+        "h": 44
+      },
+      "note": "Black angled Memory selector label",
+      "codeDrawn": true
+    },
+    {
+      "id": "storage-tab",
+      "kind": "control",
+      "pixelBox": {
+        "x": 1300,
+        "y": 488,
+        "w": 190,
+        "h": 44
+      },
+      "note": "Black angled Storage selector label",
+      "codeDrawn": true
+    },
+    {
+      "id": "explainer-field",
+      "kind": "chrome",
+      "pixelBox": {
+        "x": 430,
+        "y": 496,
+        "w": 475,
+        "h": 103
+      },
+      "note": "Blue selected-part explanation field"
+    },
+    {
+      "id": "explainer-copy",
+      "kind": "text",
+      "pixelBox": {
+        "x": 450,
+        "y": 515,
+        "w": 430,
+        "h": 64
+      },
+      "note": "Three lines explaining what the selected graphics card does, factual guidance only"
+    },
+    {
+      "id": "launcher-field",
+      "kind": "chrome",
+      "pixelBox": {
+        "x": 25,
+        "y": 590,
+        "w": 1490,
+        "h": 148
+      },
+      "note": "Dark build launcher band with a signal-red angled end"
+    },
+    {
+      "id": "start-building",
+      "kind": "control",
+      "pixelBox": {
+        "x": 67,
+        "y": 614,
+        "w": 450,
+        "h": 92
+      },
+      "note": "Start building main action with simple outline case icon, clear white text on dark field"
+    },
+    {
+      "id": "launcher-parts",
+      "kind": "text",
+      "pixelBox": {
+        "x": 715,
+        "y": 646,
+        "w": 220,
+        "h": 45
+      },
+      "note": "Choose compatible parts, guidance explains supported checks rather than guaranteed fit"
+    },
+    {
+      "id": "launcher-learn",
+      "kind": "text",
+      "pixelBox": {
+        "x": 1036,
+        "y": 646,
+        "w": 220,
+        "h": 45
+      },
+      "note": "Learn as you go, clear explanations for every part"
+    },
+    {
+      "id": "launcher-save",
+      "kind": "text",
+      "pixelBox": {
+        "x": 1355,
+        "y": 645,
+        "w": 155,
+        "h": 61
+      },
+      "note": "Save your build in this browser"
+    },
+    {
+      "id": "learn-heading",
+      "kind": "text",
+      "pixelBox": {
+        "x": 31,
+        "y": 765,
+        "w": 540,
+        "h": 60
+      },
+      "note": "Know your hardware condensed heading"
+    },
+    {
+      "id": "learn-description",
+      "kind": "text",
+      "pixelBox": {
+        "x": 592,
+        "y": 774,
+        "w": 560,
+        "h": 44
+      },
+      "note": "Explore each part and learn its purpose in plain language"
+    },
+    {
+      "id": "explore-all",
+      "kind": "control",
+      "pixelBox": {
+        "x": 1360,
+        "y": 785,
+        "w": 141,
+        "h": 35
+      },
+      "note": "Explore all parts link"
+    },
+    {
+      "id": "part-tabs",
+      "kind": "control",
+      "pixelBox": {
+        "x": 30,
+        "y": 842,
+        "w": 1475,
+        "h": 51
+      },
+      "note": "Full-width component category tabs, limited to seven supported categories"
+    },
+    {
+      "id": "processor-heading",
+      "kind": "text",
+      "pixelBox": {
+        "x": 31,
+        "y": 918,
+        "w": 252,
+        "h": 51
+      },
+      "note": "Processor heading starting the next section"
+    },
+    {
+      "id": "processor-description",
+      "kind": "text",
+      "pixelBox": {
+        "x": 32,
+        "y": 974,
+        "w": 417,
+        "h": 50
+      },
+      "note": "Processor role explained in readable body copy"
+    },
+    {
+      "id": "learning-photo",
+      "kind": "image",
+      "pixelBox": {
+        "x": 508,
+        "y": 916,
+        "w": 998,
+        "h": 108
+      },
+      "bleed": true,
+      "note": "Close-up hardware photographs beginning the learning section, use real sourced images"
+    }
+  ]
+}

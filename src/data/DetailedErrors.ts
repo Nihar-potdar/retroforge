@@ -2,6 +2,8 @@ import type { DetailedErrors as DetailedError } from "./type";
 
 export const DetailedErrors: DetailedError[] = [
   {
+    key: "CPU_MOTHERBOARD_SOCKET:example",
+    affectedParts: [],
     type: "error",
     title: "CPU/MOTHERBOARD mismatch",
     rule: "CPU_MOTHERBOARD_SOCKET",

@@ -1,0 +1,107 @@
+{
+  "conditions": "One cold visit/device; 80ms latency, 1MB/s; phone 4x CPU; software GPU. Times since navigation.",
+  "runs": [
+    {
+      "device": "desktop",
+      "errors": [],
+      "canvas": 1869.0999999996275,
+      "models": [
+        {
+          "url": "case-c6b0def6486b.glb",
+          "start": 1850.5,
+          "end": 2785.5,
+          "transfer": 427000
+        },
+        {
+          "url": "motherboard-763f86cd12f9.glb",
+          "start": 1851.2999999998137,
+          "end": 3018.5999999996275,
+          "transfer": 651004
+        },
+        {
+          "url": "cpu-5585aa97fea2.glb",
+          "start": 2796.699999999255,
+          "end": 2890.399999999441,
+          "transfer": 6152
+        },
+        {
+          "url": "gpu-6d6e7cb3e45f.glb",
+          "start": 3521.7999999998137,
+          "end": 4141.899999999441,
+          "transfer": 431536
+        },
+        {
+          "url": "psu-56da589fe230.glb",
+          "start": 3536.199999999255,
+          "end": 3822,
+          "transfer": 103160
+        },
+        {
+          "url": "ram-1621cca997af.glb",
+          "start": 5407.199999999255,
+          "end": 5523,
+          "transfer": 35076
+        }
+      ],
+      "ready": [
+        2796.399999999441,
+        3521.699999999255,
+        3535.899999999441,
+        5406.899999999441,
+        5407.5999999996275,
+        7785.399999999441
+      ]
+    },
+    {
+      "device": "phone",
+      "errors": [],
+      "canvas": 2151.0999999996275,
+      "models": [
+        {
+          "url": "case-c6b0def6486b.glb",
+          "start": 2090.5,
+          "end": 3021.2000000001863,
+          "transfer": 427000
+        },
+        {
+          "url": "motherboard-763f86cd12f9.glb",
+          "start": 2094.2999999998137,
+          "end": 3257.0999999996275,
+          "transfer": 651004
+        },
+        {
+          "url": "cpu-5585aa97fea2.glb",
+          "start": 3058.2000000001863,
+          "end": 3153.0999999996275,
+          "transfer": 6152
+        },
+        {
+          "url": "gpu-6d6e7cb3e45f.glb",
+          "start": 3574.399999999441,
+          "end": 4192,
+          "transfer": 431536
+        },
+        {
+          "url": "psu-56da589fe230.glb",
+          "start": 3806,
+          "end": 4092.0999999996275,
+          "transfer": 103160
+        },
+        {
+          "url": "ram-1621cca997af.glb",
+          "start": 4806.5,
+          "end": 4923.399999999441,
+          "transfer": 35076
+        }
+      ],
+      "ready": [
+        3057,
+        3573.2000000001863,
+        3805,
+        4805.299999999814,
+        4811.700000000186,
+        5219.299999999814
+      ]
+    }
+  ]
+}

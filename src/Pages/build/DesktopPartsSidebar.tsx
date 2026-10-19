@@ -1,9 +1,12 @@
 import { AlertTriangle, Check } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import { Link } from "react-router-dom";
+import { partLessons } from "@/data/partLessons";
 
 import type { BUILD, CompatibleComponent, DetailedErrors } from "@/data/type";
 import { getPartHighlights } from "@/lib/getPartHighlights";
 import { componentKey } from "@/Logic/Compatibility/CandidateCompatibility";
+import { hasCompatibilityErrors } from "@/Logic/Compatibility/Issue";
 
 import { componentGroups } from "./buildCatalog";
 import {
@@ -36,11 +39,18 @@ export function DesktopPartsSidebar({
   compatibilityFilter,
   onCompatibilityFilterChange,
 }: DesktopPartsSidebarProps) {
+  const lesson = partLessons.find((part) => part.id === catalogCategory);
   return (
-    <aside className="hidden min-h-0 w-[350px] shrink-0 flex-col overflow-hidden border-r border-border bg-surface lg:flex">
-      <div className="shrink-0 border-b border-border bg-border">
+    <aside
+      data-tour="parts"
+      className="desktop-hardware-catalog hidden h-full min-h-0 w-full shrink-0 flex-col overflow-hidden border-r border-border bg-surface lg:flex"
+    >
+      <div
+        data-tour="categories"
+        className="shrink-0 border-b border-border bg-border"
+      >
         <div className="grid grid-cols-2 gap-px">
-          {componentGroups.map((component, index) => {
+          {componentGroups.map((component) => {
             const Icon = component.icon;
             const active = component.id === catalogCategory;
 
@@ -48,6 +58,8 @@ export function DesktopPartsSidebar({
               <motion.button
                 key={component.id}
                 type="button"
+                aria-label={component.label}
+                aria-pressed={active}
                 onClick={() => onOpenCategory(component.id)}
                 whileTap={{ scale: 0.98 }}
                 className={`group relative flex min-h-[58px] items-center gap-3 overflow-hidden px-4 py-3 text-left transition-colors ${
@@ -64,14 +76,6 @@ export function DesktopPartsSidebar({
                   />
                 )}
 
-                <span
-                  className={`relative z-10 shrink-0 font-mono text-[8px] tracking-[0.18em] ${
-                    active ? "text-white/60" : "text-muted/60"
-                  }`}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-
                 <Icon
                   className={`relative z-10 size-4 shrink-0 ${
                     active ? "text-white" : "text-muted group-hover:text-text"
@@ -79,7 +83,7 @@ export function DesktopPartsSidebar({
                 />
 
                 <span className="relative z-10 min-w-0 truncate font-display text-sm font-bold italic uppercase tracking-wide">
-                  {component.id === "motherboard" ? "MB" : component.name}
+                  {component.label}
                 </span>
 
                 {active && (
@@ -101,17 +105,31 @@ export function DesktopPartsSidebar({
 
       <div className="shrink-0 border-b border-border p-3">
         <CompatibilityFilterToggle
+          compact
           value={compatibilityFilter}
           onChange={onCompatibilityFilterChange}
         />
       </div>
 
       <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-4">
+        {lesson && (
+          <details className="catalog-education" key={lesson.id}>
+            <summary>What does this part do?</summary>
+            <p>{lesson.description}</p>
+            <p>
+              <strong>Before choosing: </strong>
+              {lesson.check}
+            </p>
+            <Link to={`/guides/${lesson.guide}`}>
+              Learn about {lesson.name.toLowerCase()}
+            </Link>
+          </details>
+        )}
         <AnimatePresence mode="popLayout">
-          {filteredParts.map((part, index) => {
+          {filteredParts.map((part) => {
             const key = `${part.componentType}-${part.id}`;
             const issues = candidateIssues.get(componentKey(part)) ?? [];
-            const isCompatible = issues.length === 0;
+            const isCompatible = !hasCompatibilityErrors(issues);
             const selected =
               part.componentType === "Storage"
                 ? build.STORAGE.some((drive) => drive.product.id === part.id)
@@ -142,14 +160,11 @@ export function DesktopPartsSidebar({
                       ? "accent-glow border-accent bg-background"
                       : !isCompatible
                         ? "border-danger/60 bg-danger/5 hover:bg-danger/10"
-                      : "border-transparent hover:border-accent/40 hover:bg-background/70"
+                        : "border-transparent hover:border-accent/40 hover:bg-background/70"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                      <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-muted">
-                        PART_{String(index + 1).padStart(2, "0")}
-                      </p>
                       <p className="mt-1 text-base italic font-bold uppercase leading-5 font-display [@media(max-height:700px)]:text-sm">
                         {part.name}
                       </p>
@@ -167,11 +182,20 @@ export function DesktopPartsSidebar({
                     {specs.join(" / ")}
                   </p>
 
-                  {!isCompatible && (
-                    <div className="mt-2 flex items-center gap-1.5 text-danger">
+                  {issues.length > 0 && (
+                    <div
+                      className={`mt-2 flex items-center gap-1.5 ${isCompatible ? "text-amber-600 dark:text-amber-400" : "text-danger"}`}
+                    >
                       <AlertTriangle className="size-3.5 shrink-0" />
                       <span className="font-mono text-[8px] font-bold uppercase tracking-wider">
-                        {issues.length} compatibility {issues.length === 1 ? "issue" : "issues"}
+                        {issues.length}{" "}
+                        {isCompatible
+                          ? issues.length === 1
+                            ? "warning"
+                            : "warnings"
+                          : issues.length === 1
+                            ? "issue"
+                            : "issues"}
                       </span>
                     </div>
                   )}

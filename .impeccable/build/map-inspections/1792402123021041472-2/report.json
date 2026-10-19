@@ -1,0 +1,1428 @@
+{
+  "tool": "comp-spec inspect-map",
+  "version": 1,
+  "referenceOnly": true,
+  "stateChanged": false,
+  "comp": ".impeccable/mocks/redline.png",
+  "compSize": {
+    "width": 1536,
+    "height": 1024
+  },
+  "inputRegionCount": 27,
+  "regions": [
+    {
+      "id": "brand",
+      "kind": "text",
+      "note": "RetroForge slanted wordmark, black and signal red",
+      "grid": null,
+      "box": {
+        "x": 0.0228,
+        "y": 0.0127,
+        "w": 0.2227,
+        "h": 0.0391
+      },
+      "px": {
+        "x": 35,
+        "y": 13,
+        "w": 342,
+        "h": 40
+      },
+      "aspect": 8.55,
+      "palette": [
+        {
+          "hex": "#f7f6eb",
+          "coverage": 0.4353
+        },
+        {
+          "hex": "#ea341a",
+          "coverage": 0.2562
+        },
+        {
+          "hex": "#15171b",
+          "coverage": 0.2414
+        },
+        {
+          "hex": "#f1b6a4",
+          "coverage": 0.0355
+        },
+        {
+          "hex": "#9fa3a2",
+          "coverage": 0.0315
+        }
+      ],
+      "detail": {
+        "energy": 72.3275
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 1,
+      "cropPath": "region-1.png"
+    },
+    {
+      "id": "navigation",
+      "kind": "control",
+      "note": "Builder active red tab with Parts, Guides, Saved builds, Help links",
+      "grid": null,
+      "box": {
+        "x": 0.4245,
+        "y": 0.0117,
+        "w": 0.332,
+        "h": 0.0459
+      },
+      "px": {
+        "x": 652,
+        "y": 12,
+        "w": 510,
+        "h": 47
+      },
+      "aspect": 10.8511,
+      "palette": [
+        {
+          "hex": "#f8f8e9",
+          "coverage": 0.7922
+        },
+        {
+          "hex": "#ec3719",
+          "coverage": 0.1494
+        },
+        {
+          "hex": "#0a0a0a",
+          "coverage": 0.0216
+        },
+        {
+          "hex": "#6e6f6f",
+          "coverage": 0.019
+        },
+        {
+          "hex": "#bbbbbb",
+          "coverage": 0.0178
+        }
+      ],
+      "detail": {
+        "energy": 31.1929
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 2,
+      "cropPath": "region-2.png"
+    },
+    {
+      "id": "theme-control",
+      "kind": "control",
+      "note": "Light-theme control and sun icon",
+      "grid": null,
+      "box": {
+        "x": 0.9023,
+        "y": 0.0137,
+        "w": 0.0781,
+        "h": 0.041
+      },
+      "px": {
+        "x": 1386,
+        "y": 14,
+        "w": 120,
+        "h": 42
+      },
+      "aspect": 2.8571,
+      "palette": [
+        {
+          "hex": "#f8f7e9",
+          "coverage": 0.8674
+        },
+        {
+          "hex": "#0b0c10",
+          "coverage": 0.0609
+        },
+        {
+          "hex": "#bdbdbc",
+          "coverage": 0.0376
+        },
+        {
+          "hex": "#868684",
+          "coverage": 0.0233
+        },
+        {
+          "hex": "#606063",
+          "coverage": 0.0108
+        }
+      ],
+      "detail": {
+        "energy": 23.3778
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 3,
+      "cropPath": "region-3.png"
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "note": "Your next PC. Built different. one full-width condensed black and red heading",
+      "grid": null,
+      "box": {
+        "x": 0.0384,
+        "y": 0.0801,
+        "w": 0.9245,
+        "h": 0.1357
+      },
+      "px": {
+        "x": 59,
+        "y": 82,
+        "w": 1420,
+        "h": 139
+      },
+      "aspect": 10.2158,
+      "palette": [
+        {
+          "hex": "#e93718",
+          "coverage": 0.3542
+        },
+        {
+          "hex": "#f8f7ea",
+          "coverage": 0.3411
+        },
+        {
+          "hex": "#171719",
+          "coverage": 0.2829
+        },
+        {
+          "hex": "#2c3132",
+          "coverage": 0.0117
+        },
+        {
+          "hex": "#e85740",
+          "coverage": 0.0102
+        }
+      ],
+      "detail": {
+        "energy": 77.3901
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 4,
+      "cropPath": "region-4.png"
+    },
+    {
+      "id": "description",
+      "kind": "text",
+      "note": "Pick your parts. Learn what they do. See your machine come together.",
+      "grid": null,
+      "box": {
+        "x": 0.2083,
+        "y": 0.2266,
+        "w": 0.5807,
+        "h": 0.0273
+      },
+      "px": {
+        "x": 320,
+        "y": 232,
+        "w": 892,
+        "h": 28
+      },
+      "aspect": 31.8571,
+      "palette": [
+        {
+          "hex": "#f7f5ec",
+          "coverage": 0.7476
+        },
+        {
+          "hex": "#13151a",
+          "coverage": 0.122
+        },
+        {
+          "hex": "#b2b2b0",
+          "coverage": 0.0516
+        },
+        {
+          "hex": "#424547",
+          "coverage": 0.0448
+        },
+        {
+          "hex": "#757979",
+          "coverage": 0.034
+        }
+      ],
+      "detail": {
+        "energy": 126.2409
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 5,
+      "cropPath": "region-5.png"
+    },
+    {
+      "id": "cpu-photo",
+      "kind": "image",
+      "note": "Real processor photograph in the continuous hardware workbench, actual sourced example replaces concept hardware",
+      "grid": null,
+      "bleed": true,
+      "box": {
+        "x": 0,
+        "y": 0.2666,
+        "w": 0.2148,
+        "h": 0.2988
+      },
+      "px": {
+        "x": 0,
+        "y": 273,
+        "w": 330,
+        "h": 306
+      },
+      "aspect": 1.0784,
+      "palette": [
+        {
+          "hex": "#706c6f",
+          "coverage": 0.3612
+        },
+        {
+          "hex": "#171412",
+          "coverage": 0.2565
+        },
+        {
+          "hex": "#cfc7c6",
+          "coverage": 0.1331
+        },
+        {
+          "hex": "#453f40",
+          "coverage": 0.1249
+        },
+        {
+          "hex": "#9a7964",
+          "coverage": 0.1243
+        }
+      ],
+      "detail": {
+        "energy": 37.3508
+      },
+      "medium": "raster",
+      "plate": "assets/plates/cpu-photo.png",
+      "text": null,
+      "number": 6,
+      "reference": {
+        "policy": "plate-reference-v2",
+        "excludedPixels": 0,
+        "totalPixels": 100980,
+        "remainingPixels": 100980,
+        "excludedFraction": 0.0,
+        "fullyExcluded": false,
+        "regions": [],
+        "ignoredContainers": []
+      },
+      "cropPath": "region-6.png",
+      "referencePath": "reference-6.png"
+    },
+    {
+      "id": "gpu-photo",
+      "kind": "image",
+      "note": "Detailed graphics card photograph at the center of the wide hardware workbench, source actual hardware",
+      "grid": null,
+      "bleed": true,
+      "box": {
+        "x": 0.2148,
+        "y": 0.2666,
+        "w": 0.4004,
+        "h": 0.2988
+      },
+      "px": {
+        "x": 330,
+        "y": 273,
+        "w": 615,
+        "h": 306
+      },
+      "aspect": 2.0098,
+      "palette": [
+        {
+          "hex": "#121010",
+          "coverage": 0.4195
+        },
+        {
+          "hex": "#084aea",
+          "coverage": 0.2691
+        },
+        {
+          "hex": "#47474b",
+          "coverage": 0.156
+        },
+        {
+          "hex": "#757377",
+          "coverage": 0.0937
+        },
+        {
+          "hex": "#37291a",
+          "coverage": 0.0617
+        }
+      ],
+      "detail": {
+        "energy": 49.6225
+      },
+      "medium": "raster",
+      "plate": "assets/plates/gpu-photo.png",
+      "text": null,
+      "number": 7,
+      "reference": {
+        "policy": "plate-reference-v2",
+        "excludedPixels": 39425,
+        "totalPixels": 188190,
+        "remainingPixels": 148765,
+        "excludedFraction": 0.20949572240820447,
+        "fullyExcluded": false,
+        "regions": [
+          {
+            "id": "explainer-field",
+            "kind": "chrome",
+            "cropPx": {
+              "x": 100,
+              "y": 223,
+              "w": 475,
+              "h": 83
+            },
+            "pixels": 39425
+          },
+          {
+            "id": "explainer-copy",
+            "kind": "text",
+            "cropPx": {
+              "x": 120,
+              "y": 242,
+              "w": 430,
+              "h": 64
+            },
+            "pixels": 27520
+          }
+        ],
+        "ignoredContainers": []
+      },
+      "cropPath": "region-7.png",
+      "referencePath": "reference-7.png"
+    },
+    {
+      "id": "ram-photo",
+      "kind": "image",
+      "note": "Photographed memory module in the hardware workbench",
+      "grid": null,
+      "bleed": true,
+      "box": {
+        "x": 0.6152,
+        "y": 0.2666,
+        "w": 0.1855,
+        "h": 0.2988
+      },
+      "px": {
+        "x": 945,
+        "y": 273,
+        "w": 285,
+        "h": 306
+      },
+      "aspect": 0.9314,
+      "palette": [
+        {
+          "hex": "#171615",
+          "coverage": 0.5339
+        },
+        {
+          "hex": "#454547",
+          "coverage": 0.1609
+        },
+        {
+          "hex": "#a37d63",
+          "coverage": 0.1571
+        },
+        {
+          "hex": "#747172",
+          "coverage": 0.0954
+        },
+        {
+          "hex": "#704d36",
+          "coverage": 0.0527
+        }
+      ],
+      "detail": {
+        "energy": 37.0057
+      },
+      "medium": "raster",
+      "plate": "assets/plates/ram-photo.png",
+      "text": null,
+      "number": 8,
+      "reference": {
+        "policy": "plate-reference-v2",
+        "excludedPixels": 0,
+        "totalPixels": 87210,
+        "remainingPixels": 87210,
+        "excludedFraction": 0.0,
+        "fullyExcluded": false,
+        "regions": [],
+        "ignoredContainers": []
+      },
+      "cropPath": "region-8.png",
+      "referencePath": "reference-8.png"
+    },
+    {
+      "id": "storage-photo",
+      "kind": "image",
+      "note": "Photographed NVMe storage drive in the hardware workbench",
+      "grid": null,
+      "bleed": true,
+      "box": {
+        "x": 0.8008,
+        "y": 0.2666,
+        "w": 0.1992,
+        "h": 0.2988
+      },
+      "px": {
+        "x": 1230,
+        "y": 273,
+        "w": 306,
+        "h": 306
+      },
+      "aspect": 1,
+      "palette": [
+        {
+          "hex": "#161514",
+          "coverage": 0.4856
+        },
+        {
+          "hex": "#ab8872",
+          "coverage": 0.2735
+        },
+        {
+          "hex": "#7e583f",
+          "coverage": 0.1018
+        },
+        {
+          "hex": "#454548",
+          "coverage": 0.101
+        },
+        {
+          "hex": "#4b321e",
+          "coverage": 0.038
+        }
+      ],
+      "detail": {
+        "energy": 31.6249
+      },
+      "medium": "raster",
+      "plate": "assets/plates/storage-photo.png",
+      "text": null,
+      "number": 9,
+      "reference": {
+        "policy": "plate-reference-v2",
+        "excludedPixels": 0,
+        "totalPixels": 93636,
+        "remainingPixels": 93636,
+        "excludedFraction": 0.0,
+        "fullyExcluded": false,
+        "regions": [],
+        "ignoredContainers": []
+      },
+      "cropPath": "region-9.png",
+      "referencePath": "reference-9.png"
+    },
+    {
+      "id": "explainer-field",
+      "kind": "chrome",
+      "note": "Blue selected-part explanation field",
+      "grid": null,
+      "box": {
+        "x": 0.2799,
+        "y": 0.4844,
+        "w": 0.3092,
+        "h": 0.1006
+      },
+      "px": {
+        "x": 430,
+        "y": 496,
+        "w": 475,
+        "h": 103
+      },
+      "aspect": 4.6117,
+      "palette": [
+        {
+          "hex": "#084ae9",
+          "coverage": 0.8931
+        },
+        {
+          "hex": "#edf2f8",
+          "coverage": 0.0364
+        },
+        {
+          "hex": "#b1caf7",
+          "coverage": 0.0252
+        },
+        {
+          "hex": "#6494ed",
+          "coverage": 0.0243
+        },
+        {
+          "hex": "#3571e9",
+          "coverage": 0.021
+        }
+      ],
+      "detail": {
+        "energy": 31.0813
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 14,
+      "cropPath": "region-14.png"
+    },
+    {
+      "id": "explainer-copy",
+      "kind": "text",
+      "note": "Three lines explaining what the selected graphics card does, factual guidance only",
+      "grid": null,
+      "box": {
+        "x": 0.293,
+        "y": 0.5029,
+        "w": 0.2799,
+        "h": 0.0625
+      },
+      "px": {
+        "x": 450,
+        "y": 515,
+        "w": 430,
+        "h": 64
+      },
+      "aspect": 6.7188,
+      "palette": [
+        {
+          "hex": "#094bea",
+          "coverage": 0.8102
+        },
+        {
+          "hex": "#ebf2f8",
+          "coverage": 0.0588
+        },
+        {
+          "hex": "#2f6be7",
+          "coverage": 0.0505
+        },
+        {
+          "hex": "#bfd0f8",
+          "coverage": 0.0431
+        },
+        {
+          "hex": "#86aaf3",
+          "coverage": 0.0374
+        }
+      ],
+      "detail": {
+        "energy": 59.1107
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 15,
+      "cropPath": "region-15.png"
+    },
+    {
+      "id": "launcher-field",
+      "kind": "chrome",
+      "note": "Dark build launcher band with a signal-red angled end",
+      "grid": null,
+      "box": {
+        "x": 0.0163,
+        "y": 0.5762,
+        "w": 0.9701,
+        "h": 0.1445
+      },
+      "px": {
+        "x": 25,
+        "y": 590,
+        "w": 1490,
+        "h": 148
+      },
+      "aspect": 10.0676,
+      "palette": [
+        {
+          "hex": "#171718",
+          "coverage": 0.8614
+        },
+        {
+          "hex": "#f6f6f2",
+          "coverage": 0.0849
+        },
+        {
+          "hex": "#eb4828",
+          "coverage": 0.0223
+        },
+        {
+          "hex": "#0848e8",
+          "coverage": 0.0195
+        },
+        {
+          "hex": "#797b7b",
+          "coverage": 0.0118
+        }
+      ],
+      "detail": {
+        "energy": 33.9948
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 16,
+      "cropPath": "region-16.png"
+    },
+    {
+      "id": "start-building",
+      "kind": "control",
+      "note": "Start building main action with simple outline case icon, clear white text on dark field",
+      "grid": null,
+      "box": {
+        "x": 0.0436,
+        "y": 0.5996,
+        "w": 0.293,
+        "h": 0.0898
+      },
+      "px": {
+        "x": 67,
+        "y": 614,
+        "w": 450,
+        "h": 92
+      },
+      "aspect": 4.8913,
+      "palette": [
+        {
+          "hex": "#161719",
+          "coverage": 0.6765
+        },
+        {
+          "hex": "#f6f6f6",
+          "coverage": 0.2781
+        },
+        {
+          "hex": "#808284",
+          "coverage": 0.0205
+        },
+        {
+          "hex": "#babbba",
+          "coverage": 0.0145
+        },
+        {
+          "hex": "#434546",
+          "coverage": 0.0104
+        }
+      ],
+      "detail": {
+        "energy": 67.6838
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 17,
+      "cropPath": "region-17.png"
+    },
+    {
+      "id": "launcher-parts",
+      "kind": "text",
+      "note": "Choose compatible parts, guidance explains supported checks rather than guaranteed fit",
+      "grid": null,
+      "box": {
+        "x": 0.4655,
+        "y": 0.6309,
+        "w": 0.1432,
+        "h": 0.0439
+      },
+      "px": {
+        "x": 715,
+        "y": 646,
+        "w": 220,
+        "h": 45
+      },
+      "aspect": 4.8889,
+      "palette": [
+        {
+          "hex": "#161719",
+          "coverage": 0.8156
+        },
+        {
+          "hex": "#f3f4f4",
+          "coverage": 0.059
+        },
+        {
+          "hex": "#494b4d",
+          "coverage": 0.0445
+        },
+        {
+          "hex": "#c7c9cb",
+          "coverage": 0.0436
+        },
+        {
+          "hex": "#949496",
+          "coverage": 0.0372
+        }
+      ],
+      "detail": {
+        "energy": 52.2834
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 18,
+      "cropPath": "region-18.png"
+    },
+    {
+      "id": "launcher-learn",
+      "kind": "text",
+      "note": "Learn as you go, clear explanations for every part",
+      "grid": null,
+      "box": {
+        "x": 0.6745,
+        "y": 0.6309,
+        "w": 0.1432,
+        "h": 0.0439
+      },
+      "px": {
+        "x": 1036,
+        "y": 646,
+        "w": 220,
+        "h": 45
+      },
+      "aspect": 4.8889,
+      "palette": [
+        {
+          "hex": "#171819",
+          "coverage": 0.8364
+        },
+        {
+          "hex": "#f6f6f6",
+          "coverage": 0.0539
+        },
+        {
+          "hex": "#c2c3c3",
+          "coverage": 0.0439
+        },
+        {
+          "hex": "#363639",
+          "coverage": 0.042
+        },
+        {
+          "hex": "#848588",
+          "coverage": 0.0238
+        }
+      ],
+      "detail": {
+        "energy": 42.8476
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 19,
+      "cropPath": "region-19.png"
+    },
+    {
+      "id": "launcher-save",
+      "kind": "text",
+      "note": "Save your build in this browser",
+      "grid": null,
+      "box": {
+        "x": 0.8822,
+        "y": 0.6299,
+        "w": 0.1009,
+        "h": 0.0596
+      },
+      "px": {
+        "x": 1355,
+        "y": 645,
+        "w": 155,
+        "h": 61
+      },
+      "aspect": 2.541,
+      "palette": [
+        {
+          "hex": "#161718",
+          "coverage": 0.5476
+        },
+        {
+          "hex": "#eb4728",
+          "coverage": 0.2229
+        },
+        {
+          "hex": "#f7f7e8",
+          "coverage": 0.2034
+        },
+        {
+          "hex": "#828186",
+          "coverage": 0.0159
+        },
+        {
+          "hex": "#b8b8bb",
+          "coverage": 0.0103
+        }
+      ],
+      "detail": {
+        "energy": 16.653
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 20,
+      "cropPath": "region-20.png"
+    },
+    {
+      "id": "learn-heading",
+      "kind": "text",
+      "note": "Know your hardware condensed heading",
+      "grid": null,
+      "box": {
+        "x": 0.0202,
+        "y": 0.7471,
+        "w": 0.3516,
+        "h": 0.0586
+      },
+      "px": {
+        "x": 31,
+        "y": 765,
+        "w": 540,
+        "h": 60
+      },
+      "aspect": 9,
+      "palette": [
+        {
+          "hex": "#15171c",
+          "coverage": 0.5581
+        },
+        {
+          "hex": "#f5f4ec",
+          "coverage": 0.3715
+        },
+        {
+          "hex": "#b4b4b1",
+          "coverage": 0.0265
+        },
+        {
+          "hex": "#343636",
+          "coverage": 0.0242
+        },
+        {
+          "hex": "#6c6d6d",
+          "coverage": 0.0198
+        }
+      ],
+      "detail": {
+        "energy": 101.0111
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 21,
+      "cropPath": "region-21.png"
+    },
+    {
+      "id": "learn-description",
+      "kind": "text",
+      "note": "Explore each part and learn its purpose in plain language",
+      "grid": null,
+      "box": {
+        "x": 0.3854,
+        "y": 0.7559,
+        "w": 0.3646,
+        "h": 0.043
+      },
+      "px": {
+        "x": 592,
+        "y": 774,
+        "w": 560,
+        "h": 44
+      },
+      "aspect": 12.7273,
+      "palette": [
+        {
+          "hex": "#f7f6ea",
+          "coverage": 0.8977
+        },
+        {
+          "hex": "#202123",
+          "coverage": 0.0443
+        },
+        {
+          "hex": "#b5b4b2",
+          "coverage": 0.0299
+        },
+        {
+          "hex": "#71706f",
+          "coverage": 0.0202
+        },
+        {
+          "hex": "#404246",
+          "coverage": 0.0079
+        }
+      ],
+      "detail": {
+        "energy": 46.2682
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 22,
+      "cropPath": "region-22.png"
+    },
+    {
+      "id": "explore-all",
+      "kind": "control",
+      "note": "Explore all parts link",
+      "grid": null,
+      "box": {
+        "x": 0.8854,
+        "y": 0.7666,
+        "w": 0.0918,
+        "h": 0.0342
+      },
+      "px": {
+        "x": 1360,
+        "y": 785,
+        "w": 141,
+        "h": 35
+      },
+      "aspect": 4.0286,
+      "palette": [
+        {
+          "hex": "#f8f8ea",
+          "coverage": 0.8776
+        },
+        {
+          "hex": "#082ede",
+          "coverage": 0.0334
+        },
+        {
+          "hex": "#8ca4ea",
+          "coverage": 0.0334
+        },
+        {
+          "hex": "#b2c4ed",
+          "coverage": 0.0297
+        },
+        {
+          "hex": "#3e72e6",
+          "coverage": 0.026
+        }
+      ],
+      "detail": {
+        "energy": 26.008
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 23,
+      "cropPath": "region-23.png"
+    },
+    {
+      "id": "part-tabs",
+      "kind": "control",
+      "note": "Full-width component category tabs, limited to seven supported categories",
+      "grid": null,
+      "box": {
+        "x": 0.0195,
+        "y": 0.8223,
+        "w": 0.9603,
+        "h": 0.0498
+      },
+      "px": {
+        "x": 30,
+        "y": 842,
+        "w": 1475,
+        "h": 51
+      },
+      "aspect": 28.9216,
+      "palette": [
+        {
+          "hex": "#eae9da",
+          "coverage": 0.8223
+        },
+        {
+          "hex": "#0848e8",
+          "coverage": 0.0957
+        },
+        {
+          "hex": "#b9b8b3",
+          "coverage": 0.0474
+        },
+        {
+          "hex": "#676b6e",
+          "coverage": 0.019
+        },
+        {
+          "hex": "#363a3d",
+          "coverage": 0.0156
+        }
+      ],
+      "detail": {
+        "energy": 29.6958
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 24,
+      "cropPath": "region-24.png"
+    },
+    {
+      "id": "processor-heading",
+      "kind": "text",
+      "note": "Processor heading starting the next section",
+      "grid": null,
+      "box": {
+        "x": 0.0202,
+        "y": 0.8965,
+        "w": 0.1641,
+        "h": 0.0498
+      },
+      "px": {
+        "x": 31,
+        "y": 918,
+        "w": 252,
+        "h": 51
+      },
+      "aspect": 4.9412,
+      "palette": [
+        {
+          "hex": "#15171c",
+          "coverage": 0.4504
+        },
+        {
+          "hex": "#f7f7ec",
+          "coverage": 0.4454
+        },
+        {
+          "hex": "#6f7170",
+          "coverage": 0.0688
+        },
+        {
+          "hex": "#9e9f9d",
+          "coverage": 0.0191
+        },
+        {
+          "hex": "#c7c8c4",
+          "coverage": 0.0163
+        }
+      ],
+      "detail": {
+        "energy": 56.8936
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 25,
+      "cropPath": "region-25.png"
+    },
+    {
+      "id": "processor-description",
+      "kind": "text",
+      "note": "Processor role explained in readable body copy",
+      "grid": null,
+      "box": {
+        "x": 0.0208,
+        "y": 0.9512,
+        "w": 0.2715,
+        "h": 0.0488
+      },
+      "px": {
+        "x": 32,
+        "y": 974,
+        "w": 417,
+        "h": 50
+      },
+      "aspect": 8.34,
+      "palette": [
+        {
+          "hex": "#f7f6eb",
+          "coverage": 0.8318
+        },
+        {
+          "hex": "#a1a19f",
+          "coverage": 0.0532
+        },
+        {
+          "hex": "#4f4f4f",
+          "coverage": 0.0532
+        },
+        {
+          "hex": "#1a1b1e",
+          "coverage": 0.0402
+        },
+        {
+          "hex": "#cac8c0",
+          "coverage": 0.0216
+        }
+      ],
+      "detail": {
+        "energy": 71.0028
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "number": 26,
+      "cropPath": "region-26.png"
+    },
+    {
+      "id": "learning-photo",
+      "kind": "image",
+      "note": "Close-up hardware photographs beginning the learning section, use real sourced images",
+      "grid": null,
+      "bleed": true,
+      "box": {
+        "x": 0.3307,
+        "y": 0.8945,
+        "w": 0.6497,
+        "h": 0.1055
+      },
+      "px": {
+        "x": 508,
+        "y": 916,
+        "w": 998,
+        "h": 108
+      },
+      "aspect": 9.2407,
+      "palette": [
+        {
+          "hex": "#131414",
+          "coverage": 0.4722
+        },
+        {
+          "hex": "#bcb2ad",
+          "coverage": 0.1861
+        },
+        {
+          "hex": "#eeeae2",
+          "coverage": 0.1207
+        },
+        {
+          "hex": "#444344",
+          "coverage": 0.1198
+        },
+        {
+          "hex": "#765c4b",
+          "coverage": 0.1012
+        }
+      ],
+      "detail": {
+        "energy": 47.9187
+      },
+      "medium": "raster",
+      "plate": "assets/plates/learning-photo.png",
+      "text": null,
+      "number": 27,
+      "reference": {
+        "policy": "plate-reference-v2",
+        "excludedPixels": 0,
+        "totalPixels": 107784,
+        "remainingPixels": 107784,
+        "excludedFraction": 0.0,
+        "fullyExcluded": false,
+        "regions": [],
+        "ignoredContainers": []
+      },
+      "cropPath": "region-27.png",
+      "referencePath": "reference-27.png"
+    }
+  ],
+  "issues": [
+    {
+      "severity": "error",
+      "code": "measurement",
+      "regionId": "processor-tab",
+      "message": "region processor-tab is kind \"control\" but its note describes painted material (\"Black angled Processor selector label over the photograph\"). Anything drawn, photographed, or textured ships as a raster plate: set kind to plate (illustration, diagram, figure), image (photograph), or texture (ground). If the note is wrong and code really draws it (a table, a rule, a chrome bar), reword the note or set \"codeDrawn\": true on the region."
+    },
+    {
+      "severity": "error",
+      "code": "measurement",
+      "regionId": "graphics-tab",
+      "message": "region graphics-tab is kind \"control\" but its note describes painted material (\"Electric-blue selected Graphics tab over the photograph\"). Anything drawn, photographed, or textured ships as a raster plate: set kind to plate (illustration, diagram, figure), image (photograph), or texture (ground). If the note is wrong and code really draws it (a table, a rule, a chrome bar), reword the note or set \"codeDrawn\": true on the region."
+    },
+    {
+      "severity": "error",
+      "code": "measurement",
+      "regionId": "memory-tab",
+      "message": "region memory-tab is kind \"control\" but its note describes painted material (\"Black angled Memory selector label over the photograph\"). Anything drawn, photographed, or textured ships as a raster plate: set kind to plate (illustration, diagram, figure), image (photograph), or texture (ground). If the note is wrong and code really draws it (a table, a rule, a chrome bar), reword the note or set \"codeDrawn\": true on the region."
+    },
+    {
+      "severity": "error",
+      "code": "measurement",
+      "regionId": "storage-tab",
+      "message": "region storage-tab is kind \"control\" but its note describes painted material (\"Black angled Storage selector label over the photograph\"). Anything drawn, photographed, or textured ships as a raster plate: set kind to plate (illustration, diagram, figure), image (photograph), or texture (ground). If the note is wrong and code really draws it (a table, a rule, a chrome bar), reword the note or set \"codeDrawn\": true on the region."
+    },
+    {
+      "severity": "warning",
+      "code": "foreground-mask",
+      "regionId": "gpu-photo",
+      "message": "explainer-field, explainer-copy exclude 20.9% of this reference. Check that the excluded pixels contain foreground, not artwork between separate text elements. Split overly broad foreground bounds; review grouping must not change geometry."
+    },
+    {
+      "severity": "warning",
+      "code": "measurement-warning",
+      "regionId": null,
+      "message": "region cpu-photo: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)"
+    },
+    {
+      "severity": "warning",
+      "code": "measurement-warning",
+      "regionId": null,
+      "message": "region gpu-photo: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)"
+    },
+    {
+      "severity": "warning",
+      "code": "measurement-warning",
+      "regionId": null,
+      "message": "region ram-photo: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)"
+    },
+    {
+      "severity": "warning",
+      "code": "measurement-warning",
+      "regionId": null,
+      "message": "region storage-photo: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)"
+    },
+    {
+      "severity": "warning",
+      "code": "measurement-warning",
+      "regionId": null,
+      "message": "region learning-photo: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)"
+    },
+    {
+      "severity": "warning",
+      "code": "uncovered-ink",
+      "regionId": null,
+      "message": "3 grid cells have detail outside named regions. This is a coverage heuristic, not proof of missing components."
+    }
+  ],
+  "overlaps": [
+    {
+      "a": "gpu-photo",
+      "b": "explainer-field",
+      "pixels": 39425.0,
+      "relationship": "overlapping elements"
+    },
+    {
+      "a": "gpu-photo",
+      "b": "explainer-copy",
+      "pixels": 27520.0,
+      "relationship": "overlapping elements"
+    },
+    {
+      "a": "explainer-field",
+      "b": "explainer-copy",
+      "pixels": 27520.0,
+      "relationship": "overlapping elements"
+    },
+    {
+      "a": "explainer-field",
+      "b": "launcher-field",
+      "pixels": 4275.0,
+      "relationship": "overlapping elements"
+    },
+    {
+      "a": "launcher-field",
+      "b": "start-building",
+      "pixels": 41400.0,
+      "relationship": "overlapping elements"
+    },
+    {
+      "a": "launcher-field",
+      "b": "launcher-parts",
+      "pixels": 9900.0,
+      "relationship": "overlapping elements"
+    },
+    {
+      "a": "launcher-field",
+      "b": "launcher-learn",
+      "pixels": 9900.0,
+      "relationship": "overlapping elements"
+    },
+    {
+      "a": "launcher-field",
+      "b": "launcher-save",
+      "pixels": 9455.0,
+      "relationship": "overlapping elements"
+    }
+  ],
+  "reviewGroups": {},
+  "uncoveredInkCells": [
+    "E7",
+    "A9",
+    "B9"
+  ],
+  "comparisonSheets": [
+    {
+      "path": "comparison-1.png",
+      "regionIds": [
+        "gpu-photo"
+      ]
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 export const basePartSchema = z.object({
-    id: z.number().int().positive(),
-    name: z.string().trim().min(1),
-    brand: z.string().trim().min(1),
-    image: z.string().trim().min(1),
-    price: z.number().min(0),
-})
+  id: z.number().int().positive(),
+  name: z.string().trim().min(1),
+  brand: z.string().trim().min(1),
+  image: z.string().trim().min(1),
+  price: z.number().min(0),
+});
 
 export const cpuSchema = basePartSchema.extend({
   componentType: z.literal("CPU"),
@@ -18,6 +18,7 @@ export const cpuSchema = basePartSchema.extend({
   boostClock: z.number().positive(),
   integratedGraphics: z.boolean(),
   tdp: z.number().positive(),
+  maxPowerW: z.number().positive().optional(),
   performanceScore: z.number().min(0),
 });
 
@@ -33,29 +34,31 @@ const storageSchema = basePartSchema.extend({
 });
 
 export const installedDriveSchema = z.object({
-    instanceId: z.string().trim().min(1),
-    product: storageSchema,
-})
+  instanceId: z.string().trim().min(1),
+  product: storageSchema,
+});
 
 export const gpuSchema = basePartSchema.extend({
-    componentType: z.literal("GPU"),
-    brand: z.enum(["NVIDIA", "AMD"]),
-    chipset: z.string().trim().min(1),
-    vram: z.number().positive(),
-    tdp: z.number().positive(),
-    length: z.number().positive(),
-    performanceScore: z.number().min(0)
-})
+  componentType: z.literal("GPU"),
+  brand: z.enum(["NVIDIA", "AMD"]),
+  chipset: z.string().trim().min(1),
+  vram: z.number().positive(),
+  tdp: z.number().positive(),
+  boardPowerW: z.number().positive().optional(),
+  recommendedPsuW: z.number().nonnegative().optional(),
+  length: z.number().positive(),
+  performanceScore: z.number().min(0),
+});
 
 export const ramSchema = basePartSchema.extend({
-componentType: z.literal("RAM"), 
-  type: z.enum(["DDR4" , "DDR5"]),
+  componentType: z.literal("RAM"),
+  type: z.enum(["DDR4", "DDR5"]),
   capacity: z.number().positive(),
   speed: z.number().positive(),
   modules: z.string().trim().min(1),
   rgb: z.boolean(),
   casLatency: z.number().positive(),
-})
+});
 
 export const psuSchema = basePartSchema.extend({
   componentType: z.literal("PSU"),
@@ -66,11 +69,7 @@ export const psuSchema = basePartSchema.extend({
     "80+ Platinum",
     "80+ Titanium",
   ]),
-  modularity: z.enum([
-    "Non-Modular",
-    "Semi-Modular",
-    "Fully Modular",
-  ]),
+  modularity: z.enum(["Non-Modular", "Semi-Modular", "Fully Modular"]),
   formFactor: z.enum(["ATX", "SFX"]),
 });
 

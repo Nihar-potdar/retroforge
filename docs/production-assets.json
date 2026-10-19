@@ -1,0 +1,148 @@
+{
+  "root": "dist",
+  "files": [
+    {
+      "path": "dist/assets/BuildPage-DbzWk6sG.js",
+      "bytes": 134373,
+      "gzipBytes": 38519
+    },
+    {
+      "path": "dist/assets/BuildStore-Cz69h1Tj.js",
+      "bytes": 27863,
+      "gzipBytes": 6837
+    },
+    {
+      "path": "dist/assets/BuilderScene-ChTpF9YC.js",
+      "bytes": 1004776,
+      "gzipBytes": 271620
+    },
+    {
+      "path": "dist/assets/Footer-C7F4w9Hs.js",
+      "bytes": 1451,
+      "gzipBytes": 652
+    },
+    {
+      "path": "dist/assets/Guide-ZHiQcu0k.js",
+      "bytes": 33404,
+      "gzipBytes": 10726
+    },
+    {
+      "path": "dist/assets/GuideDetail-SXxdvGmq.js",
+      "bytes": 7286,
+      "gzipBytes": 2461
+    },
+    {
+      "path": "dist/assets/Home-CjBkfzyd.js",
+      "bytes": 7057,
+      "gzipBytes": 2278
+    },
+    {
+      "path": "dist/assets/MotionConfigContext-C9xg1O1d.js",
+      "bytes": 39648,
+      "gzipBytes": 14183
+    },
+    {
+      "path": "dist/assets/NavBar-D0_bZrSs.js",
+      "bytes": 6257,
+      "gzipBytes": 2047
+    },
+    {
+      "path": "dist/assets/PreBuilts-IUFrcekT.js",
+      "bytes": 9314,
+      "gzipBytes": 2792
+    },
+    {
+      "path": "dist/assets/ThemeToggle-CZ-bK-Hs.js",
+      "bytes": 123712,
+      "gzipBytes": 40164
+    },
+    {
+      "path": "dist/assets/arrow-up-right-dAjq6jrn.js",
+      "bytes": 162,
+      "gzipBytes": 156
+    },
+    {
+      "path": "dist/assets/circuit-board-2QGuTJ64.js",
+      "bytes": 348,
+      "gzipBytes": 246
+    },
+    {
+      "path": "dist/assets/guides-DyxmRjZm.js",
+      "bytes": 55866,
+      "gzipBytes": 19518
+    },
+    {
+      "path": "dist/assets/hard-drive-D-izVshV.js",
+      "bytes": 972,
+      "gzipBytes": 433
+    },
+    {
+      "path": "dist/assets/index-B7ySY80g.js",
+      "bytes": 282076,
+      "gzipBytes": 87573
+    },
+    {
+      "path": "dist/assets/index-CRgueBDl.css",
+      "bytes": 84202,
+      "gzipBytes": 15501
+    },
+    {
+      "path": "dist/assets/jsx-runtime-B-hcVAMW.js",
+      "bytes": 8557,
+      "gzipBytes": 3264
+    },
+    {
+      "path": "dist/assets/triangle-alert-BDHCHkdE.js",
+      "bytes": 331,
+      "gzipBytes": 247
+    },
+    {
+      "path": "dist/models/optimized/case-c6b0def6486b.glb",
+      "bytes": 426700,
+      "gzipBytes": 238419,
+      "primitives": 5,
+      "triangles": 56686
+    },
+    {
+      "path": "dist/models/optimized/cpu-5585aa97fea2.glb",
+      "bytes": 5852,
+      "gzipBytes": 2888,
+      "primitives": 2,
+      "triangles": 206
+    },
+    {
+      "path": "dist/models/optimized/gpu-6d6e7cb3e45f.glb",
+      "bytes": 431236,
+      "gzipBytes": 271971,
+      "primitives": 5,
+      "triangles": 67932
+    },
+    {
+      "path": "dist/models/optimized/motherboard-763f86cd12f9.glb",
+      "bytes": 650704,
+      "gzipBytes": 408000,
+      "primitives": 40,
+      "triangles": 43218
+    },
+    {
+      "path": "dist/models/optimized/psu-56da589fe230.glb",
+      "bytes": 102860,
+      "gzipBytes": 46124,
+      "primitives": 11,
+      "triangles": 9808
+    },
+    {
+      "path": "dist/models/optimized/ram-1621cca997af.glb",
+      "bytes": 34776,
+      "gzipBytes": 24548,
+      "primitives": 4,
+      "triangles": 596
+    }
+  ],
+  "totals": {
+    "bytes": 3479783,
+    "gzipBytes": 1511167,
+    "primitives": 67,
+    "triangles": 178446
+  }
+}

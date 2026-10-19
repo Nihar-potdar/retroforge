@@ -1,0 +1,62 @@
+{
+  "scope": "Redline density refinement after user rejected the crowded comp arrangement",
+  "request": "you making it wayyy too crowded ive everything a little space bro",
+  "checks": {
+    "productionBuild": "pass",
+    "eslint": "pass",
+    "vitest": {
+      "files": 16,
+      "tests": 151,
+      "status": "pass"
+    },
+    "playwright": {
+      "projects": [
+        "desktop",
+        "phone"
+      ],
+      "tests": 22,
+      "status": "pass"
+    },
+    "responsive": {
+      "widths": [
+        1440,
+        768,
+        390
+      ],
+      "routes": [
+        "home",
+        "guides",
+        "prebuilts",
+        "builder",
+        "article"
+      ],
+      "overflow": false,
+      "brokenImages": [],
+      "pageErrors": []
+    },
+    "photographyProvenance": {
+      "rasters": 24,
+      "missing": 0
+    }
+  },
+  "changes": [
+    "Single authentic hardware photo in hero, no overlaid callouts",
+    "One primary hero action, larger spacing between sections",
+    "Seven-category educational explorer, optional fit note disclosure",
+    "Shared typography, control edges and selection geometry across bright browsing and dark builder",
+    "Responsive real photography with source/license credits and on-demand full-resolution inspection"
+  ],
+  "preserved": [
+    "Compatibility checks and guidance",
+    "Local saved builds",
+    "Prebuilt loading",
+    "Keyboard navigation and focus recovery",
+    "Mobile drawers and Zen controls",
+    "Existing licensed 3D asset pipeline"
+  ],
+  "scopeNotes": [
+    "Historical dense-comp reproduction gate remains superseded, not declared passed",
+    "No claim of live prices, model-to-product fidelity, physical fit simulation, or faster 3D runtime"
+  ],
+  "warning": "Existing large Three.js scene chunk warning remains"
+}

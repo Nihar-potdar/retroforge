@@ -1,0 +1,39 @@
+{
+  "root": "public/models",
+  "files": [
+    {
+      "path": "public/models/corsair_400d.glb",
+      "bytes": 4264344,
+      "gzipBytes": 1141371,
+      "primitives": 25,
+      "triangles": 97968
+    },
+    {
+      "path": "public/models/motherboard__components.glb",
+      "bytes": 9215156,
+      "gzipBytes": 5267920,
+      "primitives": 720,
+      "triangles": 80981
+    },
+    {
+      "path": "public/models/nvidia_rtx_2080_ti.glb",
+      "bytes": 3844124,
+      "gzipBytes": 1530304,
+      "primitives": 22,
+      "triangles": 142442
+    },
+    {
+      "path": "public/models/psu_power_supply_unit.glb",
+      "bytes": 749988,
+      "gzipBytes": 113957,
+      "primitives": 43,
+      "triangles": 12229
+    }
+  ],
+  "totals": {
+    "bytes": 18073612,
+    "gzipBytes": 8053552,
+    "primitives": 810,
+    "triangles": 333620
+  }
+}

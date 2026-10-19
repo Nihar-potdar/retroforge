@@ -22,6 +22,8 @@ export type CPU = {
   baseClock: number;
   boostClock: number;
   tdp: number;
+  /** Stock sizing budget (Intel MTP / AMD PPT or platform budget); see docs/power-policy.md. */
+  maxPowerW?: number;
   integratedGraphics: boolean;
   performanceScore: number;
 };
@@ -36,6 +38,8 @@ export type GPU = {
   chipset: string;
   vram: number;
   tdp: number;
+  boardPowerW?: number;
+  recommendedPsuW?: number;
   length: number;
   performanceScore: number;
 };
@@ -118,7 +122,7 @@ export type CASE = {
   color: string;
   rgb: boolean;
   temperedGlass: boolean;
-};3
+};
 
 export type ComponentType =
   "CPU" | "RAM" | "GPU" | "PSU" | "Motherboard" | "Case" | "Storage";
@@ -168,27 +172,56 @@ export type preBuild = {
 };
 
 export type DetailedErrors = {
+  key: string;
   type: "error" | "warning";
   rule: CompatiblityRule;
   title: string;
   compatibilityIssue: string;
-  source: ComponentRefernce;
-  target: ComponentRefernce;
-  suggestedAction: Category;
+  source?: ComponentRefernce;
+  target?: ComponentRefernce;
+  affectedParts: ComponentRefernce[];
+  suggestedAction: Category | "STORAGE";
 };
 
-type ComponentRefernce = {
+export type ComponentRefernce = {
   id: number;
   name: string;
   componentType: ComponentType;
   value: string;
+  instanceId?: string;
 };
 
 export type CompatiblityRule =
   | "CPU_MOTHERBOARD_SOCKET"
   | "RAM_MOTHERBOARD_TYPE"
   | "PSU_WATTAGE"
-  | "GPU_CASE_CLEARANCE";
+  | "PSU_HEADROOM"
+  | "POWER_DATA_INCOMPLETE"
+  | "GPU_CASE_CLEARANCE"
+  | "MOTHERBOARD_CASE_FORM_FACTOR"
+  | "STORAGE_CONNECTOR"
+  | "STORAGE_PROTOCOL"
+  | "STORAGE_CAPACITY";
+
+export type PowerBreakdown = {
+  cpuW: number;
+  gpuW: number;
+  motherboardW: number;
+  ramW: number;
+  storageW: number;
+  accessoriesW: number;
+  estimatedLoadW: number;
+  recommendedPsuW: number;
+  vendorPsuW: number;
+  missingComponents: string[];
+  uncertainParts: ComponentRefernce[];
+  isPartial: boolean;
+};
+
+export type BuildAssessment = {
+  issues: DetailedErrors[];
+  power: PowerBreakdown;
+};
 
 export type RuleCheckResult =
   | {

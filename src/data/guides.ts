@@ -1,3 +1,4 @@
+import { lessons } from "./guideContent";
 import {
   CircuitBoard,
   Cpu,
@@ -18,6 +19,8 @@ export type GuideSection = {
   title: string;
   /** Plain-language explanation shown beneath the heading. */
   body: string;
+  bullets?: string[];
+  actions?: { label: string; to: string }[];
 };
 
 /**
@@ -53,6 +56,10 @@ export type PcGuide = {
   /** One-sentence principle emphasized before the detailed sections. */
   keyIdea: string;
   sections: GuideSection[];
+  readingMinutes: number;
+  sources: { label: string; url: string }[];
+  related: string[];
+  actions: { label: string; to: string }[];
   /** Pre-build checks rendered as informational list items, not saved tasks. */
   checklist: string[];
   /** Safety or compatibility mistake given elevated visual priority. */
@@ -66,7 +73,7 @@ export type PcGuide = {
  * current scale favors readable local data over a CMS or network dependency;
  * image ownership remains explicit through credit and source fields.
  */
-export const guides: PcGuide[] = [
+const originalGuides = [
   // Compatibility comes first because an incompatible foundation invalidates
   // later performance, power, and assembly decisions.
   {
@@ -284,3 +291,36 @@ export const guides: PcGuide[] = [
       "Never force a component into place. Stop and recheck its orientation, latch, and manual when normal pressure is not enough.",
   },
 ];
+
+export const guides: PcGuide[] = lessons.map((lesson, index) => {
+  const original = originalGuides.find((guide) => guide.slug === lesson.slug);
+  const words = lesson.sections.reduce(
+    (n, section) => n + section.body.split(/\s+/).length,
+    0,
+  );
+  const minutes = Math.max(3, Math.ceil(words / 180));
+  return {
+    slug: lesson.slug,
+    number: String(index + 1).padStart(2, "0"),
+    title: lesson.title,
+    description: lesson.description,
+    topics: lesson.topics,
+    duration: `${minutes} min`,
+    readingMinutes: minutes,
+    level: lesson.advanced ? "Advanced" : "Beginner",
+    icon: original?.icon ?? CircuitBoard,
+    detailIcon: original?.detailIcon,
+    featured: index === 0,
+    image: original?.image ?? "",
+    imageAlt: original?.imageAlt ?? "",
+    imageCredit: original?.imageCredit ?? "",
+    imageSource: original?.imageSource ?? "",
+    keyIdea: lesson.sections[0]!.body.split(". ")[0] + ".",
+    sections: lesson.sections,
+    checklist: lesson.checklist,
+    warning: lesson.warning,
+    sources: lesson.sources,
+    related: lesson.related,
+    actions: lesson.actions,
+  };
+});

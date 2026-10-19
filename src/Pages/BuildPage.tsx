@@ -1,17 +1,9 @@
-import { X } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { cloneElement, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  AnimatePresence,
-  motion,
-  MotionConfig,
-  useDragControls,
-} from "motion/react";
+import { motion, MotionConfig, useDragControls } from "motion/react";
 import { toast } from "sonner";
-
 import { BuildViewport } from "@/components/BuildViewport";
 import { NavBar } from "@/components/NavBar";
-
 import {
   type BUILD,
   type Category,
@@ -21,38 +13,53 @@ import {
   type SavedBuild,
 } from "@/data/type";
 
-import {
-  buildToComponents,
-  getDetailedErrors,
-} from "@/Logic/Compatibility/Compatibility";
+import { assessBuild } from "@/Logic/Compatibility/BuildAssessment";
+import { hasCompatibilityErrors } from "@/Logic/Compatibility/Issue";
+import { normalizePowerMetadata } from "@/Logic/Compatibility/Power";
 import { savedBuildListSchema } from "@/zod/buildSchema";
-import { useBuildStore } from "@/stores/BuildStore";
-import { getPartHighlights } from "@/lib/getPartHighlights";
-import { useIssueStore } from "@/stores/ComptiblityIssuesStore";
+import {
+  createFreshBuild,
+  DEFAULT_CASE,
+  useBuildStore,
+  type BuildIntent,
+} from "@/stores/BuildStore";
 import {
   componentKey,
   getCandidateCompatibilityIssues,
 } from "@/Logic/Compatibility/CandidateCompatibility";
 import { CompatibilityWarningDialog } from "./build/CompatibilityWarningDialog";
-import { DesktopPartsSidebar } from "./build/DesktopPartsSidebar";
 import { MobileBuildPanel } from "./build/MobileBuildPanel";
-import { MobilePartsPanel } from "./build/MobilePartsPanel";
-import { PullDownToClose } from "./build/PullDownToClose";
-import { categoryNames, componentGroups } from "./build/buildCatalog";
+import { DesktopPartsSidebar } from "./build/DesktopPartsSidebar";
+import { componentGroups } from "./build/buildCatalog";
 import type { CompatibilityFilterMode } from "./build/CompatibilityFilterToggle";
 
 type PendingInstallation = {
   build: BUILD;
   issues: DetailedErrors[];
   onInstalled?: () => void;
+  intent: Exclude<BuildIntent, "initial">;
 };
+
+import { PartsCatalog } from "./build/PartsCatalog";
+import { BuildDrawer } from "./build/BuildDrawer";
+import { ZenPanel } from "@/components/ZenPanel";
 
 export function BuildPage() {
   const [searchParams] = useSearchParams();
   const panelDragControls = useDragControls();
-  const buildNameInput = useRef<HTMLInputElement>(null);
-  const savedBuildsBar = useRef<HTMLDivElement>(null);
-  const [catalogCategory, setCatalogCategory] = useState("cpu");
+  const zenButton = useRef<HTMLButtonElement>(null);
+  const zenExitButton = useRef<HTMLButtonElement>(null);
+  const partsTrigger = useRef<HTMLButtonElement>(null);
+  const buildTrigger = useRef<HTMLButtonElement>(null);
+  const [zen, setZen] = useState(false);
+  const [touring, setTouring] = useState(false);
+  const [dockExpanded, setDockExpanded] = useState(false);
+  const [announcement, setAnnouncement] = useState("");
+  const [catalogCategory, setCatalogCategory] = useState(
+    () =>
+      componentGroups.find((group) => group.id === searchParams.get("category"))
+        ?.id ?? "cpu",
+  );
   const [previewPart, setPreviewPart] = useState<CompatibleComponent | null>(
     null,
   );
@@ -61,14 +68,54 @@ export function BuildPage() {
   const [pendingInstallation, setPendingInstallation] =
     useState<PendingInstallation | null>(null);
   const [mobilePanel, setMobilePanel] = useState<"parts" | "build" | null>(
-    searchParams.get("panel") === "build" ? "build" : null,
+    searchParams.get("panel") === "build" &&
+      window.matchMedia("(max-width: 1023px)").matches
+      ? "build"
+      : null,
   );
 
-  const setCompatibleIssues = useIssueStore(
-    (state) => state.setCompatiblityIssues,
-  );
+  const tourPanel = useRef<"parts" | "build" | null>(null);
+  const tourExpanded = useRef(false);
+  useEffect(() => {
+    const show = (event: Event) => {
+      const detail = (
+        event as CustomEvent<"parts" | "build" | "start" | "end" | null>
+      ).detail;
+      if (detail === "start") {
+        setTouring(true);
+        setDockExpanded((previous) => {
+          tourExpanded.current = previous;
+          return false;
+        });
+        setMobilePanel((previous) => {
+          tourPanel.current = previous;
+          return previous;
+        });
+      } else if (detail === "end") {
+        setTouring(false);
+        setDockExpanded(tourExpanded.current);
+        setMobilePanel(tourPanel.current);
+      } else setMobilePanel(detail);
+    };
+    window.addEventListener("retroforge:tour-panel", show);
+    return () => window.removeEventListener("retroforge:tour-panel", show);
+  }, []);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1024px)");
+    const resize = () => {
+      if (media.matches) setMobilePanel(null);
+    };
+    media.addEventListener("change", resize);
+    return () => media.removeEventListener("change", resize);
+  }, []);
+
   const build = useBuildStore((state) => state.build);
   const setBuild = useBuildStore((state) => state.setBuild);
+  const defaultCaseNotice = useBuildStore((state) => state.defaultCaseNotice);
+  const dismissDefaultCaseNotice = useBuildStore(
+    (state) => state.dismissDefaultCaseNotice,
+  );
   const [compatibilityFilter, setCompatibilityFilter] =
     useState<CompatibilityFilterMode>("all");
 
@@ -78,20 +125,33 @@ export function BuildPage() {
       if (!stored) return [];
 
       const result = savedBuildListSchema.safeParse(JSON.parse(stored));
-      return result.success ? result.data : [];
+      return result.success
+        ? result.data.map((saved) => ({
+            ...saved,
+            build: normalizePowerMetadata(saved.build),
+          }))
+        : [];
     } catch {
       return [];
     }
   });
 
   useEffect(() => {
-    localStorage.setItem("retroforge.savedBuilds", JSON.stringify(savedBuilds));
+    try {
+      localStorage.setItem(
+        "retroforge.savedBuilds",
+        JSON.stringify(savedBuilds),
+      );
+    } catch {
+      toast.error(
+        "Browser storage is unavailable. Saves will last only for this session.",
+      );
+    }
   }, [savedBuilds]);
 
   const activeGroup =
     componentGroups.find((group) => group.id === catalogCategory) ??
     componentGroups[0]!;
-
   const installedPart = {
     cpu: build.CPU,
     gpu: build.GPU,
@@ -103,6 +163,7 @@ export function BuildPage() {
   const selectedPartKey = installedPart
     ? `${installedPart.componentType}-${installedPart.id}`
     : undefined;
+
   const candidateIssues = useMemo(() => {
     return new Map(
       activeGroup.items.map((candidate) => {
@@ -130,7 +191,7 @@ export function BuildPage() {
       }
       const issues = candidateIssues.get(componentKey(part)) ?? [];
 
-      return issues.length === 0;
+      return !hasCompatibilityErrors(issues);
     });
   }, [activeGroup.items, searchQuery, compatibilityFilter, candidateIssues]);
 
@@ -153,30 +214,75 @@ export function BuildPage() {
     (build.CASE?.price ?? 0) +
     build.STORAGE.reduce((total, drive) => total + drive.product.price, 0);
 
+  // Render-time reconciliation keeps deep links current without an extra effect render.
+  const [previousCategoryParam, setPreviousCategoryParam] = useState(
+    searchParams.get("category"),
+  );
+  if (previousCategoryParam !== searchParams.get("category")) {
+    setPreviousCategoryParam(searchParams.get("category"));
+    const category = componentGroups.find(
+      (group) => group.id === searchParams.get("category"),
+    )?.id;
+    if (category) {
+      setCatalogCategory(category);
+      setPreviewPart(null);
+      setSearchQuery("");
+    }
+  }
+
   function openCategory(id: string) {
     setCatalogCategory(id);
     setPreviewPart(null);
     setSearchQuery("");
   }
 
-  function installIfCompatible(proposedBuild: BUILD, onInstalled?: () => void) {
-    const selectedComponents = buildToComponents(proposedBuild);
-    const detailedErrors = getDetailedErrors(selectedComponents);
+  function showSuggestedCategory(category: Category | "STORAGE") {
+    openCategory(category.toLowerCase());
+    if (window.matchMedia("(max-width: 1023px)").matches)
+      setMobilePanel("parts");
+    else
+      requestAnimationFrame(() =>
+        document
+          .querySelector<HTMLButtonElement>(".panel-left button")
+          ?.focus(),
+      );
+  }
 
-    console.log("[compatibility] detailed build errors", detailedErrors);
+  useEffect(() => {
+    if (
+      searchParams.get("panel") === "build" &&
+      window.matchMedia("(min-width: 1024px)").matches
+    ) {
+      const frame = requestAnimationFrame(() =>
+        document
+          .querySelector<HTMLInputElement>("#desktop-build-name")
+          ?.focus(),
+      );
+      return () => cancelAnimationFrame(frame);
+    }
+  }, [searchParams]);
+
+  function installIfCompatible(
+    proposedBuild: BUILD,
+    onInstalled?: () => void,
+    intent: Exclude<BuildIntent, "initial"> = "edit",
+  ) {
+    const detailedErrors = assessBuild(proposedBuild).issues.filter(
+      (issue) => issue.type === "error",
+    );
 
     if (detailedErrors.length > 0) {
       setPendingInstallation({
         build: proposedBuild,
         issues: detailedErrors,
         onInstalled,
+        intent,
       });
 
       return false;
     }
 
-    setCompatibleIssues([]);
-    setBuild(proposedBuild);
+    setBuild(proposedBuild, intent);
     onInstalled?.();
     return true;
   }
@@ -184,8 +290,7 @@ export function BuildPage() {
   function confirmIncompatibleInstallation() {
     if (!pendingInstallation) return;
 
-    setBuild(pendingInstallation.build);
-    setCompatibleIssues(pendingInstallation.issues);
+    setBuild(pendingInstallation.build, pendingInstallation.intent);
     pendingInstallation.onInstalled?.();
 
     toast.warning("Installed with compatibility issues", {
@@ -198,108 +303,49 @@ export function BuildPage() {
   }
 
   function installPart(part: CompatibleComponent) {
+    const installed = () => {
+      setAnnouncement(`Installed ${part.name}`);
+      setDockExpanded(false);
+    };
+    setPreviewPart(part);
     switch (part.componentType) {
       case "CPU":
-        installIfCompatible({ ...build, CPU: part });
+        installIfCompatible({ ...build, CPU: part }, installed);
         return;
 
       case "GPU":
-        installIfCompatible({ ...build, GPU: part });
+        installIfCompatible({ ...build, GPU: part }, installed);
         return;
 
       case "RAM":
-        installIfCompatible({ ...build, RAM: part });
+        installIfCompatible({ ...build, RAM: part }, installed);
         return;
 
       case "PSU":
-        installIfCompatible({ ...build, PSU: part });
+        installIfCompatible({ ...build, PSU: part }, installed);
         return;
 
       case "Case":
-        installIfCompatible({ ...build, CASE: part });
+        installIfCompatible({ ...build, CASE: part }, installed);
         return;
 
-      case "Motherboard": {
-        const usedM2 = build.STORAGE.filter(
-          (drive) => drive.product.connector === "M.2",
-        ).length;
-        const usedSata = build.STORAGE.filter(
-          (drive) => drive.product.connector === "SATA",
-        ).length;
-
-        if (usedM2 > part.m2Slots) {
-          toast(`Remove ${usedM2 - part.m2Slots} M.2 drive(s) first.`);
-          openCategory("storage");
-          return;
-        }
-
-        if (usedSata > part.sataPorts) {
-          toast(`Remove ${usedSata - part.sataPorts} SATA drive(s) first.`);
-          openCategory("storage");
-          return;
-        }
-
-        const unsupportedM2 = build.STORAGE.some(
-          (drive) =>
-            drive.product.connector === "M.2" &&
-            !part.supportedM2Protocols.includes(drive.product.protocol),
-        );
-
-        if (unsupportedM2) {
-          toast(
-            "This motherboard does not support one or more installed M.2 drives.",
-          );
-          return;
-        }
-
-        installIfCompatible({ ...build, MOTHERBOARD: part });
+      case "Motherboard":
+        installIfCompatible({ ...build, MOTHERBOARD: part }, installed);
         return;
-      }
 
       case "Storage": {
-        if (!build.MOTHERBOARD) {
-          openCategory("motherboard");
-          toast("Select a motherboard first.");
-          return;
-        }
-
-        const usedM2 = build.STORAGE.filter(
-          (drive) => drive.product.connector === "M.2",
-        ).length;
-        const usedSata = build.STORAGE.filter(
-          (drive) => drive.product.connector === "SATA",
-        ).length;
-
-        if (part.connector === "M.2" && usedM2 >= build.MOTHERBOARD.m2Slots) {
-          toast("No M.2 slots available.");
-          return;
-        }
-
-        if (
-          part.connector === "SATA" &&
-          usedSata >= build.MOTHERBOARD.sataPorts
-        ) {
-          toast("No SATA ports available.");
-          return;
-        }
-
-        if (
-          part.connector === "M.2" &&
-          !build.MOTHERBOARD.supportedM2Protocols.includes(part.protocol)
-        ) {
-          toast("This motherboard does not support that M.2 protocol.");
-          return;
-        }
-
         const installedDrive: InstalledDrive = {
           instanceId: crypto.randomUUID(),
           product: part,
         };
 
-        installIfCompatible({
-          ...build,
-          STORAGE: [...build.STORAGE, installedDrive],
-        });
+        installIfCompatible(
+          {
+            ...build,
+            STORAGE: [...build.STORAGE, installedDrive],
+          },
+          installed,
+        );
 
         return;
       }
@@ -329,18 +375,13 @@ export function BuildPage() {
   }
 
   function removePart(category: Category) {
-    if (category === "MOTHERBOARD" && build.STORAGE.length > 0) {
-      toast("Remove all drives before removing your motherboard.");
-      return false;
-    }
-
     const updatedBuild: BUILD = {
       ...build,
       [category]: undefined,
     };
 
     setBuild(updatedBuild);
-    setCompatibleIssues(getDetailedErrors(buildToComponents(updatedBuild)));
+    setAnnouncement(`Removed ${category.toLowerCase()}`);
     return true;
   }
 
@@ -351,14 +392,13 @@ export function BuildPage() {
     };
 
     setBuild(updatedBuild);
-    setCompatibleIssues(getDetailedErrors(buildToComponents(updatedBuild)));
+    setAnnouncement("Removed storage drive");
   }
 
   function resetBuild() {
-    setBuild({
-      STORAGE: [],
-    });
-    setCompatibleIssues([]);
+    setBuild(createFreshBuild(), "reset");
+    setPreviewPart(null);
+    setAnnouncement("Build reset.");
   }
 
   function saveBuild() {
@@ -380,172 +420,228 @@ export function BuildPage() {
 
     setBuildName("");
     toast(`Saved ${name}`);
+    setAnnouncement(`Saved ${name} in this browser`);
   }
 
   function loadBuild(savedBuild: SavedBuild) {
-    installIfCompatible(savedBuild.build, () => {
-      setPreviewPart(null);
-      toast(`Loaded ${savedBuild.name}`);
-    });
+    installIfCompatible(
+      savedBuild.build,
+      () => {
+        setPreviewPart(null);
+        toast(`Loaded ${savedBuild.name}`);
+      },
+      "load",
+    );
   }
 
   function deleteSavedBuild(id: string) {
+    document
+      .querySelector<HTMLInputElement>(
+        window.matchMedia("(min-width: 1024px)").matches
+          ? zen
+            ? ".panel-right input"
+            : "#desktop-build-name"
+          : ".build-drawer input",
+      )
+      ?.focus();
     setSavedBuilds((previous) => previous.filter((save) => save.id !== id));
   }
 
+  const assessment = assessBuild(build);
+  const buildPanel = (
+    <MobileBuildPanel
+      build={build}
+      onSuggestedAction={showSuggestedCategory}
+      totalPrice={totalPrice}
+      resetBuild={resetBuild}
+      buildName={buildName}
+      setBuildName={setBuildName}
+      saveBuild={saveBuild}
+      savedBuilds={savedBuilds}
+      loadBuild={loadBuild}
+      deleteSavedBuild={deleteSavedBuild}
+      removePart={removePart}
+      removeDrive={removeDrive}
+    />
+  );
+  const partsPanel = (
+    <PartsCatalog
+      category={catalogCategory}
+      onCategory={openCategory}
+      parts={filteredParts}
+      build={build}
+      search={searchQuery}
+      onSearch={setSearchQuery}
+      filter={compatibilityFilter}
+      onFilter={setCompatibilityFilter}
+      issues={candidateIssues}
+      onInstall={installPart}
+      onRemove={chooseProduct}
+      onPreview={setPreviewPart}
+    />
+  );
+  function exitZen() {
+    setZen(false);
+    requestAnimationFrame(() => zenButton.current?.focus());
+  }
   return (
     <MotionConfig reducedMotion="user">
-      <div className="flex h-dvh flex-col overflow-hidden bg-background text-text">
-        <NavBar
-          variant="build"
-          onOpenSaved={() => {
-            if (window.matchMedia("(min-width: 1024px)").matches) {
-              (
-                savedBuildsBar.current?.querySelector("button") ??
-                buildNameInput.current
-              )?.focus();
-            } else {
-              setMobilePanel("build");
-            }
-          }}
-        />
-
-        <CompatibilityWarningDialog
-          issues={pendingInstallation?.issues ?? null}
-          onCancel={() => setPendingInstallation(null)}
-          onConfirm={confirmIncompatibleInstallation}
-        />
-
-        {/* ========================= */}
-        {/* MOBILE HEADER */}
-        {/* ========================= */}
-
-        <div className="shrink-0 border-b border-border px-4 py-3 lg:hidden">
-          <p className="font-mono text-[8px] uppercase tracking-[0.24em] text-accent-dark">
-            Garage / Build_01
-          </p>
-
-          <div className="mt-1 flex items-end justify-between gap-3">
-            <h1 className="text-xl italic font-bold uppercase font-display">
-              Build your machine
-            </h1>
-
-            <span className="shrink-0 font-mono text-xs font-bold text-accent-dark">
-              ${totalPrice.toFixed(2)}
-            </span>
-          </div>
-        </div>
-
-        {/* ========================= */}
-        {/* DESKTOP HEADER */}
-        {/* ========================= */}
-
-        <header className="hidden shrink-0 items-center justify-between border-b border-border bg-surface px-8 py-4 lg:flex [@media(max-height:800px)]:py-2 [@media(max-height:700px)]:py-1.5">
+      <div
+        className={`builder-shell ${zen ? "zen-mode" : ""}`}
+        onKeyDown={(event) => {
+          if (
+            event.key === "Escape" &&
+            !pendingInstallation &&
+            !mobilePanel &&
+            zen
+          ) {
+            event.preventDefault();
+            exitZen();
+          }
+        }}
+      >
+        {!zen && (
+          <NavBar
+            variant="build"
+            onOpenSaved={() => {
+              if (window.matchMedia("(min-width: 1024px)").matches)
+                document
+                  .querySelector<HTMLInputElement>("#desktop-build-name")
+                  ?.focus();
+              else setMobilePanel("build");
+            }}
+          />
+        )}
+        <header className={zen ? "hidden" : "builder-heading"}>
           <div>
-            <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent-dark">
-              Garage / Build_01
+            <p className="font-mono text-xs uppercase tracking-[0.24em] text-accent-dark">
+              Your ideas, taking shape.
             </p>
-
-            <h1 className="mt-1 font-display text-3xl font-bold uppercase italic tracking-[-0.04em] [@media(max-height:800px)]:text-2xl [@media(max-height:700px)]:text-xl">
+            <h1
+              id={zen ? "builder-title" : "main-content"}
+              tabIndex={-1}
+              className="builder-title font-display text-xl font-bold uppercase italic"
+            >
               Build your machine
             </h1>
           </div>
-
-          <div className="flex items-end gap-3">
-            <label className="flex flex-col gap-1">
-              <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
-                Build name
-              </span>
-
+          <div className="desktop-build-actions">
+            <label className="text-xs font-mono uppercase text-muted">
+              Build name
               <input
-                ref={buildNameInput}
+                id="desktop-build-name"
+                aria-label="Build name"
+                placeholder="Untitled build"
+                className="text-field mt-1 w-52"
                 value={buildName}
                 onChange={(event) => setBuildName(event.target.value)}
-                placeholder="UNTITLED BUILD"
-                className="h-10 w-52 border border-border bg-background px-3 font-mono text-xs uppercase outline-none focus:border-accent [@media(max-height:800px)]:h-9"
               />
             </label>
-
             <motion.button
-              type="button"
-              onClick={saveBuild}
+              className="control-button primary cut-corner"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.94 }}
-              className="cut-corner h-10 bg-accent px-6 text-sm italic font-bold uppercase text-white accent-glow font-display [@media(max-height:800px)]:h-9"
+              onClick={saveBuild}
             >
               Save
             </motion.button>
-
             <motion.button
-              type="button"
-              onClick={resetBuild}
+              className="control-button"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.94 }}
-              className="cut-corner h-10 bg-accent px-6 text-sm italic font-bold uppercase text-white accent-glow font-display [@media(max-height:800px)]:h-9"
+              onClick={resetBuild}
             >
               Reset
             </motion.button>
           </div>
+          <button
+            data-tour="zen"
+            ref={zenButton}
+            className="control-button"
+            onClick={() => {
+              setZen(true);
+              requestAnimationFrame(() => zenExitButton.current?.focus());
+            }}
+          >
+            Zen mode
+          </button>
         </header>
-
-        {/* ========================= */}
-        {/* MAIN LAYOUT */}
-        {/* ========================= */}
-
-        <div className="flex min-h-0 flex-1 flex-col lg:flex-row">
-          {/* ========================= */}
-          {/* DESKTOP PARTS SIDEBAR */}
-          {/* ========================= */}
-
-          <DesktopPartsSidebar
-            catalogCategory={catalogCategory}
-            filteredParts={filteredParts}
-            selectedPartKey={selectedPartKey}
-            build={build}
-            onOpenCategory={openCategory}
-            onChooseProduct={chooseProduct}
-            onAddStorage={installPart}
-            candidateIssues={candidateIssues}
-            compatibilityFilter={compatibilityFilter}
-            onCompatibilityFilterChange={setCompatibilityFilter}
-          />
-
-          {/* ========================= */}
-          {/* VIEWPORT + RESPONSIVE UI */}
-          {/* ========================= */}
-
-          <main className="relative flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto bg-background lg:overflow-hidden">
-            {/* DESKTOP SAVED BUILDS */}
-            {savedBuilds.length > 0 && (
-              <div
-                ref={savedBuildsBar}
-                className="hidden shrink-0 items-center gap-2 overflow-x-auto border-b border-border bg-surface px-4 py-2 lg:flex [@media(max-height:700px)]:py-1"
-              >
-                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
+        {zen && (
+          <button
+            ref={zenExitButton}
+            className="control-button zen-exit"
+            onClick={exitZen}
+          >
+            Exit Zen · Esc
+          </button>
+        )}
+        {defaultCaseNotice && !zen && (
+          <div
+            className="starting-case-notice"
+            role="status"
+            aria-label="Starting case"
+          >
+            <p>
+              Starting case added: <strong>{DEFAULT_CASE.name}</strong>. You can
+              change or remove it in Parts.
+            </p>
+            <button
+              className="control-button"
+              onClick={() => {
+                document.getElementById("main-content")?.focus();
+                dismissDefaultCaseNotice();
+              }}
+              aria-label="Dismiss starting case message"
+            >
+              Dismiss
+            </button>
+          </div>
+        )}
+        <div className="builder-workspace">
+          <ZenPanel side="left" zen={zen} label="component catalogue">
+            <DesktopPartsSidebar
+              catalogCategory={catalogCategory}
+              filteredParts={filteredParts}
+              selectedPartKey={selectedPartKey}
+              build={build}
+              onOpenCategory={openCategory}
+              onChooseProduct={chooseProduct}
+              onAddStorage={installPart}
+              candidateIssues={candidateIssues}
+              compatibilityFilter={compatibilityFilter}
+              onCompatibilityFilterChange={setCompatibilityFilter}
+            />
+          </ZenPanel>
+          <main className="builder-stage" aria-label="PC assembly">
+            {zen && (
+              <h1 id="main-content" tabIndex={-1} className="sr-only">
+                PC assembly in Zen mode
+              </h1>
+            )}
+            {!zen && savedBuilds.length > 0 && (
+              <div className="desktop-saved-builds">
+                <span className="font-mono text-xs uppercase text-muted">
                   Saved builds
                 </span>
-
                 {savedBuilds.map((save) => (
                   <div
                     key={save.id}
-                    className="flex shrink-0 items-center gap-2 border-l border-border pl-3"
+                    className="flex shrink-0 items-center gap-3 border-l border-border pl-3"
                   >
-                    <span className="text-xs italic font-bold uppercase font-display">
+                    <span className="text-sm font-display italic font-bold uppercase">
                       {save.name}
                     </span>
-
                     <button
-                      type="button"
+                      className="control-button"
+                      aria-label={`Load ${save.name}`}
                       onClick={() => loadBuild(save)}
-                      className="font-mono text-[9px] uppercase text-accent-dark hover:underline"
                     >
                       Load
                     </button>
-
                     <button
-                      type="button"
+                      className="control-button"
+                      aria-label={`Delete saved build ${save.name}`}
                       onClick={() => deleteSavedBuild(save.id)}
-                      className="font-mono text-xs text-muted hover:text-danger"
                     >
                       ×
                     </button>
@@ -553,320 +649,74 @@ export function BuildPage() {
                 ))}
               </div>
             )}
-
-            {/* ================================== */}
-            {/* THE ONLY BUILD VIEWPORT / CANVAS */}
-            {/* ================================== */}
-
-            <div
-              className="
-              relative
-              h-[46dvh]
-              min-h-[330px]
-              max-h-[500px]
-              shrink-0
-              overflow-hidden
-
-              lg:h-auto
-              lg:max-h-none
-              lg:min-h-0
-              lg:flex-1
-            "
-            >
+            <div className="builder-viewport">
               <BuildViewport
-                selectedCategory={
-                  categoryNames[catalogCategory] ?? catalogCategory
-                }
-                selectedPart={previewPart}
                 build={build}
-                onRemoveDrive={removeDrive}
-                onRemovePart={(id) => removePart(id as Category)}
-                onSuggestedAction={(category) => {
-                  openCategory(category.toLowerCase());
-                  setMobilePanel("parts");
-                }}
+                selectedPart={previewPart}
+                selectedCategory={activeGroup.label}
               />
-
-              {/* MOBILE BUILD STATUS */}
-              <div className="pointer-events-none absolute bottom-3 left-1/2 z-30 -translate-x-1/2 lg:hidden">
-                <div className="cut-corner border border-border bg-background/90 px-3 py-2 text-center backdrop-blur-md">
-                  <p className="font-mono text-[7px] uppercase tracking-widest text-muted">
-                    Build status
-                  </p>
-
-                  <p className="mt-0.5 text-sm italic font-bold font-display">
-                    {completedParts} / 7 INSTALLED
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* ========================= */}
-            {/* MOBILE CATEGORY BAR */}
-            {/* ========================= */}
-
-            <div className="shrink-0 border-t border-border bg-surface lg:hidden">
-              <div className="flex w-full">
-                {componentGroups.map((component) => {
-                  const Icon = component.icon;
-                  const active = component.id === catalogCategory;
-
-                  return (
-                    <button
-                      key={component.id}
-                      onClick={() => openCategory(component.id)}
-                      className={`relative flex min-w-0 flex-1 flex-col items-center gap-1 px-1 py-2 ${
-                        active ? "text-accent-dark" : "text-muted"
-                      }`}
-                    >
-                      <Icon className="size-4" />
-
-                      <span className="max-w-full truncate font-mono text-[8px] uppercase tracking-tight">
-                        {component.name}
-                      </span>
-
-                      {active && (
-                        <motion.span
-                          layoutId="mobile-category"
-                          className="absolute bottom-0 h-[2px] w-8 bg-accent"
-                        />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* ========================= */}
-            {/* MOBILE CURRENT SELECTION */}
-            {/* ========================= */}
-
-            <div className="shrink-0 border-t border-border bg-background px-4 py-3 lg:hidden">
-              <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-muted">
-                Current selection
-              </p>
-
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={
-                    previewPart
-                      ? `${previewPart.componentType}-${previewPart.id}`
-                      : "none"
-                  }
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.15 }}
-                  className="mt-1"
-                >
-                  <div className="flex items-end justify-between gap-4">
-                    <div className="min-w-0">
-                      <p className="truncate text-base italic font-bold uppercase font-display">
-                        {previewPart?.name ?? `Choose ${activeGroup.label}`}
-                      </p>
-
-                      {previewPart && (
-                        <p className="mt-1 truncate font-mono text-[9px] uppercase text-muted">
-                          {getPartHighlights(previewPart)
-                            .slice(0, 3)
-                            .map((item) => item.value)
-                            .join(" / ")}
-                        </p>
-                      )}
-                    </div>
-
-                    {previewPart && (
-                      <span className="shrink-0 font-mono text-sm font-bold text-accent-dark">
-                        ${previewPart.price.toFixed(2)}
-                      </span>
-                    )}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* MOBILE ACTIONS */}
-
-            <div className="grid shrink-0 grid-cols-2 gap-px border-t border-border bg-border lg:hidden">
-              <button
-                onClick={() => setMobilePanel("parts")}
-                className="bg-surface px-4 py-4 text-sm italic font-bold uppercase font-display active:bg-accent active:text-white"
-              >
-                Parts
-              </button>
-
-              <button
-                onClick={() => setMobilePanel("build")}
-                className="bg-accent px-4 py-4 text-sm italic font-bold uppercase text-white font-display"
-              >
-                Build · {completedParts}/7
-              </button>
-            </div>
-
-            {/* ========================= */}
-            {/* DESKTOP CURRENT SELECTION */}
-            {/* ========================= */}
-
-            <div className="hidden shrink-0 items-center justify-between border-t border-border bg-surface px-6 py-3 lg:flex [@media(max-height:800px)]:py-2 [@media(max-height:700px)]:py-1.5">
-              <div className="min-w-0">
-                <p className="font-mono text-[8px] uppercase tracking-[0.22em] text-muted">
-                  Current selection
-                </p>
-
-                <div className="mt-1 h-6 overflow-hidden">
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.p
-                      key={
-                        previewPart
-                          ? `${previewPart.componentType}-${previewPart.id}`
-                          : "empty"
-                      }
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.16 }}
-                      className="truncate text-lg italic font-bold uppercase font-display"
-                    >
-                      {previewPart?.name ?? "Select a component"}
-                    </motion.p>
-                  </AnimatePresence>
-                </div>
-              </div>
-
-              {previewPart && (
-                <div className="text-right">
-                  <p className="font-mono text-[8px] uppercase tracking-[0.22em] text-muted">
-                    Price
-                  </p>
-
-                  <p className="mt-1 font-mono text-xl font-bold text-accent-dark">
-                    ${previewPart.price.toFixed(2)}
-                  </p>
-                </div>
-              )}
             </div>
           </main>
+          <ZenPanel side="right" zen={zen} label="installed build">
+            <div data-tour="installed">
+              {cloneElement(buildPanel, { desktop: !zen })}
+            </div>
+          </ZenPanel>
         </div>
-
-        {/* ========================= */}
-        {/* MOBILE DRAWER */}
-        {/* ========================= */}
-
-        <AnimatePresence>
-          {mobilePanel && (
-            <>
-              <motion.button
-                aria-label="Close panel"
-                onClick={() => setMobilePanel(null)}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 0.2 } }}
-                exit={{
-                  opacity: 0,
-                  transition: { duration: 0.22, ease: "easeOut" },
-                }}
-                className="fixed inset-0 z-40 bg-black/55 backdrop-blur-[2px] lg:hidden"
-              />
-
-              <motion.div
-                drag="y"
-                dragControls={panelDragControls}
-                dragListener={false}
-                dragConstraints={{ top: 0, bottom: 0 }}
-                dragElastic={{ top: 0, bottom: 0.5 }}
-                onDragEnd={(_, info) => {
-                  if (
-                    info.offset.y > 80 ||
-                    (info.offset.y > 20 && info.velocity.y > 500)
-                  ) {
-                    setMobilePanel(null);
-                  }
-                }}
-                initial={{ y: "100%" }}
-                animate={{
-                  y: 0,
-                  transition: {
-                    type: "spring",
-                    stiffness: 320,
-                    damping: 30,
-                    mass: 0.8,
-                  },
-                }}
-                exit={{
-                  y: "100%",
-                  transition: {
-                    duration: 0.28,
-                    ease: [0.4, 0, 1, 1],
-                  },
-                }}
-                className="fixed inset-x-0 bottom-0 z-50 flex h-[78dvh] flex-col border-t border-border bg-background backdrop-blur-[2px] lg:hidden"
-              >
-                <div
-                  onPointerDown={(event) => {
-                    if (!(event.target as HTMLElement).closest("button")) {
-                      panelDragControls.start(event);
-                    }
-                  }}
-                  className="relative flex shrink-0 touch-none cursor-grab items-center justify-between border-b border-border px-4 pb-3 pt-6 active:cursor-grabbing"
-                >
-                  <span className="absolute left-1/2 top-2 h-1 w-10 -translate-x-1/2 rounded-full bg-muted/40" />
-
-                  <div>
-                    <p className="font-mono text-[8px] uppercase tracking-[0.22em] text-accent-dark">
-                      {mobilePanel === "parts" ? "Parts index" : "Build status"}
-                    </p>
-
-                    <h2 className="mt-1 text-xl italic font-bold uppercase font-display">
-                      {mobilePanel === "parts"
-                        ? activeGroup.label
-                        : "Your machine"}
-                    </h2>
-                  </div>
-
-                  <button
-                    onClick={() => setMobilePanel(null)}
-                    className="grid size-9 place-items-center border border-border text-muted hover:border-accent hover:text-text"
-                  >
-                    <X className="size-4" />
-                  </button>
-                </div>
-
-                {mobilePanel === "parts" ? (
-                  <PullDownToClose onClose={() => setMobilePanel(null)}>
-                    <MobilePartsPanel
-                      activeGroup={activeGroup}
-                      filteredParts={filteredParts}
-                      searchQuery={searchQuery}
-                      setSearchQuery={setSearchQuery}
-                      selectedPartKey={selectedPartKey}
-                      installedDrives={build.STORAGE}
-                      addStorage={installPart}
-                      chooseProduct={chooseProduct}
-                      candidateIssues={candidateIssues}
-                      compatibilityFilter={compatibilityFilter}
-                      onCompatibilityFilterChange={setCompatibilityFilter}
-                    />
-                  </PullDownToClose>
-                ) : (
-                  <PullDownToClose onClose={() => setMobilePanel(null)}>
-                    <MobileBuildPanel
-                      build={build}
-                      totalPrice={totalPrice}
-                      resetBuild={resetBuild}
-                      buildName={buildName}
-                      setBuildName={setBuildName}
-                      saveBuild={saveBuild}
-                      savedBuilds={savedBuilds}
-                      loadBuild={loadBuild}
-                      deleteSavedBuild={deleteSavedBuild}
-                      removePart={removePart}
-                      removeDrive={removeDrive}
-                    />
-                  </PullDownToClose>
-                )}
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
+        <div className="mobile-build-dock">
+          <button
+            className="build-status-strip"
+            data-tour="status"
+            onClick={() => setMobilePanel("build")}
+            aria-label="Read build status and compatibility details"
+          >
+            <strong>${totalPrice.toFixed(2)}</strong>
+            <span>{completedParts}/7 categories</span>
+            <span>
+              {assessment.issues.some((i) => i.type === "error")
+                ? "Needs attention"
+                : assessment.issues.length
+                  ? "Review warnings"
+                  : completedParts === 7
+                    ? "No known errors"
+                    : "Keep building"}
+            </span>
+          </button>
+          <div className="dock-actions">
+            <button
+              ref={partsTrigger}
+              className="control-button primary"
+              onClick={() => setMobilePanel("parts")}
+            >
+              ＋ Add parts
+            </button>
+            <button
+              ref={buildTrigger}
+              className="control-button"
+              onClick={() => setMobilePanel("build")}
+            >
+              Your build
+            </button>
+          </div>
+        </div>
+        <BuildDrawer
+          touring={touring}
+          panel={mobilePanel}
+          onClose={() => setMobilePanel(null)}
+          expanded={dockExpanded}
+          onExpand={() => setDockExpanded(!dockExpanded)}
+          onDismissGesture={panelDragControls}
+          parts={partsPanel}
+          build={buildPanel}
+        />
+        <CompatibilityWarningDialog
+          issues={pendingInstallation?.issues ?? null}
+          onCancel={() => setPendingInstallation(null)}
+          onConfirm={confirmIncompatibleInstallation}
+        />
+        <p className="sr-only" role="status">
+          {announcement}
+        </p>
       </div>
     </MotionConfig>
   );

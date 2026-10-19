@@ -1,0 +1,53 @@
+{
+  "root": "public/models/optimized",
+  "files": [
+    {
+      "path": "public/models/optimized/case-c6b0def6486b.glb",
+      "bytes": 426700,
+      "gzipBytes": 238419,
+      "primitives": 5,
+      "triangles": 56686
+    },
+    {
+      "path": "public/models/optimized/cpu-5585aa97fea2.glb",
+      "bytes": 5852,
+      "gzipBytes": 2888,
+      "primitives": 2,
+      "triangles": 206
+    },
+    {
+      "path": "public/models/optimized/gpu-6d6e7cb3e45f.glb",
+      "bytes": 431236,
+      "gzipBytes": 271971,
+      "primitives": 5,
+      "triangles": 67932
+    },
+    {
+      "path": "public/models/optimized/motherboard-763f86cd12f9.glb",
+      "bytes": 650704,
+      "gzipBytes": 408000,
+      "primitives": 40,
+      "triangles": 43218
+    },
+    {
+      "path": "public/models/optimized/psu-56da589fe230.glb",
+      "bytes": 102860,
+      "gzipBytes": 46124,
+      "primitives": 11,
+      "triangles": 9808
+    },
+    {
+      "path": "public/models/optimized/ram-1621cca997af.glb",
+      "bytes": 34776,
+      "gzipBytes": 24548,
+      "primitives": 4,
+      "triangles": 596
+    }
+  ],
+  "totals": {
+    "bytes": 1652128,
+    "gzipBytes": 991950,
+    "primitives": 67,
+    "triangles": 178446
+  }
+}

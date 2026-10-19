@@ -1,0 +1,68 @@
+{
+  "case": {
+    "url": "models/optimized/case-c6b0def6486b.glb",
+    "bytes": 426700,
+    "credits": {
+      "author": "kirigami318 (https://sketchfab.com/kirigami318)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/corsair-4000d-airflow-free-34df3ba96cf94e71accdb5779c4b8694",
+      "title": "Corsair 4000D Airflow (Free)"
+    },
+    "primitives": 5
+  },
+  "gpu": {
+    "url": "models/optimized/gpu-6d6e7cb3e45f.glb",
+    "bytes": 431236,
+    "credits": {
+      "author": "GameDevGiant (https://sketchfab.com/GameDevGiant)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/nvidia-rtx-2080-ti-fcfffc0cdb784c77b226d4e280bc33b0",
+      "title": "Nvidia RTX 2080 Ti"
+    },
+    "primitives": 5
+  },
+  "psu": {
+    "url": "models/optimized/psu-56da589fe230.glb",
+    "bytes": 102860,
+    "credits": {
+      "author": "dhafintaufiqi21 (https://sketchfab.com/dhafintaufiqi21)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/psu-power-supply-unit-69ccd1be3a77497cb2acc9e39e7c52b3",
+      "title": "PSU Power Supply Unit"
+    },
+    "primitives": 11
+  },
+  "motherboard": {
+    "url": "models/optimized/motherboard-763f86cd12f9.glb",
+    "bytes": 650704,
+    "credits": {
+      "author": "Daniel Cardona (https://sketchfab.com/DanielCardonaArt)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/motherboard-components-3bc94057328243d4b341a55f59160f8a",
+      "title": "MotherBoard + Components"
+    },
+    "primitives": 40
+  },
+  "cpu": {
+    "url": "models/optimized/cpu-5585aa97fea2.glb",
+    "bytes": 5852,
+    "credits": {
+      "author": "Daniel Cardona (https://sketchfab.com/DanielCardonaArt)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/motherboard-components-3bc94057328243d4b341a55f59160f8a",
+      "title": "MotherBoard + Components"
+    },
+    "primitives": 2
+  },
+  "ram": {
+    "url": "models/optimized/ram-1621cca997af.glb",
+    "bytes": 34776,
+    "credits": {
+      "author": "Daniel Cardona (https://sketchfab.com/DanielCardonaArt)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/motherboard-components-3bc94057328243d4b341a55f59160f8a",
+      "title": "MotherBoard + Components"
+    },
+    "primitives": 4
+  }
+}

@@ -1,0 +1,546 @@
+{
+  "products": [
+    {
+      "category": "cpu",
+      "productId": 1,
+      "name": "AMD Ryzen 5 5600",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/cpu-5585aa97fea2.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "cpu",
+      "productId": 2,
+      "name": "AMD Ryzen 7 5700X3D",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/cpu-5585aa97fea2.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "cpu",
+      "productId": 3,
+      "name": "AMD Ryzen 5 7600",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/cpu-5585aa97fea2.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "cpu",
+      "productId": 4,
+      "name": "AMD Ryzen 7 7800X3D",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/cpu-5585aa97fea2.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "cpu",
+      "productId": 5,
+      "name": "AMD Ryzen 9 9900X",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/cpu-5585aa97fea2.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "cpu",
+      "productId": 6,
+      "name": "Intel Core i5-12400F",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/cpu-5585aa97fea2.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "cpu",
+      "productId": 7,
+      "name": "Intel Core i5-13600K",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/cpu-5585aa97fea2.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "cpu",
+      "productId": 8,
+      "name": "Intel Core i7-14700K",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/cpu-5585aa97fea2.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "cpu",
+      "productId": 9,
+      "name": "Intel Core i9-14900K",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/cpu-5585aa97fea2.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "cpu",
+      "productId": 10,
+      "name": "Intel Core Ultra 7 265K",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/cpu-5585aa97fea2.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "gpu",
+      "productId": 1,
+      "name": "NVIDIA GeForce RTX 3060 12GB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/gpu-6d6e7cb3e45f.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "gpu",
+      "productId": 2,
+      "name": "NVIDIA GeForce RTX 4060 8GB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/gpu-6d6e7cb3e45f.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "gpu",
+      "productId": 3,
+      "name": "NVIDIA GeForce RTX 4070 SUPER 12GB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/gpu-6d6e7cb3e45f.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "gpu",
+      "productId": 4,
+      "name": "NVIDIA GeForce RTX 4080 SUPER 16GB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/gpu-6d6e7cb3e45f.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "gpu",
+      "productId": 5,
+      "name": "NVIDIA GeForce RTX 4090 24GB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/gpu-6d6e7cb3e45f.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "gpu",
+      "productId": 6,
+      "name": "AMD Radeon RX 6600 8GB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/gpu-6d6e7cb3e45f.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "gpu",
+      "productId": 7,
+      "name": "AMD Radeon RX 7600 8GB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/gpu-6d6e7cb3e45f.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "gpu",
+      "productId": 8,
+      "name": "AMD Radeon RX 7800 XT 16GB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/gpu-6d6e7cb3e45f.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "gpu",
+      "productId": 9,
+      "name": "AMD Radeon RX 7900 GRE 16GB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/gpu-6d6e7cb3e45f.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "gpu",
+      "productId": 10,
+      "name": "AMD Radeon RX 7900 XTX 24GB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/gpu-6d6e7cb3e45f.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "motherboard",
+      "productId": 1,
+      "name": "MSI MAG B550 Tomahawk",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/motherboard-763f86cd12f9.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "motherboard",
+      "productId": 2,
+      "name": "ASUS TUF Gaming B550M-Plus WiFi II",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/motherboard-763f86cd12f9.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "motherboard",
+      "productId": 3,
+      "name": "ASUS TUF Gaming B650-Plus WiFi",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/motherboard-763f86cd12f9.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "motherboard",
+      "productId": 4,
+      "name": "Gigabyte B650M DS3H",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/motherboard-763f86cd12f9.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "motherboard",
+      "productId": 5,
+      "name": "ASRock X670E Steel Legend",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/motherboard-763f86cd12f9.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "motherboard",
+      "productId": 6,
+      "name": "MSI PRO Z690-A DDR4",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/motherboard-763f86cd12f9.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "motherboard",
+      "productId": 7,
+      "name": "ASUS TUF Gaming Z790-Plus WiFi",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/motherboard-763f86cd12f9.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "motherboard",
+      "productId": 8,
+      "name": "Gigabyte B760M DS3H DDR4",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/motherboard-763f86cd12f9.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "motherboard",
+      "productId": 9,
+      "name": "ASRock B760M-ITX Gen5 WiFi",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/motherboard-763f86cd12f9.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "motherboard",
+      "productId": 10,
+      "name": "MSI MAG Z890 Tomahawk WiFi",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/motherboard-763f86cd12f9.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "ram",
+      "productId": 1,
+      "name": "Corsair Vengeance LPX 16GB DDR4-3200",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/ram-1621cca997af.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "ram",
+      "productId": 2,
+      "name": "G.Skill Ripjaws V 32GB DDR4-3600",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/ram-1621cca997af.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "ram",
+      "productId": 3,
+      "name": "Kingston Fury Beast RGB 32GB DDR4-3200",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/ram-1621cca997af.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "ram",
+      "productId": 4,
+      "name": "TeamGroup T-Force Vulcan Z 16GB DDR4-3200",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/ram-1621cca997af.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "ram",
+      "productId": 5,
+      "name": "Corsair Vengeance RGB Pro 64GB DDR4-3600",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/ram-1621cca997af.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "ram",
+      "productId": 6,
+      "name": "G.Skill Flare X5 32GB DDR5-6000",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/ram-1621cca997af.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "ram",
+      "productId": 7,
+      "name": "Corsair Vengeance 32GB DDR5-6000",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/ram-1621cca997af.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "ram",
+      "productId": 8,
+      "name": "Kingston Fury Beast RGB 32GB DDR5-6000",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/ram-1621cca997af.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "ram",
+      "productId": 9,
+      "name": "TeamGroup T-Force Delta RGB 48GB DDR5-7200",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/ram-1621cca997af.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "ram",
+      "productId": 10,
+      "name": "G.Skill Trident Z5 RGB 64GB DDR5-6400",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/ram-1621cca997af.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "psu",
+      "productId": 1,
+      "name": "Corsair CX450",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/psu-56da589fe230.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "psu",
+      "productId": 2,
+      "name": "Cooler Master MWE Bronze 550 V2",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/psu-56da589fe230.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "psu",
+      "productId": 3,
+      "name": "Corsair CX650M",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/psu-56da589fe230.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "psu",
+      "productId": 4,
+      "name": "MSI MAG A650GL",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/psu-56da589fe230.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "psu",
+      "productId": 5,
+      "name": "Corsair RM750e",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/psu-56da589fe230.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "psu",
+      "productId": 6,
+      "name": "Seasonic Focus GX-750",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/psu-56da589fe230.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "psu",
+      "productId": 7,
+      "name": "be quiet! Pure Power 12 M 850W",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/psu-56da589fe230.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "psu",
+      "productId": 8,
+      "name": "Corsair SF850L",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/psu-56da589fe230.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "psu",
+      "productId": 9,
+      "name": "Seasonic Vertex PX-1000",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/psu-56da589fe230.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "psu",
+      "productId": 10,
+      "name": "be quiet! Dark Power Pro 13 1300W",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/psu-56da589fe230.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "case",
+      "productId": 1,
+      "name": "NZXT H5 Flow",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/case-c6b0def6486b.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "case",
+      "productId": 2,
+      "name": "NZXT H6 Flow RGB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/case-c6b0def6486b.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "case",
+      "productId": 3,
+      "name": "Corsair 4000D Airflow",
+      "fidelity": "exact",
+      "asset": "models/optimized/case-c6b0def6486b.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Verify dimensions and mounting anchors"
+    },
+    {
+      "category": "case",
+      "productId": 4,
+      "name": "Corsair iCUE 5000X RGB",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/case-c6b0def6486b.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "case",
+      "productId": 5,
+      "name": "Lian Li LANCOOL 216",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/case-c6b0def6486b.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "case",
+      "productId": 6,
+      "name": "Fractal Design North",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/case-c6b0def6486b.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "case",
+      "productId": 7,
+      "name": "Cooler Master NR200P",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/case-c6b0def6486b.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "case",
+      "productId": 8,
+      "name": "Montech AIR 903 MAX",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/case-c6b0def6486b.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "case",
+      "productId": 9,
+      "name": "DeepCool CH370",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/case-c6b0def6486b.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    },
+    {
+      "category": "case",
+      "productId": 10,
+      "name": "HYTE Y60",
+      "fidelity": "illustrative",
+      "asset": "models/optimized/case-c6b0def6486b.glb",
+      "dimensionsVerified": false,
+      "nextStep": "Source or create licensed product-specific model; verify identity, dimensions and anchors"
+    }
+  ],
+  "exact": 1,
+  "total": 60
+}

@@ -1,0 +1,137 @@
+[
+  {
+    "device": "desktop",
+    "name": "home",
+    "overflow": false,
+    "heading": "Your next PC.Built different.",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "name": "guides",
+    "overflow": false,
+    "heading": "Less mystery.More “aha.”",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "name": "prebuilts",
+    "overflow": false,
+    "heading": "A starting point.Not a finishing line.",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "name": "builder",
+    "overflow": false,
+    "heading": "Build your machine",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "name": "article",
+    "overflow": false,
+    "heading": "Compatibility First",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "tablet",
+    "name": "home",
+    "overflow": false,
+    "heading": "Your next PC.Built different.",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "tablet",
+    "name": "guides",
+    "overflow": false,
+    "heading": "Less mystery.More “aha.”",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "tablet",
+    "name": "prebuilts",
+    "overflow": false,
+    "heading": "A starting point.Not a finishing line.",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "tablet",
+    "name": "builder",
+    "overflow": false,
+    "heading": "Build your machine",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "tablet",
+    "name": "article",
+    "overflow": false,
+    "heading": "Compatibility First",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "phone",
+    "name": "home",
+    "overflow": false,
+    "heading": "Your next PC.Built different.",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "phone",
+    "name": "guides",
+    "overflow": false,
+    "heading": "Less mystery.More “aha.”",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "phone",
+    "name": "prebuilts",
+    "overflow": false,
+    "heading": "A starting point.Not a finishing line.",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "phone",
+    "name": "builder",
+    "overflow": false,
+    "heading": "Build your machine",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  },
+  {
+    "device": "phone",
+    "name": "article",
+    "overflow": false,
+    "heading": "Compatibility First",
+    "font": "Anton, sans-serif",
+    "brokenImages": [],
+    "errors": []
+  }
+]

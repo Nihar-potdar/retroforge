@@ -1,429 +1,273 @@
-import {
-  Center,
-  Environment,
-  Grid,
-  Html,
-  OrbitControls,
-  useProgress,
-} from "@react-three/drei";
-import {
-  AlertTriangle,
-  Box,
-  Check,
-  ChevronDown,
-  CircuitBoard,
-  Cpu,
-  Gpu,
-  HardDrive,
-  MemoryStick,
-  PlugZap,
-  Trash2,
-  type LucideIcon,
-} from "lucide-react";
-import { Canvas } from "@react-three/fiber";
 import { AnimatePresence, motion } from "motion/react";
-import type {
-  BUILD,
-  Category,
-  CompatibleComponent,
-  DetailedErrors,
-} from "@/data/type";
-import { Suspense, useState } from "react";
-import { PcAssembly } from "./PcAssembly";
 import { getPartHighlights } from "@/lib/getPartHighlights";
-import { specDescriptions } from "@/data/specDescriptions";
-import { useIssueStore } from "@/stores/ComptiblityIssuesStore";
-
-type BuildViewportProps = {
-  selectedCategory: string;
-  selectedPart: CompatibleComponent | null;
-  build: BUILD;
-  onRemoveDrive: (targetid: string) => void;
-  onRemovePart: (targetid: string) => void;
-  onSuggestedAction: (category: Category) => void;
-};
-
-type BuildPartRowProps = {
-  label: string;
-  name?: string;
-  price?: number;
-  icon: LucideIcon;
-  emptyText: string;
-  onRemove?: () => void;
-};
-
-function BuildPartRow({
-  label,
-  name,
-  price,
-  icon: Icon,
-  emptyText,
-  onRemove,
-}: BuildPartRowProps) {
-  const selected = Boolean(name);
-
-  return (
-    <div
-      className={`group relative flex gap-3 border-b border-border px-4 py-3.5 transition ${
-        selected ? "hover:bg-background/70" : ""
-      }`}
-    >
-      {selected && (
-        <span className="absolute inset-y-0 left-0 w-[2px] bg-accent" />
-      )}
-
-      <div
-        className={`grid size-9 shrink-0 place-items-center border ${
-          selected
-            ? "border-accent/40 bg-accent-soft text-accent-dark"
-            : "border-border bg-background/40 text-muted"
-        }`}
-      >
-        <Icon className={`size-4 ${selected ? "" : "opacity-40"}`} />
-      </div>
-
-      <div className="flex-1 min-w-0">
-        <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-muted">
-          {label}
+import {
+  Component,
+  Suspense,
+  lazy,
+  useCallback,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import { useReducedMotion } from "motion/react";
+import type { BUILD, CompatibleComponent } from "@/data/type";
+import { installedModels, assemblyProfile } from "@/models/registry";
+import { cameraKey, type CameraCommand } from "./cameraControls";
+import type { SceneMetrics, SceneQuality } from "./BuilderScene";
+const Scene = lazy(() => import("./BuilderScene"));
+class SceneBoundary extends Component<
+  { children: ReactNode },
+  { failed: boolean }
+> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  render() {
+    return this.state.failed ? (
+      <div className="scene-loading">
+        <p>
+          The 3D view could not start. You can still choose, check, and save
+          parts.
         </p>
-
-        {selected ? (
-          <>
-            <p className="mt-1 text-sm italic font-bold leading-5 uppercase font-display text-text">
-              {name}
+        <button
+          className="control-button"
+          onClick={() => this.setState({ failed: false })}
+        >
+          Retry 3D view
+        </button>
+      </div>
+    ) : (
+      this.props.children
+    );
+  }
+}
+export function BuildViewport({
+  build,
+  selectedPart,
+  selectedCategory,
+}: {
+  build: BUILD;
+  selectedCategory?: string;
+  selectedPart: CompatibleComponent | null;
+}) {
+  const reducedMotion = useReducedMotion();
+  const controller = useRef<((command: CameraCommand) => void) | null>(null);
+  const [quality, setQuality] = useState<SceneQuality>(() => {
+    try {
+      const stored = localStorage.getItem("retroforge.sceneQuality");
+      return stored === "high" || stored === "low" ? stored : "auto";
+    } catch {
+      return "auto";
+    }
+  });
+  const [metrics, setMetrics] = useState<SceneMetrics | null>(null);
+  const [loaded, setLoaded] = useState(false);
+  const onReady = useCallback(
+    (value: ((command: CameraCommand) => void) | null) => {
+      controller.current = value;
+    },
+    [],
+  );
+  const onLoaded = useCallback(() => setLoaded(true), []);
+  const onMetrics = useCallback((value: SceneMetrics) => {
+    setMetrics(value);
+    window.dispatchEvent(
+      new CustomEvent("retroforge:scene-metrics", { detail: value }),
+    );
+  }, []);
+  const models = installedModels(build);
+  const illustrative = models.some(
+    (model) => model.fidelity === "illustrative",
+  );
+  const profile = assemblyProfile(build);
+  return (
+    <section
+      className="relative h-full w-full overflow-hidden bg-surface viewport-vignette build-scene"
+      aria-label="Interactive 3D assembly"
+    >
+      <SceneBoundary>
+        <Suspense
+          fallback={
+            <div className="scene-loading" role="status">
+              <p>Preparing the 3D workspace…</p>
+              <p>Part selection and checks are already available.</p>
+            </div>
+          }
+        >
+          <Scene
+            build={build}
+            quality={quality}
+            reducedMotion={Boolean(reducedMotion)}
+            onReady={onReady}
+            onMetrics={onMetrics}
+            onLoaded={onLoaded}
+          />
+        </Suspense>
+      </SceneBoundary>
+      <div className="desktop-scene-heading cut-corner">
+        <p className="font-mono text-xs uppercase tracking-widest text-accent-dark">
+          Garage / Assembly
+        </p>
+        <p className="mt-1 font-display text-xl italic font-bold uppercase">
+          {selectedCategory ?? "Your machine"}
+        </p>
+      </div>
+      <div className="scene-caption">
+        <p>
+          {!build.CASE
+            ? "Uncased assembly frame"
+            : illustrative
+              ? "Illustrative component models"
+              : "Product model · fit is not simulated"}
+        </p>
+        <details>
+          <summary>About this preview</summary>
+          <p className="mt-2 max-w-sm">
+            {profile.label}. This view does not verify cable routing, cooling,
+            or exact clearance.
+          </p>
+          {models.map((model) => (
+            <p key={`${model.kind}-${model.productId}`} className="mt-2">
+              <a
+                href={model.source}
+                target="_blank"
+                rel="noreferrer"
+                className="underline"
+              >
+                {model.kind}: {model.author}
+              </a>{" "}
+              · {model.fidelity} · CC BY 4.0
             </p>
-            {price !== undefined && (
-              <p className="mt-1 font-mono text-[10px] text-accent-dark">
-                ${price.toFixed(2)}
+          ))}
+        </details>
+      </div>
+      <details
+        className="scene-toolbar scene-control-menu"
+        onKeyDown={(event) => {
+          if (event.key === "Escape" && event.currentTarget.open) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.currentTarget.open = false;
+            event.currentTarget.querySelector<HTMLElement>("summary")?.focus();
+          }
+        }}
+      >
+        <summary className="control-button">View controls</summary>
+        <div
+          className="scene-controls-content"
+          role="group"
+          aria-label="3D camera controls"
+        >
+          <div
+            tabIndex={0}
+            className="control-button"
+            role="group"
+            aria-label="Camera keyboard control"
+            aria-describedby="camera-help"
+            onKeyDown={(event) => {
+              if (event.altKey || event.ctrlKey || event.metaKey) return;
+              const command = cameraKey(event.key);
+              if (command) {
+                event.preventDefault();
+                controller.current?.(command);
+              }
+            }}
+          >
+            Camera
+          </div>
+          <button
+            className="control-button"
+            aria-label="Rotate camera left"
+            disabled={!loaded}
+            onClick={() => controller.current?.("left")}
+          >
+            ↶
+          </button>
+          <button
+            className="control-button"
+            aria-label="Rotate camera right"
+            disabled={!loaded}
+            onClick={() => controller.current?.("right")}
+          >
+            ↷
+          </button>
+          <button
+            className="control-button"
+            aria-label="Rotate camera up"
+            disabled={!loaded}
+            onClick={() => controller.current?.("up")}
+          >
+            ↑
+          </button>
+          <button
+            className="control-button"
+            aria-label="Rotate camera down"
+            disabled={!loaded}
+            onClick={() => controller.current?.("down")}
+          >
+            ↓
+          </button>
+          <button
+            className="control-button"
+            aria-label="Zoom in"
+            disabled={!loaded}
+            onClick={() => controller.current?.("in")}
+          >
+            ＋
+          </button>
+          <button
+            className="control-button"
+            aria-label="Zoom out"
+            disabled={!loaded}
+            onClick={() => controller.current?.("out")}
+          >
+            −
+          </button>
+          <button
+            className="control-button"
+            onClick={() => controller.current?.("reset")}
+          >
+            Reset view
+          </button>
+          <label className="control-button">
+            Quality
+            <select
+              aria-label="Rendering quality"
+              value={quality}
+              onChange={(event) => {
+                const value = event.target.value as SceneQuality;
+                setQuality(value);
+                try {
+                  localStorage.setItem("retroforge.sceneQuality", value);
+                } catch {
+                  /* Session preference still works. */
+                }
+              }}
+            >
+              <option value="auto">Auto</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+            </select>
+          </label>
+          <details className="control-button">
+            <summary>Help</summary>
+            <p id="camera-help" className="max-w-xs text-xs">
+              Drag to rotate; pinch or scroll to zoom. Focus Camera: arrows
+              rotate, +/− zoom, Home resets.
+            </p>
+            {metrics && (
+              <p className="text-xs">
+                {metrics.quality} · {metrics.drawCalls} draws ·{" "}
+                {metrics.triangles.toLocaleString()} triangles · frame p95{" "}
+                {metrics.p95FrameMs}ms
               </p>
             )}
-          </>
-        ) : (
-          <p className="mt-1 text-xs font-text text-muted">{emptyText}</p>
-        )}
-      </div>
-
-      {selected && onRemove && (
-        <button
-          type="button"
-          onClick={onRemove}
-          title={`Remove ${label}`}
-          aria-label={`Remove ${label}`}
-          className="grid transition border border-transparent opacity-50 size-8 shrink-0 place-items-center text-muted hover:border-danger/40 hover:bg-danger/10 hover:text-danger group-hover:opacity-100"
-        >
-          <Trash2 className="size-3.5" />
-        </button>
-      )}
-    </div>
-  );
-}
-
-function ModelLoader() {
-  const { progress } = useProgress();
-
-  return (
-    <Html center>
-      <div className="px-5 py-3 border cut-corner border-accent/40 bg-background/90 backdrop-blur-md">
-        <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-accent-dark">
-          Initializing assembly
-        </p>
-        <p className="mt-1 text-xl italic font-bold font-display text-text">
-          {Math.round(progress)}%
-        </p>
-      </div>
-    </Html>
-  );
-}
-
-// Compatiblity Issue Detailed Panel/Card
-
-type CompatiblityIssuesPanelProps = {
-  issues: DetailedErrors[];
-  onSuggestedAction: (category: Category) => void;
-};
-
-export function CompatibilityIssuesPanel({
-  issues,
-  onSuggestedAction,
-}: CompatiblityIssuesPanelProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const hasIssues = issues.length > 0;
-
-  return (
-    <aside
-      className={`border ${
-        hasIssues
-          ? "border-danger/50 bg-danger/10"
-          : "border-green-500/40 bg-green-500/10"
-      }`}
-    >
-      <button
-        type="button"
-        onClick={() => setIsOpen((open) => !open)}
-        aria-expanded={isOpen}
-        className="flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left"
-      >
-        <span className="flex min-w-0 items-center gap-2.5">
-          <span
-            className={`grid size-7 shrink-0 place-items-center border ${
-              hasIssues
-                ? "border-danger/50 bg-danger/15 text-danger"
-                : "border-green-500/50 bg-green-500/15 text-green-400"
-            }`}
-          >
-            {hasIssues ? (
-              <AlertTriangle className="size-4" />
-            ) : (
-              <Check className="size-4" />
-            )}
-          </span>
-
-          <span>
-            <span
-              className={`block font-mono text-[9px] font-bold uppercase tracking-wider ${
-                hasIssues ? "text-danger" : "text-green-400"
-              }`}
-            >
-              {hasIssues ? "Compatibility issues" : "Build compatible"}
-            </span>
-            <span className="block text-[10px] text-muted">
-              {issues.length} {issues.length === 1 ? "issue" : "issues"}
-            </span>
-          </span>
-        </span>
-
-        <ChevronDown
-          className={`size-4 shrink-0 text-muted transition-transform ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden"
-          >
-            <div className="space-y-2 border-t border-border/70 p-3">
-              {hasIssues ? (
-                issues.map((issue) => (
-                  <CompatibilityIssueCard
-                    key={`${issue.rule}-${issue.source.id}-${issue.target.id}`}
-                    issue={issue}
-                    onSuggestedAction={onSuggestedAction}
-                  />
-                ))
-              ) : (
-                <p className="text-xs leading-5 text-green-300">
-                  No compatibility problems found in the current build.
-                </p>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </aside>
-  );
-}
-
-type CompatibilityIssueCardProps = {
-  issue: DetailedErrors;
-  onSuggestedAction: (category: Category) => void;
-};
-
-export function CompatibilityIssueCard({
-  issue,
-  onSuggestedAction,
-}: CompatibilityIssueCardProps) {
-  return (
-    <article className="border border-danger/25 bg-background/75 p-3">
-      <p className="text-xs leading-5 text-text">{issue.compatibilityIssue}</p>
-      <button
-        type="button"
-        onClick={() => onSuggestedAction(issue.suggestedAction)}
-        className="mt-2 flex w-full items-center justify-between border border-danger/30 bg-danger/10 px-2.5 py-2 text-left font-mono text-[9px] uppercase tracking-wider text-muted transition hover:border-danger/70 hover:bg-danger/20"
-      >
-        <span>Suggested action</span>
-        <span className="font-bold text-danger">
-          Replace {issue.suggestedAction} →
-        </span>
-      </button>
-
-      <details className="group mt-3 border-t border-border/70 pt-2">
-        <summary className="cursor-pointer list-none font-mono text-[9px] uppercase tracking-wider text-accent-dark marker:content-none">
-          <span className="flex items-center justify-between">
-            Detailed overview
-            <ChevronDown className="size-3.5 transition-transform group-open:rotate-180" />
-          </span>
-        </summary>
-
-        <div className="mt-3 space-y-3">
-          <div>
-            <p className="text-sm font-semibold text-text">{issue.title}</p>
-            <p className="mt-1 font-mono text-[8px] uppercase tracking-wider text-muted">
-              Rule / {issue.rule}
-            </p>
-          </div>
-
-          <dl className="grid grid-cols-2 gap-2 text-xs">
-            <div className="border border-border bg-surface/60 p-2">
-              <dt className="font-mono text-[8px] uppercase tracking-wider text-muted">
-                Selected
-              </dt>
-              <dd className="mt-1 font-medium text-text">{issue.source.name}</dd>
-              <dd className="mt-1 text-danger">{issue.source.value}</dd>
-            </div>
-
-            <div className="border border-border bg-surface/60 p-2">
-              <dt className="font-mono text-[8px] uppercase tracking-wider text-muted">
-                Required / supported
-              </dt>
-              <dd className="mt-1 font-medium text-text">{issue.target.name}</dd>
-              <dd className="mt-1 text-accent-dark">{issue.target.value}</dd>
-            </div>
-          </dl>
+          </details>
         </div>
       </details>
-    </article>
-  );
-}
-
-export function BuildViewport({
-  selectedCategory,
-  selectedPart,
-  build,
-  onRemoveDrive,
-  onRemovePart,
-  onSuggestedAction,
-}: BuildViewportProps) {
-  const completedParts = [
-    build.CPU,
-    build.GPU,
-    build.MOTHERBOARD,
-    build.RAM,
-    build.PSU,
-    build.CASE,
-    build.STORAGE.length > 0,
-  ].filter(Boolean).length;
-
-  const totalPartCategories = 7;
-
-  const buildProgress = (completedParts / totalPartCategories) * 100;
-  const partsSubtotal =
-    (build.CPU?.price ?? 0) +
-    (build.GPU?.price ?? 0) +
-    (build.RAM?.price ?? 0) +
-    (build.MOTHERBOARD?.price ?? 0) +
-    (build.PSU?.price ?? 0) +
-    (build.CASE?.price ?? 0);
-  const storageSubtotal = build.STORAGE.reduce(
-    (total, drive) => total + drive.product.price,
-    0,
-  );
-  const totalPrice = partsSubtotal + storageSubtotal;
-
-  const selectedPartHighlights = selectedPart
-    ? getPartHighlights(selectedPart)
-    : [];
-
-  const compatibilityIssues = useIssueStore(
-    (state) => state.CompatiblityIssues,
-  );
-
-  return (
-    <section className="relative h-full w-full  min-h-0 overflow-hidden border viewport-vignette build-scene border-border bg-surface">
-      <Canvas
-        shadows
-        gl={{ toneMappingExposure: 1.2, antialias: true, alpha: true }}
-        camera={{
-          position: [6.5, 3.5, 7.5],
-          fov: 38,
-        }}
-        dpr={[1, 1.25]}
-        className="w-full h-full absolute inset-0"
-      >
-        {/* <hemisphereLight args={["#f4f7ff", "#8b8174", 1.2]} /> */}
-
-        {/* MAIN KEY */}
-        <directionalLight
-          castShadow
-          position={[6, 7, 6]}
-          intensity={3}
-          color="#f4efe6"
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-          shadow-camera-near={0.5}
-          shadow-camera-far={25}
-          shadow-bias={-0.0005}
-        />
-        <Suspense fallback={null}>
-          <Environment resolution={128} preset="studio" />
-        </Suspense>
-
-        <Suspense fallback={<ModelLoader />}>
-          <Center>
-            <PcAssembly />
-          </Center>
-        </Suspense>
-
-        <mesh
-          rotation={[-Math.PI / 2, 0, 0]}
-          position={[0, -2.29, 0]}
-          receiveShadow
-        >
-          <planeGeometry args={[30, 30]} />
-          <shadowMaterial transparent opacity={0.2} />
-        </mesh>
-
-        <Grid
-          position={[0, -2.3, 0]}
-          args={[32, 32]}
-          cellSize={0.5}
-          cellThickness={0.45}
-          cellColor="#77736b"
-          sectionSize={2.5}
-          sectionThickness={1.05}
-          sectionColor="#5d6b82"
-          fadeDistance={22}
-          fadeStrength={1.3}
-          infiniteGrid
-        />
-
-        <OrbitControls
-          makeDefault
-          enableDamping
-          dampingFactor={0.06}
-          minDistance={5}
-          maxDistance={14}
-          maxPolarAngle={Math.PI / 2.05}
-          target={[0, 0.2, 0]}
-        />
-      </Canvas>
-
-      {/* The overlay ignores pointer input so every drag reaches OrbitControls. */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Corner brackets distinguish the viewport from ordinary page content. */}
-        <span className="absolute border-t border-l left-3 top-3 size-5 border-accent sm:left-5 sm:top-5" />
-        <span className="absolute border-t border-r right-3 top-3 size-5 border-accent sm:right-5 sm:top-5" />
-        <span className="absolute border-b border-l bottom-3 left-3 size-5 border-accent sm:bottom-5 sm:left-5" />
-        <span className="absolute border-b border-r bottom-3 right-3 size-5 border-accent sm:bottom-5 sm:right-5" />
-
-        <div className="absolute hidden px-4 py-3 border-l-2 cut-corner left-5 top-5 border-accent bg-background/85 backdrop-blur-md sm:block">
-          <p className="font-mono text-[8px] uppercase tracking-[0.25em] text-accent-dark">
-            Garage / Assembly
-          </p>
-
-          <p className="mt-1 text-xl italic font-bold tracking-tight uppercase font-display text-text">
-            {selectedCategory}
-          </p>
-        </div>
-
-        <AnimatePresence mode="wait" initial={false}>
-          {/* A stable identity makes Motion replace the previous readout cleanly
-              when the inspected product changes. */}
+      <div className="desktop-part-readout">
+        <AnimatePresence initial={false} mode="sync">
           <motion.div
             key={
               selectedPart
@@ -434,229 +278,46 @@ export function BuildViewport({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="cut-corner hidden lg:block accent-glow pointer-events-auto absolute bottom-5 left-1/2 z-20 w-[calc(100%-2.5rem)] max-w-xl -translate-x-1/2 cursor-pointer border-l-2 border-accent bg-background/90 px-5 py-4 backdrop-blur-md"
+            className="desktop-part-readout-card cut-corner accent-glow"
           >
             {selectedPart ? (
-              <div>
-                <div className="flex items-start justify-between gap-5">
-                  <div className="min-w-0">
-                    <p className="font-mono text-[8px] uppercase tracking-[0.24em] text-accent-dark">
+              <>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="font-mono text-xs uppercase text-accent-dark">
                       Inspecting / {selectedPart.componentType}
                     </p>
-
-                    <p className="mt-1 text-lg italic font-bold uppercase truncate font-display text-text">
+                    <h2 className="mt-1 font-display text-lg italic font-bold uppercase">
                       {selectedPart.name}
-                    </p>
+                    </h2>
                   </div>
-
-                  <div className="text-right shrink-0">
-                    <p className="font-mono text-[8px] uppercase tracking-widest text-muted">
-                      Price
-                    </p>
-                    <p className="mt-1 font-mono text-base font-bold text-accent-dark">
-                      ${selectedPart.price.toFixed(2)}
-                    </p>
-                  </div>
+                  <strong className="font-mono text-accent-dark">
+                    ${selectedPart.price.toFixed(2)}
+                  </strong>
                 </div>
-
-                <div className="flex flex-wrap mt-3 gap-x-4 gap-y-1">
-                  {selectedPartHighlights.map((spec) => (
-                    <span
-                      key={spec.label}
-                      title={specDescriptions[spec.label] ?? spec.label}
-                      className="font-mono text-[9px] uppercase tracking-wide text-muted"
-                    >
-                      <span className="text-text">{spec.value}</span>
-                    </span>
+                <dl className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+                  {getPartHighlights(selectedPart).map((spec) => (
+                    <div key={spec.label} className="text-xs">
+                      <dt className="text-muted">{spec.label}</dt>
+                      <dd className="font-mono">{spec.value}</dd>
+                    </div>
                   ))}
-                </div>
-              </div>
+                </dl>
+              </>
             ) : (
-              <div className="flex items-center justify-between gap-4 font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
-                <span>Select hardware / Begin assembly</span>
-                <span className="hidden sm:block">
-                  Drag / Orbit · Scroll / Zoom
-                </span>
-              </div>
+              <p className="font-mono text-xs uppercase text-muted">
+                Select hardware / Begin assembly · Drag / Orbit · Scroll / Zoom
+              </p>
             )}
           </motion.div>
         </AnimatePresence>
       </div>
-      {/* HEADER */}
-      <aside className="cut-corner absolute right-5 top-5 z-20 hidden max-h-[calc(100%-2.5rem)] w-[310px] flex-col overflow-hidden border border-border bg-background/92 shadow-xl backdrop-blur-md lg:flex">
-        <div className="px-4 py-4 border-b shrink-0 border-border">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="font-mono text-[7px] uppercase tracking-widest text-muted">
-                Build status
-              </p>
-              <h2 className="mt-1 text-xl italic font-bold uppercase font-display text-text">
-                Your machine
-              </h2>{" "}
-              <div className="space-y-4"></div>
-              <div className="flex items-center gap-1.5 border border-accent/30 bg-accent-soft px-2 py-1 font-mono text-[10px] font-bold text-accent-dark">
-                <Check className="size-3" />
-                {completedParts}/{totalPartCategories}
-              </div>
-            </div>
-            <div className="mt-4 h-1.5 overflow-hidden bg-background">
-              <div
-                className="h-full transition-all duration-300 bg-accent"
-                style={{ width: `${buildProgress}%` }}
-              />
-            </div>
-          </div>
-
-          <div className="mt-3">
-            <CompatibilityIssuesPanel
-              issues={compatibilityIssues}
-              onSuggestedAction={onSuggestedAction}
-            />
-          </div>
-        </div>
-        {/* PART LIST */}
-
-        <div className="flex-1 min-h-0 overflow-y-auto">
-          <BuildPartRow
-            label="Processor"
-            name={build.CPU?.name}
-            price={build.CPU?.price}
-            icon={Cpu}
-            emptyText="Choose a processor"
-            onRemove={build.CPU ? () => onRemovePart("CPU") : undefined}
-          />
-
-          <BuildPartRow
-            label="Graphics"
-            name={build.GPU?.name}
-            price={build.GPU?.price}
-            icon={Gpu}
-            emptyText="Choose a graphics card"
-            onRemove={build.GPU ? () => onRemovePart("GPU") : undefined}
-          />
-
-          <BuildPartRow
-            label="Motherboard"
-            name={build.MOTHERBOARD?.name}
-            price={build.MOTHERBOARD?.price}
-            icon={CircuitBoard}
-            emptyText="Choose a motherboard"
-            onRemove={
-              build.MOTHERBOARD ? () => onRemovePart("MOTHERBOARD") : undefined
-            }
-          />
-
-          <BuildPartRow
-            label="Memory"
-            name={build.RAM?.name}
-            price={build.RAM?.price}
-            icon={MemoryStick}
-            emptyText="Choose memory"
-            onRemove={build.RAM ? () => onRemovePart("RAM") : undefined}
-          />
-
-          <BuildPartRow
-            label="Power supply"
-            name={build.PSU?.name}
-            price={build.PSU?.price}
-            icon={PlugZap}
-            emptyText="Choose a power supply"
-            onRemove={build.PSU ? () => onRemovePart("PSU") : undefined}
-          />
-
-          <BuildPartRow
-            label="Case"
-            name={build.CASE?.name}
-            price={build.CASE?.price}
-            icon={Box}
-            emptyText="Choose a case"
-            onRemove={build.CASE ? () => onRemovePart("CASE") : undefined}
-          />
-
-          {/* STORAGE */}
-
-          <div className="px-4 py-4 border-b border-border">
-            <div className="flex gap-3">
-              <div
-                className={`
-            grid size-9 shrink-0 place-items-center border
-            ${
-              build.STORAGE.length > 0
-                ? "border-accent/30 bg-accent-soft text-accent-dark"
-                : "border-border bg-background/50 text-muted"
-            }
-          `}
-              >
-                <HardDrive
-                  className={`size-4 ${
-                    build.STORAGE.length === 0 ? "opacity-40" : ""
-                  }`}
-                />
-              </div>
-
-              <div className="flex-1 min-w-0">
-                <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-muted">
-                  Storage
-                </p>
-
-                {build.STORAGE.length === 0 ? (
-                  <p className="mt-1 text-sm font-text text-muted">
-                    Choose storage
-                  </p>
-                ) : (
-                  <div className="mt-2 space-y-3">
-                    {build.STORAGE.map((drive) => (
-                      <div
-                        key={drive.instanceId}
-                        className="flex items-start justify-between gap-3 "
-                      >
-                        <div className="min-w-0">
-                          <p className="text-sm font-medium leading-5 font-text text-text">
-                            {drive.product.name}
-                          </p>
-
-                          <p className="mt-1 font-mono text-xs text-muted">
-                            ${drive.product.price.toFixed(2)}
-                          </p>
-                        </div>
-
-                        <button
-                          type="button"
-                          onClick={() => onRemoveDrive(drive.instanceId)}
-                          title="Remove storage"
-                          aria-label={`Remove ${drive.product.name}`}
-                          className="grid transition-colors size-8 shrink-0 place-items-center text-muted hover:bg-background hover:text-text"
-                        >
-                          <Trash2 className="size-3.5" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* TOTAL */}
-
-        <div className="px-4 py-4 border-t shrink-0 border-accent/30 bg-surface">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <p className="font-mono text-[8px] uppercase tracking-[0.22em] text-accent-dark">
-                Build value
-              </p>
-              <p className="mt-1 font-mono text-[9px] uppercase tracking-wide text-muted">
-                Current configuration
-              </p>
-            </div>
-
-            <span className="text-2xl italic font-bold font-display text-text">
-              ${totalPrice.toFixed(2)}
-            </span>
-          </div>
-        </div>
-      </aside>
+      {selectedPart && (
+        <p className="sr-only">
+          Inspecting {selectedPart.name}. Installation is controlled through the
+          parts catalogue.
+        </p>
+      )}
     </section>
   );
 }

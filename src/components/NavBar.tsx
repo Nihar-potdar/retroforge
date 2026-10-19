@@ -1,251 +1,116 @@
-import { ArrowLeft, Bookmark, GitCompareArrows } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
-import { Link } from "react-router-dom";
-
-import { ThemeToggle } from "@/components/ThemeToggle";
-
-/**
- * Restricts navigation variants at compile time.
- *
- * The discriminated union makes `moduleNumber` mandatory only for a detail
- * page, preventing the footer-like module label from rendering as undefined.
- */
+import { Link, useLocation } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import { HelpButton } from "./HelpButton";
+import { ThemeToggle } from "./ThemeToggle";
 type NavBarProps =
-  | { variant: "home" | "build"; onOpenSaved?: () => void }
-  | { variant: "guides" }
+  | {
+      variant: "home" | "build" | "guides" | "prebuilts";
+      onOpenSaved?: () => void;
+    }
   | { variant: "guide-detail"; moduleNumber: string };
-
-/**
- * Renders the shared RetroForge navigation in its workspace or guide form.
- *
- * @param {NavBarProps} props - Selects the navigation layout and, for a guide
- * detail page, supplies the module number shown in the breadcrumb label.
- * @returns {JSX.Element} The navigation header appropriate for the page.
- * @throws {Error} The Home and Build variants require a `SidebarProvider`
- * ancestor because their `SidebarTrigger` consumes that React context.
- */
 export function NavBar(props: NavBarProps) {
-  // Motion's accessibility hook lets decorative movement disappear without
-  // maintaining an entirely separate navigation implementation.
-  const shouldReduceMotion = useReducedMotion();
-  // Home and Build share the same application-shell controls. Keeping them in
-  // one branch prevents their sidebar and theme behaviors from drifting apart.
-  if (props.variant === "home" || props.variant === "build") {
-    const isBuild = props.variant === "build";
-
-    return (
-      <motion.header
-        initial={{ opacity: 0, y: -24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.55,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="relative z-20 flex items-center justify-between h-16 px-4 border-b shrink-0 border-border bg-surface/90 backdrop-blur-md sm:px-8"
+  const { pathname } = useLocation();
+  const isBuild = props.variant === "build";
+  const links = (
+    <>
+      <Link
+        to="/build"
+        aria-current={pathname === "/build" ? "page" : undefined}
       >
-        {/* LEFT SIDE */}
-
-        <div className="flex items-center gap-3">
-          {isBuild ? (
-            <Link to="/" aria-label="Return to home" className="grid size-9 place-items-center border border-border text-muted hover:bg-accent-soft hover:text-text">
-              <ArrowLeft className="size-4" />
-            </Link>
-          ) : (
-            <Link
-              to="/"
-              className="
-              grid size-9 place-items-center
-              border border-border
-              font-mono text-[11px] font-semibold
-              text-text
-              transition-colors
-              hover:bg-accent-soft
-            "
-            >
-              RF
-            </Link>
-          )}
-
-          <div className="flex flex-col">
-            <span
-              className="
-              font-mono text-[10px]
-              tracking-[0.22em]
-              text-muted
-            "
-            >
-              {isBuild ? "BUILD_OS" : "RETROFORGE"}
-            </span>
-
-            {isBuild && (
-              <span className="hidden font-text text-[11px] text-muted lg:block">
-                PC configurator
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* RIGHT SIDE */}
-
-        <nav
-          aria-label="Primary navigation"
-          className="flex items-center gap-1 sm:gap-2"
-        >
-          {/* PREBUILTS */}
-
+        Builder
+      </Link>
+      <Link
+        to="/prebuilts"
+        aria-label="Prebuilts"
+        aria-current={pathname === "/prebuilts" ? "page" : undefined}
+      >
+        Ready-made builds
+      </Link>
+      <Link
+        to="/guides"
+        aria-label="Guides"
+        aria-current={pathname.startsWith("/guides") ? "page" : undefined}
+      >
+        Learn
+      </Link>
+      <Link
+        to="/build?panel=build"
+        aria-label="Saved builds"
+        onClick={(event) => {
+          if ("onOpenSaved" in props && props.onOpenSaved) {
+            event.preventDefault();
+            props.onOpenSaved();
+          }
+        }}
+      >
+        Saved builds
+      </Link>
+    </>
+  );
+  return (
+    <header className={`site-header ${isBuild ? "workspace-header" : ""}`}>
+      <div className="site-brand-group">
+        {props.variant === "guide-detail" && (
           <Link
-            to="/prebuilts"
-            aria-label="Prebuilts"
-            className="flex items-center gap-2 nav-link"
+            to="/guides"
+            className="site-back"
+            aria-label="Return to all guides"
           >
-            <GitCompareArrows className="size-4" />
-
-            <span className="hidden sm:inline">Prebuilts</span>
+            <ArrowLeft size={18} />
           </Link>
-
-          {/* SAVED BUILDS */}
-
-          <Link
-            to="/build?panel=build"
-            aria-label="Saved builds"
+        )}
+        <Link
+          to="/"
+          className="site-brand"
+          aria-label={
+            props.variant === "home" ? "RetroForge home" : "Return to home"
+          }
+        >
+          <svg
+            width="31"
+            height="33"
+            viewBox="0 0 31 33"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path d="M4 5h13v8H9v15H2V7a2 2 0 0 1 2-2Z" fill="currentColor" />
+            <path
+              d="M27 28H14v-8h8V5h7v21a2 2 0 0 1-2 2Z"
+              fill="currentColor"
+            />
+          </svg>
+          <span>
+            RetroForge<span className="wordmark-period">.</span>
+          </span>
+        </Link>
+      </div>
+      <nav className="site-desktop-nav" aria-label="Primary navigation">
+        {links}
+      </nav>
+      <div className="site-utilities">
+        <details className="site-mobile-menu">
+          <summary>Menu</summary>
+          <nav
+            aria-label="Mobile navigation"
             onClick={(event) => {
-              if (props.onOpenSaved) {
-                event.preventDefault();
-                props.onOpenSaved();
+              if ((event.target as HTMLElement).closest("a"))
+                event.currentTarget.parentElement?.removeAttribute("open");
+            }}
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                event.currentTarget.parentElement?.removeAttribute("open");
+                event.currentTarget.parentElement
+                  ?.querySelector("summary")
+                  ?.focus();
               }
             }}
-            className="flex items-center gap-2 nav-link"
           >
-            <Bookmark className="size-4" />
-
-            <span className="hidden sm:inline">Saved</span>
-          </Link>
-
-          {/* BUILD */}
-
-          <Link
-            to="/build"
-            className={`
-            nav-link
-            flex items-center gap-2
-
-            ${isBuild ? "nav-link-active" : ""}
-          `}
-          >
-            <span>Build</span>
-
-            {isBuild && (
-              <motion.span
-                aria-hidden="true"
-                animate={
-                  shouldReduceMotion
-                    ? undefined
-                    : {
-                        opacity: [1, 0.3, 1],
-                        scale: [1, 1.5, 1],
-                      }
-                }
-                transition={{
-                  duration: 1.8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="
-                size-1.5
-                rounded-full
-                bg-current
-              "
-              />
-            )}
-          </Link>
-
-          {/* DIVIDER */}
-
-          <div className="w-px h-6 mx-1 bg-border" />
-
-          {/* THEME */}
-
-          <ThemeToggle />
-        </nav>
-      </motion.header>
-    );
-  }
-
-  // Guide pages use a reading-focused header and do not need the build sidebar.
-  const isGuideDetail = props.variant === "guide-detail";
-
-  return (
-    <motion.header
-      initial={{ opacity: 0, y: -24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="sticky top-0 z-30 border-b border-border bg-surface/90 backdrop-blur-md"
-    >
-      <div
-        className={`mx-auto flex h-16 items-center justify-between px-5 sm:px-10 ${
-          isGuideDetail ? "max-w-[1180px]" : "max-w-[1500px] lg:px-14"
-        }`}
-      >
-        <div className="flex items-center gap-4">
-          <motion.div
-            whileHover={{ rotate: -8, scale: 1.06 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            {/* A detail page steps back to the guide index, while the guide
-                index steps back to Home. This preserves the reading hierarchy. */}
-            <Link
-              to={isGuideDetail ? "/guides" : "/"}
-              aria-label={
-                isGuideDetail ? "Return to all guides" : "Return to home"
-              }
-              className="grid transition-colors border size-9 place-items-center border-border text-muted hover:bg-accent-soft hover:text-text"
-            >
-              <ArrowLeft className="size-4" />
-            </Link>
-          </motion.div>
-
-          <span className="font-mono text-[9px] tracking-[0.2em] text-muted sm:text-[10px] sm:tracking-[0.25em]">
-            {isGuideDetail
-              ? `FIELD MANUAL / MODULE_${props.moduleNumber}`
-              : "RETROFORGE / FIELD MANUAL"}
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] sm:gap-3">
-          {isGuideDetail ? (
-            <Link
-              to="/"
-              className="hidden text-[9px] tracking-[0.16em] text-muted transition-colors hover:text-text sm:block"
-            >
-              Home
-            </Link>
-          ) : (
-            <>
-              <span className="hidden text-muted sm:inline">
-                Knowledge base
-              </span>
-              <motion.span
-                whileHover={{ rotate: 2, scale: 1.04 }}
-                className="px-3 py-2 bg-accent-soft text-accent-dark"
-              >
-                Guides
-                {/* This dot is deliberately decorative; the text already
-                    communicates the active section to every user. */}
-                <motion.span
-                  animate={
-                    shouldReduceMotion ? undefined : { opacity: [1, 0.25, 1] }
-                  }
-                  transition={{ duration: 1.6, repeat: Infinity }}
-                >
-                  {" "}
-                  •
-                </motion.span>
-              </motion.span>
-            </>
-          )}
-          <ThemeToggle />
-        </div>
+            {links}
+          </nav>
+        </details>
+        <HelpButton />
+        <ThemeToggle />
       </div>
-    </motion.header>
+    </header>
   );
 }

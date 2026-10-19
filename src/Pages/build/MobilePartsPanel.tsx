@@ -8,6 +8,7 @@ import type {
 } from "@/data/type";
 import { getPartHighlights } from "@/lib/getPartHighlights";
 import { componentKey } from "@/Logic/Compatibility/CandidateCompatibility";
+import { hasCompatibilityErrors } from "@/Logic/Compatibility/Issue";
 
 import type { ComponentGroup } from "./buildCatalog";
 import {
@@ -66,7 +67,7 @@ export function MobilePartsPanel({
           {filteredParts.map((part, index) => {
             const key = `${part.componentType}-${part.id}`;
             const issues = candidateIssues.get(componentKey(part)) ?? [];
-            const isCompatible = issues.length === 0;
+            const isCompatible = !hasCompatibilityErrors(issues);
             const selected =
               part.componentType === "Storage"
                 ? installedDrives.some((drive) => drive.product.id === part.id)
@@ -111,11 +112,11 @@ export function MobilePartsPanel({
                         {specs.join(" / ")}
                       </p>
 
-                      {!isCompatible && (
-                        <div className="mt-2 flex items-center gap-1.5 text-danger">
+                      {issues.length > 0 && (
+                        <div className={`mt-2 flex items-center gap-1.5 ${isCompatible ? "text-amber-600 dark:text-amber-400" : "text-danger"}`}>
                           <AlertTriangle className="size-3.5 shrink-0" />
                           <span className="font-mono text-[8px] font-bold uppercase tracking-wider">
-                            {issues.length} compatibility {issues.length === 1 ? "issue" : "issues"}
+                            {issues.length} {isCompatible ? (issues.length === 1 ? "warning" : "warnings") : (issues.length === 1 ? "issue" : "issues")}
                           </span>
                         </div>
                       )}

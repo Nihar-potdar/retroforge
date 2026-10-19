@@ -1,0 +1,1301 @@
+{
+  "conditions": {
+    "networkBytesPerSecond": 1000000,
+    "latencyMs": 80,
+    "phoneCPUThrottle": 4,
+    "browser": "headless Chromium / software GPU",
+    "productionIndexHash": "4fb6850342c859d088d20a3c9895a163ff65612a28072690aa386b0879f88d64",
+    "metric": "Cold/warm browser contexts; bytes include same-origin responses only. Response body bytes are decoded. RAF is a responsiveness proxy, not GPU frame timing. ModelsDecoded is instrumented only in the optimized build."
+  },
+  "runs": [
+    {
+      "version": "baseline",
+      "device": "desktop",
+      "cache": "cold",
+      "iteration": 0,
+      "controlsMs": 835,
+      "canvasCreatedMs": 860,
+      "modelDownloadsMs": 20368,
+      "modelsDecodedMs": null,
+      "responseBodyBytes": 19730916,
+      "modelResponseBytes": 18073612,
+      "modelTransferBytes": 18074812,
+      "rafMedianMs": 733.3999999999978,
+      "rafP95Ms": 766.6000000000022,
+      "sceneMetrics": [],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4174/models/nvidia_rtx_2080_ti.glb",
+          "durationMs": 14046.39999999851,
+          "transferSize": 3844424,
+          "decodedBodySize": 3844124
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/corsair_400d.glb",
+          "durationMs": 14890.20000000298,
+          "transferSize": 4264644,
+          "decodedBodySize": 4264344
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/psu_power_supply_unit.glb",
+          "durationMs": 3734.89999999851,
+          "transferSize": 750288,
+          "decodedBodySize": 749988
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/motherboard__components.glb",
+          "durationMs": 19855.30000000447,
+          "transferSize": 9215456,
+          "decodedBodySize": 9215156
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "baseline",
+      "device": "desktop",
+      "cache": "warm",
+      "iteration": 0,
+      "controlsMs": 455,
+      "canvasCreatedMs": 595,
+      "modelDownloadsMs": 9531,
+      "modelsDecodedMs": null,
+      "responseBodyBytes": 19730916,
+      "modelResponseBytes": 18073612,
+      "modelTransferBytes": 9216356,
+      "rafMedianMs": 716.8000000000029,
+      "rafP95Ms": 733.1999999999971,
+      "sceneMetrics": [],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4174/models/nvidia_rtx_2080_ti.glb",
+          "durationMs": 92.19999999552965,
+          "transferSize": 300,
+          "decodedBodySize": 3844124
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/corsair_400d.glb",
+          "durationMs": 106.89999999850988,
+          "transferSize": 300,
+          "decodedBodySize": 4264344
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/psu_power_supply_unit.glb",
+          "durationMs": 86.79999999701977,
+          "transferSize": 300,
+          "decodedBodySize": 749988
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/motherboard__components.glb",
+          "durationMs": 9322.20000000298,
+          "transferSize": 9215456,
+          "decodedBodySize": 9215156
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "baseline",
+      "device": "desktop",
+      "cache": "cold",
+      "iteration": 1,
+      "controlsMs": 842,
+      "canvasCreatedMs": 845,
+      "modelDownloadsMs": 20353,
+      "modelsDecodedMs": null,
+      "responseBodyBytes": 19730916,
+      "modelResponseBytes": 18073612,
+      "modelTransferBytes": 18074812,
+      "rafMedianMs": 733.2999999999993,
+      "rafP95Ms": 733.4000000000015,
+      "sceneMetrics": [],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4174/models/nvidia_rtx_2080_ti.glb",
+          "durationMs": 14046.10000000149,
+          "transferSize": 3844424,
+          "decodedBodySize": 3844124
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/corsair_400d.glb",
+          "durationMs": 14890.29999999702,
+          "transferSize": 4264644,
+          "decodedBodySize": 4264344
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/psu_power_supply_unit.glb",
+          "durationMs": 3770.2999999970198,
+          "transferSize": 750288,
+          "decodedBodySize": 749988
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/motherboard__components.glb",
+          "durationMs": 19857.10000000149,
+          "transferSize": 9215456,
+          "decodedBodySize": 9215156
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "baseline",
+      "device": "desktop",
+      "cache": "warm",
+      "iteration": 1,
+      "controlsMs": 449,
+      "canvasCreatedMs": 578,
+      "modelDownloadsMs": 9563,
+      "modelsDecodedMs": null,
+      "responseBodyBytes": 19730916,
+      "modelResponseBytes": 18073612,
+      "modelTransferBytes": 9216356,
+      "rafMedianMs": 733.4000000000015,
+      "rafP95Ms": 750,
+      "sceneMetrics": [],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4174/models/nvidia_rtx_2080_ti.glb",
+          "durationMs": 87.80000000447035,
+          "transferSize": 300,
+          "decodedBodySize": 3844124
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/corsair_400d.glb",
+          "durationMs": 119.19999999552965,
+          "transferSize": 300,
+          "decodedBodySize": 4264344
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/psu_power_supply_unit.glb",
+          "durationMs": 86.5,
+          "transferSize": 300,
+          "decodedBodySize": 749988
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/motherboard__components.glb",
+          "durationMs": 9335.39999999851,
+          "transferSize": 9215456,
+          "decodedBodySize": 9215156
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "baseline",
+      "device": "phone",
+      "cache": "cold",
+      "iteration": 0,
+      "controlsMs": 1771,
+      "canvasCreatedMs": 1776,
+      "modelDownloadsMs": 21487,
+      "modelsDecodedMs": null,
+      "responseBodyBytes": 19730916,
+      "modelResponseBytes": 18073612,
+      "modelTransferBytes": 18074812,
+      "rafMedianMs": 516.7000000000007,
+      "rafP95Ms": 550,
+      "sceneMetrics": [],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4174/models/nvidia_rtx_2080_ti.glb",
+          "durationMs": 14040.60000000149,
+          "transferSize": 3844424,
+          "decodedBodySize": 3844124
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/corsair_400d.glb",
+          "durationMs": 14886.69999999553,
+          "transferSize": 4264644,
+          "decodedBodySize": 4264344
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/psu_power_supply_unit.glb",
+          "durationMs": 3653.7999999970198,
+          "transferSize": 750288,
+          "decodedBodySize": 749988
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/motherboard__components.glb",
+          "durationMs": 19843.20000000298,
+          "transferSize": 9215456,
+          "decodedBodySize": 9215156
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "baseline",
+      "device": "phone",
+      "cache": "warm",
+      "iteration": 0,
+      "controlsMs": 1665,
+      "canvasCreatedMs": 1879,
+      "modelDownloadsMs": 10072,
+      "modelsDecodedMs": null,
+      "responseBodyBytes": 19730916,
+      "modelResponseBytes": 18073612,
+      "modelTransferBytes": 9216356,
+      "rafMedianMs": 516.7000000000007,
+      "rafP95Ms": 533.2999999999993,
+      "sceneMetrics": [],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4174/models/nvidia_rtx_2080_ti.glb",
+          "durationMs": 166.60000000149012,
+          "transferSize": 300,
+          "decodedBodySize": 3844124
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/corsair_400d.glb",
+          "durationMs": 219.80000000447035,
+          "transferSize": 300,
+          "decodedBodySize": 4264344
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/psu_power_supply_unit.glb",
+          "durationMs": 82.89999999850988,
+          "transferSize": 300,
+          "decodedBodySize": 749988
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/motherboard__components.glb",
+          "durationMs": 9309.20000000298,
+          "transferSize": 9215456,
+          "decodedBodySize": 9215156
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "baseline",
+      "device": "phone",
+      "cache": "cold",
+      "iteration": 1,
+      "controlsMs": 1766,
+      "canvasCreatedMs": 1773,
+      "modelDownloadsMs": 21568,
+      "modelsDecodedMs": null,
+      "responseBodyBytes": 19730916,
+      "modelResponseBytes": 18073612,
+      "modelTransferBytes": 18074812,
+      "rafMedianMs": 533.3000000000029,
+      "rafP95Ms": 549.8999999999978,
+      "sceneMetrics": [],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4174/models/nvidia_rtx_2080_ti.glb",
+          "durationMs": 14046.60000000149,
+          "transferSize": 3844424,
+          "decodedBodySize": 3844124
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/corsair_400d.glb",
+          "durationMs": 14886.39999999851,
+          "transferSize": 4264644,
+          "decodedBodySize": 4264344
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/psu_power_supply_unit.glb",
+          "durationMs": 3727.89999999851,
+          "transferSize": 750288,
+          "decodedBodySize": 749988
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/motherboard__components.glb",
+          "durationMs": 19842.39999999851,
+          "transferSize": 9215456,
+          "decodedBodySize": 9215156
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "baseline",
+      "device": "phone",
+      "cache": "warm",
+      "iteration": 1,
+      "controlsMs": 1684,
+      "canvasCreatedMs": 1897,
+      "modelDownloadsMs": 10096,
+      "modelsDecodedMs": null,
+      "responseBodyBytes": 19730916,
+      "modelResponseBytes": 18073612,
+      "modelTransferBytes": 9216356,
+      "rafMedianMs": 533.2999999999993,
+      "rafP95Ms": 550,
+      "sceneMetrics": [],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4174/models/nvidia_rtx_2080_ti.glb",
+          "durationMs": 165,
+          "transferSize": 300,
+          "decodedBodySize": 3844124
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/corsair_400d.glb",
+          "durationMs": 217.89999999850988,
+          "transferSize": 300,
+          "decodedBodySize": 4264344
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/psu_power_supply_unit.glb",
+          "durationMs": 83,
+          "transferSize": 300,
+          "decodedBodySize": 749988
+        },
+        {
+          "url": "http://127.0.0.1:4174/models/motherboard__components.glb",
+          "durationMs": 9317.70000000298,
+          "transferSize": 9215456,
+          "decodedBodySize": 9215156
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "optimized",
+      "device": "desktop",
+      "cache": "cold",
+      "iteration": 0,
+      "controlsMs": 195,
+      "canvasCreatedMs": 1105,
+      "modelDownloadsMs": 7435,
+      "modelsDecodedMs": 9628,
+      "responseBodyBytes": 3355348,
+      "modelResponseBytes": 1652128,
+      "modelTransferBytes": 1653928,
+      "rafMedianMs": 549.9000000000015,
+      "rafP95Ms": 566.6999999999989,
+      "sceneMetrics": [
+        {
+          "frames": 16,
+          "p95FrameMs": 737.4,
+          "drawCalls": 15,
+          "triangles": 56704,
+          "quality": "high"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 679.1,
+          "drawCalls": 17,
+          "triangles": 56922,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 440.4,
+          "drawCalls": 20,
+          "triangles": 124842,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 996.4,
+          "drawCalls": 3,
+          "triangles": 6,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 581.2,
+          "drawCalls": 3,
+          "triangles": 6,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 606.4,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 574.8,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 555.4,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 558.2,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 549.2,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 526,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        }
+      ],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/case-c6b0def6486b.glb",
+          "durationMs": 934.3999999985099,
+          "transferSize": 427000,
+          "decodedBodySize": 426700
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/motherboard-763f86cd12f9.glb",
+          "durationMs": 1159.8999999985099,
+          "transferSize": 651004,
+          "decodedBodySize": 650704
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/cpu-5585aa97fea2.glb",
+          "durationMs": 88.70000000298023,
+          "transferSize": 6152,
+          "decodedBodySize": 5852
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/gpu-6d6e7cb3e45f.glb",
+          "durationMs": 513.1999999955297,
+          "transferSize": 431536,
+          "decodedBodySize": 431236
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/psu-56da589fe230.glb",
+          "durationMs": 184.90000000596046,
+          "transferSize": 103160,
+          "decodedBodySize": 102860
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/ram-1621cca997af.glb",
+          "durationMs": 119.29999999701977,
+          "transferSize": 35076,
+          "decodedBodySize": 34776
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "optimized",
+      "device": "desktop",
+      "cache": "warm",
+      "iteration": 0,
+      "controlsMs": 195,
+      "canvasCreatedMs": 527,
+      "modelDownloadsMs": 5130,
+      "modelsDecodedMs": 9441,
+      "responseBodyBytes": 3355348,
+      "modelResponseBytes": 1652128,
+      "modelTransferBytes": 1800,
+      "rafMedianMs": 550,
+      "rafP95Ms": 550,
+      "sceneMetrics": [
+        {
+          "frames": 12,
+          "p95FrameMs": 693.7,
+          "drawCalls": 15,
+          "triangles": 56704,
+          "quality": "high"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 1011.8,
+          "drawCalls": 56,
+          "triangles": 100470,
+          "quality": "low"
+        },
+        {
+          "frames": 4,
+          "p95FrameMs": 572.5,
+          "drawCalls": 71,
+          "triangles": 178416,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 545.9,
+          "drawCalls": 71,
+          "triangles": 178416,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 594.9,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 579.6,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 564.9,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 556.3,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 571.5,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 539.7,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 536.4,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        }
+      ],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/case-c6b0def6486b.glb",
+          "durationMs": 83,
+          "transferSize": 300,
+          "decodedBodySize": 426700
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/motherboard-763f86cd12f9.glb",
+          "durationMs": 84.30000000447035,
+          "transferSize": 300,
+          "decodedBodySize": 650704
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/cpu-5585aa97fea2.glb",
+          "durationMs": 83.5,
+          "transferSize": 300,
+          "decodedBodySize": 5852
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/gpu-6d6e7cb3e45f.glb",
+          "durationMs": 83.40000000596046,
+          "transferSize": 300,
+          "decodedBodySize": 431236
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/psu-56da589fe230.glb",
+          "durationMs": 82.10000000149012,
+          "transferSize": 300,
+          "decodedBodySize": 102860
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/ram-1621cca997af.glb",
+          "durationMs": 82.5,
+          "transferSize": 300,
+          "decodedBodySize": 34776
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "optimized",
+      "device": "desktop",
+      "cache": "cold",
+      "iteration": 1,
+      "controlsMs": 190,
+      "canvasCreatedMs": 1083,
+      "modelDownloadsMs": 7341,
+      "modelsDecodedMs": 9555,
+      "responseBodyBytes": 3355348,
+      "modelResponseBytes": 1652128,
+      "modelTransferBytes": 1653928,
+      "rafMedianMs": 550,
+      "rafP95Ms": 566.6000000000004,
+      "sceneMetrics": [
+        {
+          "frames": 17,
+          "p95FrameMs": 694.2,
+          "drawCalls": 15,
+          "triangles": 56704,
+          "quality": "high"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 654.8,
+          "drawCalls": 17,
+          "triangles": 56922,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 467.5,
+          "drawCalls": 20,
+          "triangles": 124842,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 967.2,
+          "drawCalls": 3,
+          "triangles": 6,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 578.1,
+          "drawCalls": 3,
+          "triangles": 6,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 596.9,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 576.4,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 569.1,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 554.4,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 536.3,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 526.3,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        }
+      ],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/case-c6b0def6486b.glb",
+          "durationMs": 933.1999999955297,
+          "transferSize": 427000,
+          "decodedBodySize": 426700
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/motherboard-763f86cd12f9.glb",
+          "durationMs": 1171.6999999955297,
+          "transferSize": 651004,
+          "decodedBodySize": 650704
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/cpu-5585aa97fea2.glb",
+          "durationMs": 94.09999999403954,
+          "transferSize": 6152,
+          "decodedBodySize": 5852
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/gpu-6d6e7cb3e45f.glb",
+          "durationMs": 513.3999999985099,
+          "transferSize": 431536,
+          "decodedBodySize": 431236
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/psu-56da589fe230.glb",
+          "durationMs": 186.89999999850988,
+          "transferSize": 103160,
+          "decodedBodySize": 102860
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/ram-1621cca997af.glb",
+          "durationMs": 118.5,
+          "transferSize": 35076,
+          "decodedBodySize": 34776
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "optimized",
+      "device": "desktop",
+      "cache": "warm",
+      "iteration": 1,
+      "controlsMs": 199,
+      "canvasCreatedMs": 532,
+      "modelDownloadsMs": 5152,
+      "modelsDecodedMs": 9505,
+      "responseBodyBytes": 3355348,
+      "modelResponseBytes": 1652128,
+      "modelTransferBytes": 1800,
+      "rafMedianMs": 550.0999999999985,
+      "rafP95Ms": 583.3999999999996,
+      "sceneMetrics": [
+        {
+          "frames": 12,
+          "p95FrameMs": 710.5,
+          "drawCalls": 15,
+          "triangles": 56704,
+          "quality": "high"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 1038,
+          "drawCalls": 56,
+          "triangles": 100470,
+          "quality": "low"
+        },
+        {
+          "frames": 4,
+          "p95FrameMs": 573.9,
+          "drawCalls": 71,
+          "triangles": 178416,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 546.7,
+          "drawCalls": 71,
+          "triangles": 178416,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 621.8,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 578.4,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 589.8,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 574.2,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 559.1,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 540.6,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        },
+        {
+          "frames": 3,
+          "p95FrameMs": 570.5,
+          "drawCalls": 77,
+          "triangles": 179608,
+          "quality": "low"
+        }
+      ],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/case-c6b0def6486b.glb",
+          "durationMs": 83.89999999850988,
+          "transferSize": 300,
+          "decodedBodySize": 426700
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/motherboard-763f86cd12f9.glb",
+          "durationMs": 84.89999999850988,
+          "transferSize": 300,
+          "decodedBodySize": 650704
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/cpu-5585aa97fea2.glb",
+          "durationMs": 83.70000000298023,
+          "transferSize": 300,
+          "decodedBodySize": 5852
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/gpu-6d6e7cb3e45f.glb",
+          "durationMs": 83,
+          "transferSize": 300,
+          "decodedBodySize": 431236
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/psu-56da589fe230.glb",
+          "durationMs": 83.70000000298023,
+          "transferSize": 300,
+          "decodedBodySize": 102860
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/ram-1621cca997af.glb",
+          "durationMs": 83.70000000298023,
+          "transferSize": 300,
+          "decodedBodySize": 34776
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "optimized",
+      "device": "phone",
+      "cache": "cold",
+      "iteration": 0,
+      "controlsMs": 740,
+      "canvasCreatedMs": 1666,
+      "modelDownloadsMs": 4337,
+      "modelsDecodedMs": 7633,
+      "responseBodyBytes": 3355348,
+      "modelResponseBytes": 1652128,
+      "modelTransferBytes": 1653928,
+      "rafMedianMs": 350,
+      "rafP95Ms": 383.3000000000011,
+      "sceneMetrics": [
+        {
+          "frames": 30,
+          "p95FrameMs": 249.6,
+          "drawCalls": 15,
+          "triangles": 56704,
+          "quality": "low"
+        },
+        {
+          "frames": 7,
+          "p95FrameMs": 815.9,
+          "drawCalls": 60,
+          "triangles": 168596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 387.6,
+          "drawCalls": 70,
+          "triangles": 178404,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 417.7,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 397.3,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 366.4,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        }
+      ],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/case-c6b0def6486b.glb",
+          "durationMs": 933.5,
+          "transferSize": 427000,
+          "decodedBodySize": 426700
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/motherboard-763f86cd12f9.glb",
+          "durationMs": 1167.1999999955297,
+          "transferSize": 651004,
+          "decodedBodySize": 650704
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/cpu-5585aa97fea2.glb",
+          "durationMs": 94.89999999850988,
+          "transferSize": 6152,
+          "decodedBodySize": 5852
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/gpu-6d6e7cb3e45f.glb",
+          "durationMs": 518.7000000029802,
+          "transferSize": 431536,
+          "decodedBodySize": 431236
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/psu-56da589fe230.glb",
+          "durationMs": 221.09999999403954,
+          "transferSize": 103160,
+          "decodedBodySize": 102860
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/ram-1621cca997af.glb",
+          "durationMs": 151.70000000298023,
+          "transferSize": 35076,
+          "decodedBodySize": 34776
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "optimized",
+      "device": "phone",
+      "cache": "warm",
+      "iteration": 0,
+      "controlsMs": 1197,
+      "canvasCreatedMs": 1880,
+      "modelDownloadsMs": 4562,
+      "modelsDecodedMs": 7333,
+      "responseBodyBytes": 3355348,
+      "modelResponseBytes": 1652128,
+      "modelTransferBytes": 1800,
+      "rafMedianMs": 350,
+      "rafP95Ms": 366.6999999999989,
+      "sceneMetrics": [
+        {
+          "frames": 13,
+          "p95FrameMs": 932.9,
+          "drawCalls": 55,
+          "triangles": 100458,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 374.1,
+          "drawCalls": 60,
+          "triangles": 168596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 353.7,
+          "drawCalls": 70,
+          "triangles": 178404,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 414.5,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 386.7,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 365.5,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 361.4,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        }
+      ],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/case-c6b0def6486b.glb",
+          "durationMs": 83.39999999850988,
+          "transferSize": 300,
+          "decodedBodySize": 426700
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/motherboard-763f86cd12f9.glb",
+          "durationMs": 83.39999999850988,
+          "transferSize": 300,
+          "decodedBodySize": 650704
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/cpu-5585aa97fea2.glb",
+          "durationMs": 83.39999999850988,
+          "transferSize": 300,
+          "decodedBodySize": 5852
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/gpu-6d6e7cb3e45f.glb",
+          "durationMs": 83.10000000149012,
+          "transferSize": 300,
+          "decodedBodySize": 431236
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/psu-56da589fe230.glb",
+          "durationMs": 83.70000000298023,
+          "transferSize": 300,
+          "decodedBodySize": 102860
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/ram-1621cca997af.glb",
+          "durationMs": 83.5,
+          "transferSize": 300,
+          "decodedBodySize": 34776
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "optimized",
+      "device": "phone",
+      "cache": "cold",
+      "iteration": 1,
+      "controlsMs": 736,
+      "canvasCreatedMs": 1655,
+      "modelDownloadsMs": 4341,
+      "modelsDecodedMs": 7604,
+      "responseBodyBytes": 3355348,
+      "modelResponseBytes": 1652128,
+      "modelTransferBytes": 1653928,
+      "rafMedianMs": 350,
+      "rafP95Ms": 366.6999999999989,
+      "sceneMetrics": [
+        {
+          "frames": 30,
+          "p95FrameMs": 244.9,
+          "drawCalls": 15,
+          "triangles": 56704,
+          "quality": "low"
+        },
+        {
+          "frames": 7,
+          "p95FrameMs": 808.7,
+          "drawCalls": 60,
+          "triangles": 168596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 395.1,
+          "drawCalls": 70,
+          "triangles": 178404,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 408.5,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 430.3,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 372.5,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 360.9,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        }
+      ],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/case-c6b0def6486b.glb",
+          "durationMs": 935.3000000044703,
+          "transferSize": 427000,
+          "decodedBodySize": 426700
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/motherboard-763f86cd12f9.glb",
+          "durationMs": 1166.8000000044703,
+          "transferSize": 651004,
+          "decodedBodySize": 650704
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/cpu-5585aa97fea2.glb",
+          "durationMs": 93.79999999701977,
+          "transferSize": 6152,
+          "decodedBodySize": 5852
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/gpu-6d6e7cb3e45f.glb",
+          "durationMs": 519.3999999985099,
+          "transferSize": 431536,
+          "decodedBodySize": 431236
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/psu-56da589fe230.glb",
+          "durationMs": 221,
+          "transferSize": 103160,
+          "decodedBodySize": 102860
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/ram-1621cca997af.glb",
+          "durationMs": 150.69999999552965,
+          "transferSize": 35076,
+          "decodedBodySize": 34776
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "optimized",
+      "device": "phone",
+      "cache": "warm",
+      "iteration": 1,
+      "controlsMs": 661,
+      "canvasCreatedMs": 1347,
+      "modelDownloadsMs": 4203,
+      "modelsDecodedMs": 6993,
+      "responseBodyBytes": 3355348,
+      "modelResponseBytes": 1652128,
+      "modelTransferBytes": 1800,
+      "rafMedianMs": 350,
+      "rafP95Ms": 366.6999999999989,
+      "sceneMetrics": [
+        {
+          "frames": 12,
+          "p95FrameMs": 697.7,
+          "drawCalls": 55,
+          "triangles": 100458,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 379.3,
+          "drawCalls": 60,
+          "triangles": 168596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 364.2,
+          "drawCalls": 70,
+          "triangles": 178404,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 408.7,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 396.9,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 374.1,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        },
+        {
+          "frames": 5,
+          "p95FrameMs": 355.5,
+          "drawCalls": 76,
+          "triangles": 179596,
+          "quality": "low"
+        }
+      ],
+      "resourceTiming": [
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/case-c6b0def6486b.glb",
+          "durationMs": 83.29999999701977,
+          "transferSize": 300,
+          "decodedBodySize": 426700
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/motherboard-763f86cd12f9.glb",
+          "durationMs": 83.20000000298023,
+          "transferSize": 300,
+          "decodedBodySize": 650704
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/cpu-5585aa97fea2.glb",
+          "durationMs": 83.20000000298023,
+          "transferSize": 300,
+          "decodedBodySize": 5852
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/gpu-6d6e7cb3e45f.glb",
+          "durationMs": 83.60000000149012,
+          "transferSize": 300,
+          "decodedBodySize": 431236
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/psu-56da589fe230.glb",
+          "durationMs": 82.5,
+          "transferSize": 300,
+          "decodedBodySize": 102860
+        },
+        {
+          "url": "http://127.0.0.1:4175/models/optimized/ram-1621cca997af.glb",
+          "durationMs": 83.29999999701977,
+          "transferSize": 300,
+          "decodedBodySize": 34776
+        }
+      ],
+      "errors": []
+    }
+  ]
+}
