@@ -1,61 +1,135 @@
+<div align="center">
+
 # RetroForge
 
-**Plan, check, and visualize a custom PC before buying the parts.**
+### Your next PC. Built different.
 
-RetroForge is an interactive 3D PC builder. Choose components from the catalogue,
-check whether they work together, preview the assembled system, and save builds in
-your browser.
+Plan your parts. Check the conflicts. Explore your build in 3D.
 
-[Open the live app](https://retroforge-iota.vercel.app/) · [Run locally](#run-locally) · [View the roadmap](#roadmap)
+**[Try RetroForge](https://retroforge-iota.vercel.app/)** · **[Open the builder](https://retroforge-iota.vercel.app/#/build)** · **[Read the guides](https://retroforge-iota.vercel.app/#/guides)**
 
-![RetroForge home screen](./docs/media/home.png)
+React · TypeScript · React Three Fiber · Zustand · Vite
 
-## What you can do
+</div>
 
-- Build a PC with a CPU, GPU, motherboard, RAM, storage, PSU, and case.
-- Explore the build in an interactive 3D viewport with orbit and zoom controls.
-- Filter parts by compatibility and review warnings before installing a conflict.
-- Start from a preconfigured gaming or workstation build.
-- Save named builds to the browser and load them later.
-- Use the builder on desktop or mobile in light or dark mode.
+![RetroForge's redesigned home page with bold typography, red accents, and hardware photography](./docs/media/home.png)
 
-## Product preview
+RetroForge is an interactive PC planning tool built for people who want to
+understand their hardware before buying it. Choose components, review known
+compatibility conflicts and power requirements, inspect an illustrative 3D
+assembly, and save configurations in your browser.
 
-### 3D builder
+Start from a blank configuration or customize a prebuilt. Learn what each part
+does as you go, without losing access to the specifications that matter.
 
-![RetroForge compatibility-aware 3D builder](./docs/media/builder.png)
+## The latest RetroForge
 
-### Preconfigured systems
+The **Redline** redesign brings the home page, builder, prebuilt gallery, and
+guides together with bold typography, generous spacing, red accents, and credited
+hardware photography. The update also goes deeper than the interface:
 
-![RetroForge preconfigured systems](./docs/media/prebuilts.png)
+| Area                        | What's available now                                                                                                                                  |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Desktop builder**         | Component specifications, a saved-build bar, a selected-part readout, and an installed-parts panel around the 3D stage.                               |
+| **Phone builder**           | An expanding **Add parts / Your build** dock keeps the assembly in view, with panels that expand for reading.                                         |
+| **Compatibility and power** | Actionable errors and warnings, compatibility-aware candidate filtering, storage-capacity checks, estimated system load, and recommended PSU wattage. |
+| **Learning**                | An interactive hardware explainer and **14 linked guides** covering first builds, component selection, troubleshooting, tuning, and maintenance.      |
+| **3D experience**           | Independent component assets, animated installation, immediate removal, Auto / High / Low quality, and recovery when a model fails to load.           |
+| **Help and controls**       | A first-visit welcome, a replayable six-step builder tour, Zen mode, keyboard navigation, camera buttons, and reduced-motion support.                 |
 
-## Compatibility coverage
+## Build it before you buy it
 
-RetroForge evaluates a candidate part before installation and rechecks the build
-after each change.
+![The desktop builder with a configured PC in the 3D viewport, component catalogue, installed parts, and power guidance](./docs/media/builder.png)
 
-| Check                                                                      | Current status                                                                    |
-| -------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| CPU socket ↔ motherboard                                                   | Working with a detailed warning                                                   |
-| RAM generation ↔ motherboard                                               | Working with a detailed warning                                                   |
-| GPU length ↔ case clearance                                                | Working with a detailed warning                                                   |
-| Storage connector, protocol, and aggregate M.2/SATA capacity ↔ motherboard | Working with detailed warnings and installed-drive counts                         |
-| PSU wattage ↔ estimated system load                                        | CPU power budget, GPU board power, per-drive allowances, and recommended headroom |
-| Case ↔ motherboard form factor                                             | Working with a detailed warning                                                   |
+- Choose from **60 sample catalogue products** across seven categories: CPU,
+  GPU, motherboard, RAM, storage, PSU, and case.
+- Search components by name or brand, inspect specifications, and filter for
+  supported compatibility checks.
+- Replace components, install multiple storage drives, and watch the assembly
+  update. Fresh builds and Reset start with a Corsair 4000D Airflow case.
+- Orbit, zoom, and reset the camera with pointer controls, buttons, or the
+  keyboard. Use Zen mode to give the assembly more room.
+- Name, save, and reload builds in the same browser.
+- Switch between light and dark themes.
 
-Errors exclude candidates from the compatible filter and require an installation
-override. Sizing and data warnings remain selectable and visible. Users may
-deliberately continue past supported errors. Compatibility results
-are guidance only and should be verified against the manufacturers' specifications
-before purchasing hardware. See [power policy and catalogue sources](./docs/power-policy.md)
-for the estimate, assumptions, and limits.
+### Made for a smaller screen, too
+
+The phone layout keeps the 3D stage visible while parts and build details open in
+an expandable dock. Desktop Zen panels can be revealed by hover, keyboard focus,
+or their edge buttons.
+
+<p align="center">
+  <img src="./docs/media/builder-mobile.png" alt="RetroForge's phone builder showing a configured 3D PC and the Add parts and Your build dock" width="320" />
+</p>
+
+## Check the important connections
+
+The same build assessment powers the installed-build summary, candidate
+selection, saved-build loads, and prebuilt configurations.
+
+| Check                     | What RetroForge evaluates                                                                             |
+| ------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **CPU ↔ motherboard**     | Socket matching.                                                                                      |
+| **RAM ↔ motherboard**     | Memory generation.                                                                                    |
+| **GPU ↔ case**            | Listed graphics-card length against case clearance.                                                   |
+| **Motherboard ↔ case**    | Supported motherboard form factor using the catalogue's size model.                                   |
+| **Storage ↔ motherboard** | Connector and protocol support, plus aggregate M.2 / SATA capacity across installed drives.           |
+| **PSU ↔ selected system** | CPU package-power budget, GPU board power, allowances for other components, and recommended headroom. |
+
+Errors are excluded from the compatible-only filter and require acknowledgement
+before installation. Warnings remain visible and selectable, so a sizing or data
+warning does not silently hide a candidate.
+
+Power guidance distinguishes an undersized PSU from insufficient recommended
+headroom. The recommendation uses the greater of **125% of estimated load** and
+the GPU vendor's published whole-system PSU recommendation, rounded up to a whole
+watt. Incomplete configurations show a partial estimate and missing categories.
+See the [power policy](./docs/power-policy.md) for the inputs, sources, and limits.
+
+Compatibility is planning guidance. Confirm exact-model specifications and
+manufacturer manuals before purchasing; supported checks do not prove that an
+entire real-world build will fit or work.
+
+## Start with a build. Make it yours.
+
+![The redesigned prebuilt gallery with sample configurations, component summaries, and Use build actions](./docs/media/prebuilts.png)
+
+Preconfigured gaming and workstation systems provide a starting point. Open one
+in the builder, inspect its components, then replace whatever you want while
+compatibility checks stay active. Displayed totals use sample catalogue prices.
+
+## Learn the parts as you plan
+
+![RetroForge's field manual with guide search, learning-level filters, and linked PC-building articles](./docs/media/guides.png)
+
+The home page introduces the role of each component through hardware photographs,
+plain-language explanations, and buying considerations. The field manual expands
+that into 14 searchable guides with beginner and advanced filters, checklists,
+sources, related reading, and links into the relevant builder category.
+
+Topics include budgeting, CPU/GPU selection, sockets and memory, power, storage,
+cooling, assembly, first boot, troubleshooting, tuning, custom loops, and upgrades.
+
+## A lighter 3D pipeline
+
+The six optimized GLB assets total **1.65 MB**, down from **18.07 MB** in the
+source set: **90.9% less model data**. This is an asset-size comparison, not a
+promise of the same speedup in every browser.
+
+The builder loads selected models with a two-asset concurrency limit, reuses
+cached geometry and materials, and lets component selection and saving remain
+usable while the scene loads. Individual model failures have recovery controls.
+Settled scenes render on demand; hidden tabs suspend rendering. Auto quality
+adjusts resolution and shadow cost, with manual High / Low overrides.
+
+Read the [performance notes](./docs/performance.md) for measurements and their
+limitations, and [model assets and fidelity](./docs/model-assets.md) for provenance,
+licences, and placement details.
 
 ## Run locally
 
-### Requirements
-
-- Node.js 22.12 or newer
-- npm (the repository uses `package-lock.json`)
+Use **Node.js 22.12+** and **npm**. CI and Vercel both install from
+`package-lock.json` with `npm ci`.
 
 ```bash
 git clone https://github.com/Nihar-potdar/retroforge.git
@@ -64,115 +138,91 @@ npm ci
 npm run dev
 ```
 
-Vite will print the local address. Open it and select **Start Build**.
+Open the address printed by Vite and select **Start building**.
 
-Vercel uses the same `npm ci` install command as CI, configured in
-`vercel.json`. Keep `package-lock.json` updated whenever dependencies change;
-do not add a second package manager's lockfile.
+| Command                   | Purpose                                            |
+| ------------------------- | -------------------------------------------------- |
+| `npm run dev`             | Start the development server.                      |
+| `npm run build`           | Type-check and create the production build.        |
+| `npm run preview`         | Serve the production build locally.                |
+| `npm run lint`            | Run ESLint.                                        |
+| `npm test`                | Run Vitest in watch mode.                          |
+| `npm run test:run`        | Run unit and component tests once.                 |
+| `npm run test:coverage`   | Run tests with coverage thresholds.                |
+| `npm run test:browser`    | Run the Playwright browser suite.                  |
+| `npm run models:optimize` | Regenerate optimized models.                       |
+| `npm run models:measure`  | Measure optimized model assets.                    |
+| `npm run perf:browser`    | Compare production baseline and optimized servers. |
 
-### Commands
+Before running browser tests, install the browser binaries:
 
 ```bash
-npm run dev       # start the development server
-npm run build     # type-check and create a production build
-npm run lint      # run ESLint
-npm run test:run  # run the Vitest suite once
-npm run test:coverage # check coverage thresholds
-npm test         # watch tests while developing
-npm run preview   # preview the production build
+npx playwright install chromium firefox
+npm run test:browser
 ```
 
-## Current limitations
+The browser suite builds and serves the app automatically. It covers desktop,
+phone-sized Chromium, and targeted Firefox interaction checks. Pull-request CI
+runs lint, test coverage, a production build, and browser tests.
 
-RetroForge is under active development. The main builder works, but these areas
-are not finished yet:
+## Under the hood
 
-- The catalogue and prices are static, limited sample data—not live market data.
-- Power sizing uses stock CPU/GPU budgets and documented allowances for other
-  parts. It does not check connectors, PSU fit, rail limits, transient compliance,
-  or overclocking. Incomplete builds show partial estimates.
-- Storage checks use aggregate port counts; shared lanes and exact slot layouts
-  are not modelled.
-- Not every catalogue part has a unique 3D model or exact physical placement.
-- Saved builds live in `localStorage`, so they do not sync across browsers or
-  devices and may be lost when browser data is cleared.
-- The production build succeeds, but the 3D builder chunk is still large and
-  triggers Vite's chunk-size warning.
-
-## Tech stack
-
-- **Frontend:** React 19, TypeScript, Vite, Tailwind CSS
-- **3D:** Three.js, React Three Fiber, Drei
-- **State and validation:** Zustand, Zod
-- **Routing and motion:** React Router, Motion, GSAP
-- **Testing and deployment:** Vitest, Vercel
-
-The main code lives in:
+| Layer                            | Tools                                     |
+| -------------------------------- | ----------------------------------------- |
+| Interface                        | React 19, TypeScript, Tailwind CSS        |
+| 3D                               | Three.js, React Three Fiber, Drei         |
+| State and saved-build validation | Zustand, Zod                              |
+| Navigation and motion            | React Router, Motion, GSAP                |
+| Development and testing          | Vite, Vitest, Testing Library, Playwright |
+| Deployment                       | Vercel                                    |
 
 ```text
 src/
-├── Logic/Compatibility/  # compatibility engine and rules
-├── Pages/                # home, builder, prebuilts, and guides
-├── components/           # 3D viewport and shared UI
-├── data/                 # component catalogue and prebuilts
-├── models/               # 3D model components
-├── stores/               # Zustand state
-└── zod/                  # saved-build validation
+├── Logic/Compatibility/  # Build assessment, compatibility rules, power sizing
+├── Pages/                # Home, builder, prebuilts, guide index and articles
+├── components/           # 3D viewport, assembly, onboarding and shared UI
+├── data/                 # Component catalogue, prebuilts and learning content
+├── models/               # Model registry, component assets and loading
+├── stores/               # Zustand build state
+└── zod/                  # Saved-build schemas
+docs/                     # Power policy, model credits and performance evidence
+e2e/                      # Browser regression tests
+tools/                    # Asset optimization, inventory and benchmarks
 ```
 
-## Roadmap
+## Current boundaries
 
-- [x] Give every currently supported compatibility rule a detailed, actionable issue.
-- [ ] Add cooler, fan, radiator, RAM-slot, M.2, SATA, and PCIe clearance checks.
-- [x] Estimate selected-system power and recommend PSU headroom.
-- [ ] Expand the catalogue, 3D model coverage, and regularly updated pricing.
+- **Catalogue and pricing:** a limited sample dataset; prices are static and
+  there is no checkout or live retailer integration.
+- **Model fidelity:** the Corsair 4000D Airflow is the one product-identified
+  model. Other catalogue products use illustrative fallbacks; storage uses
+  schematic geometry. The 3D view does not verify mounting or physical clearance.
+- **Compatibility:** BIOS support, shared PCIe / M.2 / SATA lanes, exact slot
+  layouts, cooler and radiator fit, PSU connectors, and PSU dimensions need
+  separate verification.
+- **Power:** a stock-configuration sizing estimate, not measured consumption or
+  a guarantee of transient compliance, cooling, or overclocking support.
+- **Saved builds:** browser `localStorage`, without accounts, cloud sync, or
+  shareable build links. Clearing browser data can remove saves.
+- **Performance:** the lazy 3D scene still triggers Vite's chunk-size warning;
+  software-GPU benchmarks do not establish real-device frame rates.
+
+## What's next
+
+- [x] Redesign the home page, builder, prebuilt gallery, and field manual.
+- [x] Add actionable compatibility issues and selected-system power guidance.
+- [x] Add a phone builder dock, guided onboarding, Zen mode, and camera controls.
+- [x] Publish 14 linked guides for beginners and experienced builders.
+- [x] Optimize model assets and add automated browser regression coverage.
+- [ ] Expand exact-product model coverage with verified rights and dimensions.
+- [ ] Add cooler, fan, radiator, RAM-slot, and detailed slot/clearance checks.
+- [ ] Expand catalogue coverage and establish an updated pricing source.
 - [ ] Add budget, performance, brand, and use-case filters.
 - [ ] Add accounts, cloud saves, shareable links, and build comparisons.
-- [x] Test compatibility, candidate selection, power sizing, and saved-build schemas in CI.
-- [ ] Reduce the builder bundle size and improve accessibility.
-
-The long-term goal is a builder that helps beginners understand each component
-without hiding the technical detail experienced users need.
+- [ ] Continue bundle, real-device performance, and accessibility improvements.
 
 ---
 
-Built by [Nihar Potdar](https://github.com/Nihar-potdar).
-
-### Builder experience and model pipeline
-
-The phone builder uses an expanding Parts/Build dock around a persistent 3D
-stage. Desktop panels remain available in Zen mode on hover, keyboard focus, or
-edge-button activation. Help replays the first-visit welcome and optional tour.
-The welcome is dismissed per browser under `retroforge.onboarding.v1`; saved
-builds and quality preferences also remain local to the browser.
-
-The field manual has 14 linked beginner/advanced guides. Camera buttons and
-focused arrow/+/-/Home controls provide alternatives to dragging and pinching.
-Use Tab/Shift+Tab, Enter/Space, and Escape for the rest of the site.
-
-- `npm run models:optimize`: regenerate optimized model assets.
-- `npm run models:measure`: inspect model bytes/geometry.
-- `node tools/model-inventory.mjs`: refresh product-specific model coverage.
-- `npx playwright install chromium firefox` then `npm run test:browser`: desktop,
-  phone-sized, and Firefox interaction tests against a fresh production build.
-- `npm run perf:browser`: compare production servers on ports 4174/4175 (or
-  `BASELINE_URL`/`OPTIMIZED_URL`). See `docs/performance.md` for limitations.
-
-See [model assets](docs/model-assets.md) for licences, fidelity, and placement.
-
-Fresh builds and Reset select a Corsair 4000D Airflow and show a dismissible
-starting-case message. Saved/prebuilt loads preserve their own case selection.
-Case changes and all removals are immediate. Other parts use the original
-exponential slide-in (speed 8), without fading or scaling; replacements remove
-the old model immediately. Reduced motion skips entrances. Placement retains the
-earlier calibrated source coordinates, including separate CPU and RAM models.
-
-Desktop shows catalogue specifications, a saved-build bar, the selected-part
-readout, and the installed-build panel by default. The 3D canvas is transparent
-over the site theme, with the original grid and shadow-only floor.
-
-OrbitControls receives a scoped DOM adapter that releases pointer capture only
-when the canvas owns it. This prevents Firefox's invalid-pointer exception on
-cancelled or stale pointer events without modifying the canvas's native methods.
-Firefox DevTools may still report a missing source-map URL for Meshopt's embedded
-WebAssembly; that diagnostic concerns debugger mapping, not model decoding.
+Built by **[Nihar Potdar](https://github.com/Nihar-potdar)**.
+Hardware photography is credited in the app; 3D asset creators and licences are
+documented in [model assets](./docs/model-assets.md).
