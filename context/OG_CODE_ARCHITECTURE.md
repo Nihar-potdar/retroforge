@@ -2377,6 +2377,10 @@ For named functions, the semantic sections above explain contracts and side effe
 
 This is the current module/function index for new and affected modules. Appendices A–C remain baseline inventories for unchanged code; old line anchors and removed inline saved-build callbacks are superseded here. `server/server.js`, `pnpm-lock.yaml`, and `pnpm-workspace.yaml` are deleted. New non-code artifacts are `.env.example`, `vercel.json`, `tsconfig.server.json`, `server/migrations/001_saved_builds.sql`, tests, and `context/AUTH_SETUP.md`. The current source remains authoritative.
 
+### Native Node deployment contract
+
+The Vercel function runs compiled JavaScript as native Node ESM. Runtime relative imports throughout `api/`, `server/`, and the shared cloud-schema dependency use explicit `.js` specifiers, even though their sources are `.ts`. TypeScript resolves these specifiers to source during checking and Vercel resolves emitted JavaScript at runtime. `tsconfig.server.json` uses `module: NodeNext` and `moduleResolution: NodeNext` so extensionless runtime imports fail the build rather than crashing only after deployment. The frontend retains its existing Vite/bundler settings. A compiled-to-JavaScript native Node import smoke check supplements the TypeScript and Vitest checks.
+
 ### API and ownership contracts
 
 Every `/api` request passes Clerk middleware and must resolve a user ID. Successful private responses use `Cache-Control: no-store`. `GET /api/builds` lists snapshots; `POST /api/builds` accepts `{name, build}` and returns the created SavedBuild (201); `DELETE /api/builds/:id` returns 204 or 404 for unknown/unowned IDs; `POST /api/builds/import` accepts `{builds: SavedBuild[]}` and returns `{imported, skipped}`. Invalid JSON/schema returns 400; bodies over 1 MiB return 413; absent identity returns 401; runtime failures return sanitized 500; incomplete deployment configuration returns 503 before app initialization. Source IDs are import deduplication keys, never ownership assertions.
@@ -2502,7 +2506,7 @@ Direct imports: `../zod/buildSchema`, `../data/type`.
 
 Create/import request schemas shared with server; depends on existing build/saved-build schemas.
 
-Direct imports: `zod`, `./buildSchema`.
+Direct imports: `zod`, `./buildSchema.js`.
 
 This module exports contracts/configuration or performs top-level startup; no function body is declared.
 
@@ -2653,7 +2657,7 @@ This module exports contracts/configuration or performs top-level startup; no fu
 
 Express factory and route handlers; Clerk verification, Zod validation, repository injection and sanitized error handling. Production never installs injected test authentication.
 
-Direct imports: `express`, `@clerk/express`, `zod`, `../src/zod/cloudSchema`, `./repository`.
+Direct imports: `express`, `@clerk/express`, `zod`, `../src/zod/cloudSchema.js`, `./repository.js`.
 
 | Function / lexical owner | Purpose | Direct calls (nested function bodies excluded) |
 | --- | --- | --- |
@@ -2672,7 +2676,7 @@ Direct imports: `express`, `@clerk/express`, `zod`, `../src/zod/cloudSchema`, `.
 
 BuildRepository interface and parameterized Neon SQL implementation; owner filtering, UUID generation, transactional idempotent imports.
 
-Direct imports: `@neondatabase/serverless`, `node:crypto`, `../src/data/type`.
+Direct imports: `@neondatabase/serverless`, `node:crypto`, `../src/data/type.js`.
 
 | Function / lexical owner | Purpose | Direct calls (nested function bodies excluded) |
 | --- | --- | --- |
@@ -2688,7 +2692,7 @@ Direct imports: `@neondatabase/serverless`, `node:crypto`, `../src/data/type`.
 
 Loopback API listener on port 3000; imports the same handler used by Vercel.
 
-Direct imports: `../api/[...path]`.
+Direct imports: `../api/[...path].js`.
 
 | Function / lexical owner | Purpose | Direct calls (nested function bodies excluded) |
 | --- | --- | --- |
@@ -2709,7 +2713,7 @@ Direct imports: `node:fs/promises`, `@neondatabase/serverless`.
 
 Vercel catch-all Node function; configuration guard and lazy Express/repository initialization; missing server configuration returns 503.
 
-Direct imports: `express`, `../server/app`, `../server/repository`.
+Direct imports: `express`, `../server/app.js`, `../server/repository.js`.
 
 | Function / lexical owner | Purpose | Direct calls (nested function bodies excluded) |
 | --- | --- | --- |

@@ -1,6 +1,6 @@
 import express from "express";
-import { createApp } from "../server/app";
-import { createRepository } from "../server/repository";
+import { createApp } from "../server/app.js";
+import { createRepository } from "../server/repository.js";
 
 const handler = express();
 let application: ReturnType<typeof createApp> | undefined;

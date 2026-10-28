@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import request from "supertest";
 import { randomUUID } from "node:crypto";
-import { createApp } from "../server/app";
-import type { BuildRepository } from "../server/repository";
-import type { SavedBuild } from "../src/data/type";
+import { createApp } from "../server/app.js";
+import type { BuildRepository } from "../server/repository.js";
+import type { SavedBuild } from "../src/data/type.js";
 
 function fixture() {
   const rows = new Map<string, SavedBuild[]>();

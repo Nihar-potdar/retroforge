@@ -1,2 +1,2 @@
-import app from "../api/[...path]";
+import app from "../api/[...path].js";
 app.listen(3000, "127.0.0.1", () => console.log("RetroForge API: http://127.0.0.1:3000"));

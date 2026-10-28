@@ -1,8 +1,8 @@
 import express from "express";
 import { clerkMiddleware, getAuth } from "@clerk/express";
 import { z } from "zod";
-import { createBuildSchema, importBuildsSchema } from "../src/zod/cloudSchema";
-import type { BuildRepository } from "./repository";
+import { createBuildSchema, importBuildsSchema } from "../src/zod/cloudSchema.js";
+import type { BuildRepository } from "./repository.js";
 
 type Options = {
   repository: BuildRepository;

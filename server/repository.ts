@@ -1,6 +1,6 @@
 import { neon } from "@neondatabase/serverless";
 import { randomUUID } from "node:crypto";
-import type { SavedBuild, BUILD } from "../src/data/type";
+import type { SavedBuild, BUILD } from "../src/data/type.js";
 
 export interface BuildRepository {
   list(userId: string): Promise<SavedBuild[]>;

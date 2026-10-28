@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { buildSchema, savedBuildSchema } from "./buildSchema";
+import { buildSchema, savedBuildSchema } from "./buildSchema.js";
 
 export const createBuildSchema = z.object({
   name: z.string().trim().min(1).max(120),

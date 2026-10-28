@@ -137,3 +137,9 @@ Removed the redundant provider from `src/main.tsx` and moved `afterSignOutUrl="/
 The newly installed skill example applications also caused six ESLint errors. Excluded `.agents/skills/**` from application linting. Local configuration presence and browser/server publishable-key equality were checked without printing their values; this does not verify credential validity or database connectivity.
 
 Follow-up verification passed: `npm run test:auth` (28 tests across five files), `npm run lint`, and `npm run build`. The existing large-chunk build warning remains. API tests required permission to bind local listeners. No live Clerk sign-in, database mutation, or deployment was performed in this follow-up.
+
+## Vercel native ESM runtime correction — 28 October 2026
+
+Authenticated preview inspection found a real deployed failure: `/api/builds` returned HTTP 500 `FUNCTION_INVOCATION_FAILED`. Vercel logs reported `ERR_MODULE_NOT_FOUND` for `/var/task/server/app` imported by `api/[...path].js`. Local tsx/Vite/Vitest resolution had accepted extensionless imports that native Node ESM cannot load.
+
+The correction uses explicit `.js` relative specifiers across the server/API and shared schema closure, and NodeNext module/moduleResolution in the server TypeScript configuration. Local checks passed: lint, frontend/server build, all 28 auth tests, and loading the emitted JavaScript API with native Node without tsx. Preview runtime verification follows the push; no Clerk settings, secret values, database rows, main, or og-code are changed by this fix.
