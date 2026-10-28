@@ -87,7 +87,7 @@ These are executed observations from the authentication work; they are not claim
 
 ## Completed Locally — Save and Sign-in UI Polish
 
-The following decisions are implemented and verified locally. Hosting the new UI and a real signed-in account save roundtrip are separate remaining checks.
+The following decisions are implemented and locally verified. UI commit `fdf42e9` was pushed to `auth-testing` and reached READY on Vercel; the stable Preview API returned the expected anonymous HTTP 401 after deployment. A real hosted signed-in account save roundtrip remains a separate check.
 
 - Preserve the orange light/dark garage theme and existing type/token system. This is a scoped refinement, not adoption of the future cyan scaffold or a redesign of the rest of the site.
 - Added shared `SignInAction`: a distinct 44px Sign in CTA, disabled during account discovery, reused in navigation and the save destination explanation. Clerk's prebuilt modal now names RetroForge and uses existing semantic colors/type and 44px fields/buttons; configured methods, one provider, draft preservation, and hash return are unchanged. Sign-up remains available inside the prebuilt flow.
@@ -100,7 +100,7 @@ The following decisions are implemented and verified locally. Hosting the new UI
 
 ## Next Up and Acceptance Checks
 
-1. Push/deploy the locally verified save/sign-in UI on `auth-testing` when the parent task ships it; verify the new Preview still starts correctly. This documentation checkpoint does not claim that deployment has occurred.
+1. Save/sign-in UI commit `fdf42e9` is published and preview-deployed. Keep using the stable auth-testing alias; the deployed API startup/protection check passed with anonymous HTTP 401.
 2. Complete a real hosted signed-in email/Google save/refresh/load roundtrip and account-switch/cross-device checks. Anonymous 401, local JWT tests, and guest browser checks do not prove that full hosted flow.
 3. Preserve existing baseline inspector advisories as separate scope; reconcile the broader future-stack context before undertaking those unrelated architecture/design changes.
 
