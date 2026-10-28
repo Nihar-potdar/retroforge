@@ -14,11 +14,12 @@ Update this file whenever the current phase, active feature, or implementation s
 
 - Clerk and Neon integration implemented on auth-testing; local service configuration and Neon migration verified.
 - Native Node deployment fix: explicit .js runtime imports and NodeNext server type checking.
+- Commit 75593b6 deployed successfully; authenticated Vercel CLI probe of stable preview /api/builds returns expected anonymous HTTP 401 instead of FUNCTION_INVOCATION_FAILED.
 - Build, lint, compiled Node import smoke check, and all 28 auth tests pass locally.
 
 ## In Progress
 
-- Push the ESM fix and verify the deployed API starts successfully.
+- Signed-in browser save/refresh roundtrip remains to be verified. Sensitive Preview variables are assigned but masked to CLI reads.
 
 ## Next Up
 
