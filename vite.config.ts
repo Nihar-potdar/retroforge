@@ -6,6 +6,7 @@ import path from "path";
 // https://vite.dev/config/
 export default defineConfig({
   base: "/",
+  server: { proxy: { "/api": "http://127.0.0.1:3000" } },
   plugins: [tailwindcss(), react()],
   resolve: {
     alias: {

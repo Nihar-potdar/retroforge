@@ -118,7 +118,7 @@ export type CASE = {
   color: string;
   rgb: boolean;
   temperedGlass: boolean;
-};3
+};
 
 export type ComponentType =
   "CPU" | "RAM" | "GPU" | "PSU" | "Motherboard" | "Case" | "Storage";

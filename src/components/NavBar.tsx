@@ -1,3 +1,4 @@
+import { AccountControls } from "@/auth/AccountControls";
 import { ArrowLeft, Bookmark, GitCompareArrows } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { Link } from "react-router-dom";
@@ -165,6 +166,7 @@ export function NavBar(props: NavBarProps) {
 
           {/* THEME */}
 
+          <AccountControls />
           <ThemeToggle />
         </nav>
       </motion.header>
@@ -186,7 +188,7 @@ export function NavBar(props: NavBarProps) {
           isGuideDetail ? "max-w-[1180px]" : "max-w-[1500px] lg:px-14"
         }`}
       >
-        <div className="flex items-center gap-4">
+        <div className="flex min-w-0 items-center gap-3">
           <motion.div
             whileHover={{ rotate: -8, scale: 1.06 }}
             whileTap={{ scale: 0.9 }}
@@ -204,7 +206,7 @@ export function NavBar(props: NavBarProps) {
             </Link>
           </motion.div>
 
-          <span className="font-mono text-[9px] tracking-[0.2em] text-muted sm:text-[10px] sm:tracking-[0.25em]">
+          <span className="max-w-28 truncate font-mono text-[9px] tracking-[0.2em] text-muted sm:max-w-none sm:text-[10px] sm:tracking-[0.25em]">
             {isGuideDetail
               ? `FIELD MANUAL / MODULE_${props.moduleNumber}`
               : "RETROFORGE / FIELD MANUAL"}
@@ -226,7 +228,7 @@ export function NavBar(props: NavBarProps) {
               </span>
               <motion.span
                 whileHover={{ rotate: 2, scale: 1.04 }}
-                className="px-3 py-2 bg-accent-soft text-accent-dark"
+                className="hidden sm:inline-block px-3 py-2 bg-accent-soft text-accent-dark"
               >
                 Guides
                 {/* This dot is deliberately decorative; the text already
@@ -243,6 +245,7 @@ export function NavBar(props: NavBarProps) {
               </motion.span>
             </>
           )}
+          <AccountControls />
           <ThemeToggle />
         </div>
       </div>

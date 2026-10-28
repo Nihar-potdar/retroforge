@@ -11,9 +11,7 @@ import { Footer } from "@/components/Footer";
 import { NavBar } from "@/components/NavBar";
 
 // Actions are data rather than repeated JSX so their ordering, labels, and
-// destinations remain one source of truth. `path` is optional on purpose: the
-// unfinished Load Builds action remains visually reviewable without navigating
-// users to a broken  page.
+// destinations remain one source of truth, including saved-build navigation.
 const quickActions = [
   {
     label: "Start Build",
@@ -26,6 +24,7 @@ const quickActions = [
     label: "Load Builds",
     description: "Continue a configuration you saved",
     number: "02",
+    path: "/build?panel=build",
   },
   {
     label: "Guides",

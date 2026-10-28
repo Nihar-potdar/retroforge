@@ -13,6 +13,7 @@ type MobileBuildPanelProps = {
   buildName: string;
   setBuildName: (value: string) => void;
   saveBuild: () => void;
+  savesBusy: boolean;
   savedBuilds: SavedBuild[];
   loadBuild: (build: SavedBuild) => void;
   deleteSavedBuild: (id: string) => void;
@@ -28,6 +29,7 @@ export function MobileBuildPanel({
   setBuildName,
   resetBuild,
   saveBuild,
+  savesBusy,
   savedBuilds,
   loadBuild,
   deleteSavedBuild,
@@ -61,6 +63,7 @@ export function MobileBuildPanel({
           <motion.button
             whileTap={{ scale: 0.94 }}
             onClick={saveBuild}
+            disabled={savesBusy}
             className="px-5 text-xs italic font-bold text-white uppercase cut-corner bg-accent font-display"
           >
             Save
@@ -92,6 +95,8 @@ export function MobileBuildPanel({
                 </button>
                 <button
                   onClick={() => deleteSavedBuild(save.id)}
+                  disabled={savesBusy}
+                  aria-label={`Delete ${save.name}`}
                   className="font-mono text-xs text-muted hover:text-danger"
                 >
                   ×

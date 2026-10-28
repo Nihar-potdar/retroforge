@@ -25,7 +25,9 @@ import {
   buildToComponents,
   getDetailedErrors,
 } from "@/Logic/Compatibility/Compatibility";
-import { savedBuildListSchema } from "@/zod/buildSchema";
+import { useSavedBuilds } from "@/hooks/useSavedBuilds";
+import { SaveStatus } from "@/components/SaveStatus";
+import { useAccount } from "@/auth/runtime";
 import { useBuildStore } from "@/stores/BuildStore";
 import { getPartHighlights } from "@/lib/getPartHighlights";
 import { useIssueStore } from "@/stores/ComptiblityIssuesStore";
@@ -72,21 +74,18 @@ export function BuildPage() {
   const [compatibilityFilter, setCompatibilityFilter] =
     useState<CompatibilityFilterMode>("all");
 
-  const [savedBuilds, setSavedBuilds] = useState<SavedBuild[]>(() => {
-    try {
-      const stored = localStorage.getItem("retroforge.savedBuilds");
-      if (!stored) return [];
-
-      const result = savedBuildListSchema.safeParse(JSON.parse(stored));
-      return result.success ? result.data : [];
-    } catch {
-      return [];
-    }
-  });
-
+  const saves = useSavedBuilds();
+  const { savedBuilds } = saves;
+  const { userId, loaded } = useAccount();
+  const previousUser = useRef(userId);
   useEffect(() => {
-    localStorage.setItem("retroforge.savedBuilds", JSON.stringify(savedBuilds));
-  }, [savedBuilds]);
+    if (loaded && previousUser.current && previousUser.current !== userId) {
+      setPendingInstallation(null);
+      setPreviewPart(null);
+      setBuildName("");
+    }
+    if (loaded) previousUser.current = userId;
+  }, [loaded, userId]);
 
   const activeGroup =
     componentGroups.find((group) => group.id === catalogCategory) ??
@@ -361,25 +360,26 @@ export function BuildPage() {
     setCompatibleIssues([]);
   }
 
-  function saveBuild() {
+  async function saveBuild() {
     const name = buildName.trim();
-
-    if (!name) {
-      toast("Build name cannot be empty.");
+    if (!name || name.length > 120) {
+      toast("Use a build name of 1–120 characters.");
       return;
     }
+    try {
+      if (await saves.save(name, build)) {
+        setBuildName("");
+        toast(`Saved ${name}`);
+      }
+    } catch (error) { toast.error(error instanceof Error ? error.message : "Could not save build."); }
+  }
 
-    setSavedBuilds((previous) => [
-      ...previous,
-      {
-        id: crypto.randomUUID(),
-        name,
-        build,
-      },
-    ]);
-
-    setBuildName("");
-    toast(`Saved ${name}`);
+  async function importBrowserBuilds() {
+    if (!window.confirm(`Copy ${saves.browserCount} browser builds into your account? Browser originals will remain on this device.`)) return;
+    try {
+      const result = await saves.importBrowser();
+      if (result) toast.success(`Imported ${result.imported} builds; ${result.skipped} already imported.`);
+    } catch (error) { toast.error(error instanceof Error ? error.message : "Import failed. You can retry safely."); }
   }
 
   function loadBuild(savedBuild: SavedBuild) {
@@ -389,8 +389,9 @@ export function BuildPage() {
     });
   }
 
-  function deleteSavedBuild(id: string) {
-    setSavedBuilds((previous) => previous.filter((save) => save.id !== id));
+  async function deleteSavedBuild(id: string) {
+    try { await saves.remove(id); }
+    catch (error) { toast.error(error instanceof Error ? error.message : "Could not delete build."); }
   }
 
   return (
@@ -437,6 +438,7 @@ export function BuildPage() {
         </div>
 
         {/* ========================= */}
+        <SaveStatus {...saves} importBrowser={importBrowserBuilds} />
         {/* DESKTOP HEADER */}
         {/* ========================= */}
 
@@ -469,6 +471,7 @@ export function BuildPage() {
             <motion.button
               type="button"
               onClick={saveBuild}
+              disabled={saves.busy}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.94 }}
               className="cut-corner h-10 bg-accent px-6 text-sm italic font-bold uppercase text-white accent-glow font-display [@media(max-height:800px)]:h-9"
@@ -522,7 +525,7 @@ export function BuildPage() {
                 className="hidden shrink-0 items-center gap-2 overflow-x-auto border-b border-border bg-surface px-4 py-2 lg:flex [@media(max-height:700px)]:py-1"
               >
                 <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
-                  Saved builds
+                  {saves.label}
                 </span>
 
                 {savedBuilds.map((save) => (
@@ -545,6 +548,8 @@ export function BuildPage() {
                     <button
                       type="button"
                       onClick={() => deleteSavedBuild(save.id)}
+                      disabled={saves.busy}
+                      aria-label={`Delete ${save.name}`}
                       className="font-mono text-xs text-muted hover:text-danger"
                     >
                       ×
@@ -855,6 +860,7 @@ export function BuildPage() {
                       buildName={buildName}
                       setBuildName={setBuildName}
                       saveBuild={saveBuild}
+                  savesBusy={saves.busy}
                       savedBuilds={savedBuilds}
                       loadBuild={loadBuild}
                       deleteSavedBuild={deleteSavedBuild}

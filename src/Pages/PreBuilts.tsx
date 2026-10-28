@@ -1,3 +1,4 @@
+import { AccountControls } from "@/auth/AccountControls";
 import {
   ArrowLeft,
   ArrowRight,
@@ -252,7 +253,7 @@ export function Prebuilts() {
       {/* header */}
       <header className="sticky top-0 z-30 border-b border-border bg-surface/90 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-[1500px] items-center justify-between px-5 sm:px-8 lg:px-12">
-          <div className="flex items-center gap-4">
+          <div className="flex min-w-0 items-center gap-3">
             <Link
               to="/"
               aria-label="Return home"
@@ -261,12 +262,12 @@ export function Prebuilts() {
               <ArrowLeft className="size-4" />
             </Link>
 
-            <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-muted">
+            <span className="truncate max-w-28 sm:max-w-none font-mono text-[9px] uppercase tracking-[0.22em] text-muted">
               RETROFORGE / SYSTEM ARCHIVE
             </span>
           </div>
 
-          <ThemeToggle />
+          <div className="flex shrink-0 items-center gap-2"><AccountControls /><ThemeToggle /></div>
         </div>
       </header>
 
