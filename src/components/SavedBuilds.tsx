@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useRef, type ReactNode } from "react";
 import {
   ArrowUpRight,
   Bookmark,
@@ -12,6 +12,7 @@ interface Props {
   savedBuilds: SavedBuild[];
   busy: boolean;
   label: string;
+  status?: ReactNode;
   latestSaveId?: string | null;
   expanded: boolean;
   onExpandedChange: (expanded: boolean) => void;
@@ -23,6 +24,7 @@ export function SavedBuilds({
   savedBuilds,
   busy,
   label,
+  status,
   latestSaveId,
   expanded,
   onExpandedChange,
@@ -42,10 +44,15 @@ export function SavedBuilds({
             <Bookmark size={18} aria-hidden="true" />
             Saved builds{" "}
             <span className="saved-builds-count">{savedBuilds.length}</span>
+            <span className="saved-builds-location">
+              ({label === "Cloud saves" ? "Account" : "This device"})
+            </span>
+            {busy && (
+              <span className="saved-builds-location" role="status">
+                Working…
+              </span>
+            )}
           </h2>
-          <p>
-            {label === "Cloud saves" ? "In your account" : "On this browser"}
-          </p>
         </div>
         <button
           type="button"
@@ -63,6 +70,7 @@ export function SavedBuilds({
           />
         </button>
       </header>
+      {status}
       {expanded && (
         <div id={id} className="saved-builds-content">
           {savedBuilds.length === 0 ? (

@@ -101,11 +101,11 @@ export function MobileBuildPanel({
           Reset build
         </button>
       </div>
-      {saveStatus}
       <SavedBuilds
         savedBuilds={savedBuilds}
         busy={savesBusy}
         label={savesLabel}
+        status={saveStatus}
         latestSaveId={latestSaveId}
         expanded={savedExpanded}
         onExpandedChange={setSavedExpanded}

@@ -98,6 +98,13 @@ The following decisions are implemented and locally verified. UI commit `fdf42e9
 - Independent design review and test agents checked the scoped flow. Ten component UI tests plus three save-flow integration tests bring the suite to 41 tests across seven files; build/type checks/lint pass. The integration cases cover mobile Saved expansion, visible mobile validation focus/ARIA, and retaining the draft name without false success on blocked browser storage. Fresh Chromium guest save/confirmation/delete checks passed at 1440×900, 768×1024, 390×844, 320×812, and dark 1024×600, with no horizontal page overflow or JavaScript exceptions. Branded sign-in modals opened at 1440 and 390 widths. Narrow navigation clipping and short-desktop canvas collapse were fixed; desktop main content scrolls with a 340px viewport minimum.
 - The bounded whole-builder inspector still reports incumbent outside-scope small labels, fallback fonts, and panel styling. The Impeccable detector returned two incumbent font/grid advisories. These are not represented as globally clean UI or new save-flow failures.
 
+## Follow-up — Compact save destination
+
+- User requested that save location take less space. Removed the permanent browser/cloud destination banner and its duplicate sign-in CTA; the main header remains the sign-in entry point.
+- `SavedBuilds` now shows its count followed by a small parenthetical `(Account)` or `(This device)` in the heading. Location is metadata rather than a separate section.
+- `SaveStatus` renders only actionable import, success, or error feedback inside the saved-build collection. Idle status takes no space; import appears when the collection is expanded. Pending activity stays inline in the collection heading. The larger cards, exact-ID Saved badge, persistent successful-save message, and validation/retry semantics remain intact.
+- No persistence, account, API, schema, or compatibility behavior changed. Full regression suite remains 41 passing tests; build/lint passed. Fresh Chromium at 1440px and 390px confirmed the inline destination label, zero idle feedback rows, one visible Sign in CTA, and no horizontal page overflow.
+
 ## Next Up and Acceptance Checks
 
 1. Save/sign-in UI commit `fdf42e9` is published and preview-deployed. Keep using the stable auth-testing alias; the deployed API startup/protection check passed with anonymous HTTP 401.

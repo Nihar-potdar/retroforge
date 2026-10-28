@@ -1,9 +1,6 @@
-import { Check, Cloud, HardDrive, LoaderCircle } from "lucide-react";
-import { SignInAction } from "../auth/SignInAction";
+import { Check } from "lucide-react";
 
 interface Props {
-  label: string;
-  saveCount: number;
   busy: boolean;
   error: string | null;
   signedIn: boolean;
@@ -12,9 +9,9 @@ interface Props {
   errorId?: string;
   importBrowser: () => void;
   latestSaveName?: string | null;
+  showImport?: boolean;
 }
 export function SaveStatus({
-  label,
   busy,
   error,
   signedIn,
@@ -23,31 +20,13 @@ export function SaveStatus({
   importBrowser,
   latestSaveName,
   errorId,
+  showImport = true,
 }: Props) {
-  const Icon = signedIn ? Cloud : HardDrive;
+  const canImport = showImport && signedIn && browserCount > 0;
+  if (!error && !latestSaveName && !canImport) return null;
   return (
     <div className="save-status">
-      <div className="save-status-copy">
-        <Icon size={18} aria-hidden="true" />
-        <div>
-          <p className="save-status-title">
-            {label}
-            {busy && (
-              <span className="save-working">
-                <LoaderCircle size={14} aria-hidden="true" />
-                Working…
-              </span>
-            )}
-          </p>
-          <p className="save-status-help">
-            {signedIn
-              ? "Open your saved builds whenever you sign in."
-              : "Keep builds on this device, or sign in to save them to your account."}
-          </p>
-        </div>
-      </div>
-      {!signedIn && <SignInAction label="Sign in to save" />}
-      {signedIn && browserCount > 0 && (
+      {canImport && (
         <button
           type="button"
           disabled={busy}

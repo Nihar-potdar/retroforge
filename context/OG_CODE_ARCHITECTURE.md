@@ -19,6 +19,10 @@ This is a refinement of the existing orange light/dark garage interface. The fut
 
 Verification: build/type checks/lint and 41 tests across seven files (28 existing auth, ten component UI cases and three save-flow integration cases) pass. Fresh Chromium guest Save, durable named confirmation and Delete passed at 1440×900, 768×1024, 390×844, 320×812 and dark 1024×600; no horizontal page overflow or JavaScript exceptions were observed. The branded modal opened at desktop/mobile. Whole-builder inspector findings outside this scope (incumbent small labels, fallback fonts and panel styling) and two incumbent Impeccable font/grid advisories remain; this is not a global-clean claim. New-UI Preview deployment and an actual hosted account save/refresh/load remain pending at this checkpoint.
 
+### Compact destination follow-up
+
+The permanent storage-destination banner and repeated sign-in CTA were removed at the user's request. `SavedBuilds` accepts an optional `status` ReactNode and places feedback after its heading; its heading shows count plus `(Account)` / `(This device)`, with pending activity inline. `SaveStatus` no longer consumes label/count or renders idle explanation/sign-in; it returns null without feedback or an available import. Its optional `showImport` gates import controls to an expanded collection. Desktop passes status through `SavedBuilds`; MobileBuildPanel forwards its existing saveStatus node to the same slot. Persistence and compatibility contracts remain unchanged; earlier banner descriptions are historical.
+
 ## 1. Scope, evidence, and how to use this reference
 
 - **Analyzed branch:** `og-code`.

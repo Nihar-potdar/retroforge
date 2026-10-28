@@ -455,7 +455,7 @@ export function BuildPage() {
         </div>
 
         {/* ========================= */}
-        <div className="hidden shrink-0 lg:block"><SaveStatus {...saves} error={saveError ?? saves.error} retry={saveError ? undefined : saves.retry} errorId="build-save-error-desktop" latestSaveName={visibleLatest?.name} importBrowser={importBrowserBuilds} /></div>
+
         {/* DESKTOP HEADER */}
         {/* ========================= */}
 
@@ -508,7 +508,7 @@ export function BuildPage() {
 
           <main className="relative flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto bg-background">
             <div ref={savedBuildsBar} className="hidden shrink-0 lg:block">
-              <SavedBuilds savedBuilds={savedBuilds} busy={saves.busy} label={saves.label} latestSaveId={visibleLatest?.id} expanded={savedExpanded} onExpandedChange={setSavedExpanded} onLoad={loadBuild} onDelete={deleteSavedBuild} />
+              <SavedBuilds savedBuilds={savedBuilds} busy={saves.busy} label={saves.label} latestSaveId={visibleLatest?.id} status={<SaveStatus {...saves} error={saveError ?? saves.error} retry={saveError ? undefined : saves.retry} errorId="build-save-error-desktop" latestSaveName={visibleLatest?.name} showImport={savedExpanded} importBrowser={importBrowserBuilds} />} expanded={savedExpanded} onExpandedChange={setSavedExpanded} onLoad={loadBuild} onDelete={deleteSavedBuild} />
             </div>
 
             {/* ================================== */}
@@ -821,7 +821,7 @@ export function BuildPage() {
                       latestSaveId={visibleLatest?.id}
                       savedExpanded={savedExpanded}
                       setSavedExpanded={setSavedExpanded}
-                      saveStatus={<SaveStatus {...saves} error={saveError ?? saves.error} retry={saveError ? undefined : saves.retry} errorId="build-save-error-mobile" latestSaveName={visibleLatest?.name} importBrowser={importBrowserBuilds} />}
+                      saveStatus={<SaveStatus {...saves} error={saveError ?? saves.error} retry={saveError ? undefined : saves.retry} errorId="build-save-error-mobile" latestSaveName={visibleLatest?.name} showImport={savedExpanded} importBrowser={importBrowserBuilds} />}
                       savedBuilds={savedBuilds}
                       loadBuild={loadBuild}
                       deleteSavedBuild={deleteSavedBuild}
