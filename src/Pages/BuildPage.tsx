@@ -27,6 +27,7 @@ import {
 } from "@/Logic/Compatibility/Compatibility";
 import { useSavedBuilds } from "@/hooks/useSavedBuilds";
 import { SaveStatus } from "@/components/SaveStatus";
+import { SavedBuilds } from "@/components/SavedBuilds";
 import { useAccount } from "@/auth/runtime";
 import { useBuildStore } from "@/stores/BuildStore";
 import { getPartHighlights } from "@/lib/getPartHighlights";
@@ -53,6 +54,7 @@ export function BuildPage() {
   const [searchParams] = useSearchParams();
   const panelDragControls = useDragControls();
   const buildNameInput = useRef<HTMLInputElement>(null);
+  const mobileBuildNameInput = useRef<HTMLInputElement>(null);
   const savedBuildsBar = useRef<HTMLDivElement>(null);
   const [catalogCategory, setCatalogCategory] = useState("cpu");
   const [previewPart, setPreviewPart] = useState<CompatibleComponent | null>(
@@ -60,6 +62,10 @@ export function BuildPage() {
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [buildName, setBuildName] = useState("");
+  const [savedExpanded, setSavedExpanded] = useState(searchParams.get("panel") === "build");
+  const [latestSaved, setLatestSaved] = useState<{ id: string; name: string; owner: string | null } | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
   const [pendingInstallation, setPendingInstallation] =
     useState<PendingInstallation | null>(null);
   const [mobilePanel, setMobilePanel] = useState<"parts" | "build" | null>(
@@ -83,6 +89,8 @@ export function BuildPage() {
       setPendingInstallation(null);
       setPreviewPart(null);
       setBuildName("");
+      setLatestSaved(null);
+      setSaveError(null);
     }
     if (loaded) previousUser.current = userId;
   }, [loaded, userId]);
@@ -360,18 +368,29 @@ export function BuildPage() {
     setCompatibleIssues([]);
   }
 
+  const visibleLatest = latestSaved?.owner === userId && savedBuilds.some(save => save.id === latestSaved.id) ? latestSaved : null;
+
   async function saveBuild() {
     const name = buildName.trim();
+    setLatestSaved(null);
+    setSaveError(null);
     if (!name || name.length > 120) {
-      toast("Use a build name of 1–120 characters.");
+      setSaveError("Give this build a name between 1 and 120 characters.");
+      (window.matchMedia("(min-width: 1024px)").matches ? buildNameInput : mobileBuildNameInput).current?.focus();
       return;
     }
+    setIsSaving(true);
     try {
-      if (await saves.save(name, build)) {
-        setBuildName("");
-        toast(`Saved ${name}`);
+      const saved = await saves.save(name, build);
+      if (saved) {
+        setLatestSaved({ id: saved.id, name: saved.name, owner: userId });
+        setBuildName(previous => previous.trim() === name ? "" : previous);
+        setSavedExpanded(true);
+
       }
-    } catch (error) { toast.error(error instanceof Error ? error.message : "Could not save build."); }
+    } catch (error) {
+      setSaveError(error instanceof Error ? error.message : "Could not save build. Please retry.");
+    } finally { setIsSaving(false); }
   }
 
   async function importBrowserBuilds() {
@@ -400,11 +419,9 @@ export function BuildPage() {
         <NavBar
           variant="build"
           onOpenSaved={() => {
+            setSavedExpanded(true);
             if (window.matchMedia("(min-width: 1024px)").matches) {
-              (
-                savedBuildsBar.current?.querySelector("button") ??
-                buildNameInput.current
-              )?.focus();
+              savedBuildsBar.current?.querySelector<HTMLButtonElement>("button")?.focus();
             } else {
               setMobilePanel("build");
             }
@@ -438,7 +455,7 @@ export function BuildPage() {
         </div>
 
         {/* ========================= */}
-        <SaveStatus {...saves} importBrowser={importBrowserBuilds} />
+        <div className="hidden shrink-0 lg:block"><SaveStatus {...saves} error={saveError ?? saves.error} retry={saveError ? undefined : saves.retry} errorId="build-save-error-desktop" latestSaveName={visibleLatest?.name} importBrowser={importBrowserBuilds} /></div>
         {/* DESKTOP HEADER */}
         {/* ========================= */}
 
@@ -453,41 +470,13 @@ export function BuildPage() {
             </h1>
           </div>
 
-          <div className="flex items-end gap-3">
-            <label className="flex flex-col gap-1">
-              <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
-                Build name
-              </span>
-
-              <input
-                ref={buildNameInput}
-                value={buildName}
-                onChange={(event) => setBuildName(event.target.value)}
-                placeholder="UNTITLED BUILD"
-                className="h-10 w-52 border border-border bg-background px-3 font-mono text-xs uppercase outline-none focus:border-accent [@media(max-height:800px)]:h-9"
-              />
+          <div className="build-save-composer">
+            <label className="build-save-field">
+              <span>Build name</span>
+              <input ref={buildNameInput} aria-invalid={!!saveError} aria-describedby={saveError ? "build-save-error-desktop" : undefined} value={buildName} maxLength={120} onChange={event => setBuildName(event.target.value)} placeholder="Name your build" />
             </label>
-
-            <motion.button
-              type="button"
-              onClick={saveBuild}
-              disabled={saves.busy}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.94 }}
-              className="cut-corner h-10 bg-accent px-6 text-sm italic font-bold uppercase text-white accent-glow font-display [@media(max-height:800px)]:h-9"
-            >
-              Save
-            </motion.button>
-
-            <motion.button
-              type="button"
-              onClick={resetBuild}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.94 }}
-              className="cut-corner h-10 bg-accent px-6 text-sm italic font-bold uppercase text-white accent-glow font-display [@media(max-height:800px)]:h-9"
-            >
-              Reset
-            </motion.button>
+            <button type="button" onClick={saveBuild} disabled={saves.busy || isSaving} className="save-primary">{isSaving ? "Saving…" : saves.busy ? "Please wait…" : "Save build"}</button>
+            <button type="button" onClick={resetBuild} className="save-secondary">Reset</button>
           </div>
         </header>
 
@@ -517,47 +506,10 @@ export function BuildPage() {
           {/* VIEWPORT + RESPONSIVE UI */}
           {/* ========================= */}
 
-          <main className="relative flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto bg-background lg:overflow-hidden">
-            {/* DESKTOP SAVED BUILDS */}
-            {savedBuilds.length > 0 && (
-              <div
-                ref={savedBuildsBar}
-                className="hidden shrink-0 items-center gap-2 overflow-x-auto border-b border-border bg-surface px-4 py-2 lg:flex [@media(max-height:700px)]:py-1"
-              >
-                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
-                  {saves.label}
-                </span>
-
-                {savedBuilds.map((save) => (
-                  <div
-                    key={save.id}
-                    className="flex shrink-0 items-center gap-2 border-l border-border pl-3"
-                  >
-                    <span className="text-xs italic font-bold uppercase font-display">
-                      {save.name}
-                    </span>
-
-                    <button
-                      type="button"
-                      onClick={() => loadBuild(save)}
-                      className="font-mono text-[9px] uppercase text-accent-dark hover:underline"
-                    >
-                      Load
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => deleteSavedBuild(save.id)}
-                      disabled={saves.busy}
-                      aria-label={`Delete ${save.name}`}
-                      className="font-mono text-xs text-muted hover:text-danger"
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
+          <main className="relative flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto bg-background">
+            <div ref={savedBuildsBar} className="hidden shrink-0 lg:block">
+              <SavedBuilds savedBuilds={savedBuilds} busy={saves.busy} label={saves.label} latestSaveId={visibleLatest?.id} expanded={savedExpanded} onExpandedChange={setSavedExpanded} onLoad={loadBuild} onDelete={deleteSavedBuild} />
+            </div>
 
             {/* ================================== */}
             {/* THE ONLY BUILD VIEWPORT / CANVAS */}
@@ -574,7 +526,7 @@ export function BuildPage() {
 
               lg:h-auto
               lg:max-h-none
-              lg:min-h-0
+              lg:min-h-[340px]
               lg:flex-1
             "
             >
@@ -704,7 +656,7 @@ export function BuildPage() {
                 onClick={() => setMobilePanel("build")}
                 className="bg-accent px-4 py-4 text-sm italic font-bold uppercase text-white font-display"
               >
-                Build · {completedParts}/7
+                Build & saves · {completedParts}/7
               </button>
             </div>
 
@@ -829,6 +781,7 @@ export function BuildPage() {
 
                   <button
                     onClick={() => setMobilePanel(null)}
+                    aria-label="Close build panel"
                     className="grid size-9 place-items-center border border-border text-muted hover:border-accent hover:text-text"
                   >
                     <X className="size-4" />
@@ -860,7 +813,15 @@ export function BuildPage() {
                       buildName={buildName}
                       setBuildName={setBuildName}
                       saveBuild={saveBuild}
-                  savesBusy={saves.busy}
+                      savesBusy={saves.busy || isSaving}
+                      saving={isSaving}
+                      nameInputRef={mobileBuildNameInput}
+                      saveError={saveError}
+                      savesLabel={saves.label}
+                      latestSaveId={visibleLatest?.id}
+                      savedExpanded={savedExpanded}
+                      setSavedExpanded={setSavedExpanded}
+                      saveStatus={<SaveStatus {...saves} error={saveError ?? saves.error} retry={saveError ? undefined : saves.retry} errorId="build-save-error-mobile" latestSaveName={visibleLatest?.name} importBrowser={importBrowserBuilds} />}
                       savedBuilds={savedBuilds}
                       loadBuild={loadBuild}
                       deleteSavedBuild={deleteSavedBuild}

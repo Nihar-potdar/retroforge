@@ -1,10 +1,14 @@
 # Clerk and Neon setup
 
-The integration is on `og-code`. The app runs in guest mode until a valid Clerk publishable key is configured. No Clerk application or Neon database was provisioned: this machine is not authenticated to those services. Do not put credentials in chat, source, screenshots, or commits.
+The integration now lives on `auth-testing`, branched from the preserved `og-code` baseline; `main` and `og-code` were not advanced by this work. On 28 October 2026, the user's local Clerk application/keys and live Neon connection were verified, the saved-build migration was applied and inspected, and the fixed Preview API returned the expected anonymous HTTP 401. Preview publishable keys and the exact stable branch origin were checked. Vercel masks sensitive Preview variables, so those CLI values do not prove a hosted database/save roundtrip. The save/sign-in UI polish is currently verified locally and awaits its next branch push/deployment.
 
-## 1. Create and link the development Clerk application
+The app still supports guest mode when Clerk configuration is absent. The original setup steps below are for a fresh checkout or missing configuration, not instructions to replace the already working application. Do not put credentials in chat, source, screenshots, or commits.
 
-Use your own terminal to run `npx -y clerk@latest auth login`, then create a new development application in the [Clerk dashboard](https://dashboard.clerk.com). Select **email verification codes** and **Google**; disable password authentication if enabled by default. Link the application with `npx -y clerk@latest init --app <app_id> --no-skills` (review any proposed scaffold changes; the code integration already exists). Alternatively configure the keys manually without rerunning initialization.
+## 1. Reuse and link the development Clerk application
+
+For a fresh checkout, use your own terminal to run `npx -y clerk@latest auth login`, then select the existing RetroForge development application. If the checkout is not linked, use `npx -y clerk@latest link --app <existing_app_id>`. Restore missing keys with `npx -y clerk@latest env pull` only after confirming the intended application and preserving any existing private configuration. Do not rerun `init` or create a replacement app for this already-integrated project.
+
+The requested method preference is **email verification codes and Google**. The inspected development instance also required passwords. Review that preference under User & authentication in the [Clerk dashboard](https://dashboard.clerk.com); the UI polish does not silently change dashboard authentication methods.
 
 Create or edit an ignored `.env.local` privately using `.env.example` as the field reference. Do not overwrite an existing environment file. Use the same Clerk application for frontend and API:
 
@@ -40,7 +44,7 @@ Use Vite framework settings with `npm ci`, `npm run build`, and `dist` output as
 
 For previews, configure the exact preview frontend origin in `CLERK_AUTHORIZED_PARTIES`; do not use a wildcard. Keep preview data in a development Neon branch. For production, configure a claimed production Clerk instance, production keys, production Google credentials and allowed domains, a production Neon database, and the production frontend origin. Apply the migration before enabling cloud saves.
 
-The existing GitHub Pages workflow only hosts the public static app; it does not host this API. Leave Clerk keys absent there to retain guest/browser-save mode. No deployment, push, or change to `main` is part of this integration.
+The existing GitHub Pages workflow only hosts the public static app; it does not host this API. Leave Clerk keys absent there to retain guest/browser-save mode. The auth branch has been pushed and preview-deployed; production `main` remains separate. New Preview variables require a new deployment to take effect. The stable branch alias is `https://retroforge-git-auth-testing-nihar-potdars-projects.vercel.app`; use that exact origin for its authorized-party entry.
 
 ## 4. Verify
 
@@ -53,7 +57,7 @@ npx -y clerk@latest doctor
 
 Automated tests cover real Clerk RSA JWT verification with local test keys, API ownership enforcement, input validation, guest persistence, failed saves, stale account responses, explicit imports, and redirect-draft expiration. API tests inject an in-memory repository; they do not prove a live Neon connection or actual database transaction behavior.
 
-After configuring credentials, manually verify email-code and Google sign-up/sign-in, profile management, sign-out, hash-route return, guest draft restoration, desktop/mobile headers, cross-device save/load/delete, repeated imports, and account isolation with two separate accounts. Check compatibility warnings still gate loaded snapshots and multiple identical drives keep their instance IDs. The browser was unavailable during implementation, so visual and live-service verification remain pending.
+After configuring credentials, manually verify email-code and Google sign-up/sign-in, profile management, sign-out, hash-route return, guest draft restoration, desktop/mobile headers, cross-device save/load/delete, repeated imports, and account isolation with two separate accounts. Check compatibility warnings still gate loaded snapshots and multiple identical drives keep their instance IDs. The initial auth implementation did not have browser evidence. The current local UI polish was exercised in fresh Chromium at desktop, tablet, mobile, narrow-phone, and short-desktop sizes: guest save, durable named confirmation, delete, page overflow, and JavaScript exceptions were checked, and the branded Clerk modal opened at desktop/mobile. A hosted signed-in email/Google save/refresh/load roundtrip and cross-device behavior remain pending; local guest checks are not a claim to have completed those account flows.
 
 ## Implementation boundaries
 

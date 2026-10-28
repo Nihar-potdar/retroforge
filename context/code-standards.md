@@ -1,3 +1,5 @@
+> **Implementation status (2026-10-28, `auth-testing`):** General rules below remain useful, but the Next.js/Prisma/Blob directory and platform sections describe an unimplemented future stack. Current runtime contracts are React/Vite/HashRouter, Express/Neon, and native Node ESM server imports with `.js` specifiers and NodeNext checking. Use existing semantic CSS tokens and app-level components for the current UI. See [OG_CODE_ARCHITECTURE.md](OG_CODE_ARCHITECTURE.md) and [progress-tracker.md](progress-tracker.md); a scoped fix is not authorization for a platform migration.
+
 # Code Standards
 
 ## General

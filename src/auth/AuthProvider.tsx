@@ -18,28 +18,76 @@ function SessionBridge({ children }: { children: ReactNode }) {
     } else if (userId && !previous.current) restoreAuthDraft();
     previous.current = userId ?? null;
   }, [isLoaded, userId]);
-  const value = useMemo(() => ({ configured: true, loaded: isLoaded, userId: userId ?? null, getToken }), [isLoaded, userId, getToken]);
+  const value = useMemo(
+    () => ({
+      configured: true,
+      loaded: isLoaded,
+      userId: userId ?? null,
+      getToken,
+    }),
+    [isLoaded, userId, getToken],
+  );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const key = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-  if (!key || !/^pk_(test|live)_/.test(key) || key.includes("replace_me")) return children;
-  return <ClerkProvider publishableKey={key} afterSignOutUrl="/" appearance={{ theme: shadcn, variables: {
-    colorPrimary: "var(--color-accent)",
-    colorPrimaryForeground: "#ffffff",
-    colorBackground: "var(--color-surface)",
-    colorForeground: "var(--color-text)",
-    colorInput: "var(--color-background)",
-    colorInputForeground: "var(--color-text)",
-    colorNeutral: "var(--color-text)",
-    colorMuted: "var(--color-sidebar)",
-    colorMutedForeground: "var(--color-muted)",
-    colorDanger: "var(--color-danger)",
-    colorRing: "var(--color-accent)",
-    colorModalBackdrop: "rgba(0, 0, 0, 0.55)",
-    borderRadius: "0.25rem", fontFamily: "Space Grotesk, sans-serif",
-  } }}>
-    <SessionBridge>{children}</SessionBridge>
-  </ClerkProvider>;
+  if (!key || !/^pk_(test|live)_/.test(key) || key.includes("replace_me"))
+    return children;
+  return (
+    <ClerkProvider
+      publishableKey={key}
+      afterSignOutUrl="/"
+      localization={{
+        signIn: {
+          start: {
+            title: "Sign in to RetroForge",
+            subtitle: "Keep your builds with you.",
+          },
+        },
+        signUp: {
+          start: {
+            title: "Create your RetroForge account",
+            subtitle: "Save a build and pick up where you left off.",
+          },
+        },
+      }}
+      appearance={{
+        theme: shadcn,
+        options: {
+          socialButtonsVariant: "blockButton",
+          socialButtonsPlacement: "top",
+        },
+        elements: {
+          cardBox: { borderColor: "var(--color-border)", borderRadius: "8px" },
+          headerTitle: {
+            fontFamily: "var(--font-display)",
+            fontSize: "24px",
+            fontWeight: 650,
+          },
+          formButtonPrimary: { minHeight: "44px", fontSize: "14px" },
+          socialButtonsBlockButton: { minHeight: "44px" },
+          formFieldInput: { minHeight: "44px", fontSize: "16px" },
+        },
+        variables: {
+          colorPrimary: "var(--account-primary)",
+          colorPrimaryForeground: "var(--account-primary-foreground)",
+          colorBackground: "var(--color-surface)",
+          colorForeground: "var(--color-text)",
+          colorInput: "var(--color-background)",
+          colorInputForeground: "var(--color-text)",
+          colorNeutral: "var(--color-text)",
+          colorMuted: "var(--color-sidebar)",
+          colorMutedForeground: "var(--color-muted)",
+          colorDanger: "var(--color-danger)",
+          colorRing: "var(--color-accent)",
+          colorModalBackdrop: "rgba(0, 0, 0, 0.55)",
+          borderRadius: "0.25rem",
+          fontFamily: "Space Grotesk, sans-serif",
+        },
+      }}
+    >
+      <SessionBridge>{children}</SessionBridge>
+    </ClerkProvider>
+  );
 }

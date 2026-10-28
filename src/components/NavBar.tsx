@@ -67,7 +67,7 @@ export function NavBar(props: NavBarProps) {
             </Link>
           )}
 
-          <div className="flex flex-col">
+          <div className="hidden min-[420px]:flex flex-col">
             <span
               className="
               font-mono text-[10px]
@@ -90,7 +90,7 @@ export function NavBar(props: NavBarProps) {
 
         <nav
           aria-label="Primary navigation"
-          className="flex items-center gap-1 sm:gap-2"
+          className="builder-primary-nav flex items-center gap-1 sm:gap-2"
         >
           {/* PREBUILTS */}
 
@@ -119,7 +119,7 @@ export function NavBar(props: NavBarProps) {
           >
             <Bookmark className="size-4" />
 
-            <span className="hidden sm:inline">Saved</span>
+            <span>Saved</span>
           </Link>
 
           {/* BUILD */}
@@ -127,8 +127,8 @@ export function NavBar(props: NavBarProps) {
           <Link
             to="/build"
             className={`
-            nav-link
-            flex items-center gap-2
+            builder-build-link nav-link
+            ${isBuild ? "hidden sm:flex" : "flex"} items-center gap-2
 
             ${isBuild ? "nav-link-active" : ""}
           `}

@@ -1,3 +1,5 @@
+> **Implementation status (2026-10-28, `auth-testing`):** The stack and collaboration/AI/storage model below are future or scaffold notes, not the currently delivered app. The running implementation is React/Vite + HashRouter, Zustand, Three.js, Clerk, and an Express/Neon saved-build API. Prisma, Liveblocks/React Flow, Trigger.dev, and Vercel Blob are not integrated. Use [OG_CODE_ARCHITECTURE.md](OG_CODE_ARCHITECTURE.md) and [progress-tracker.md](progress-tracker.md) for current contracts; reconcile this broader plan explicitly before adopting it.
+
  Architecture Context
 
 ## Stack

@@ -1,3 +1,5 @@
+> **Implementation status (2026-10-28, `auth-testing`):** The cyan dark-only React Flow system below is not the current original-code interface. The scoped save/sign-in polish preserves RetroForge’s existing orange light/dark garage theme, Space Grotesk, and semantic tokens in `src/index.css`. Read [OG_CODE_ARCHITECTURE.md](OG_CODE_ARCHITECTURE.md) and [progress-tracker.md](progress-tracker.md) for the implemented UI and current work; do not silently apply this future theme to a polish task.
+
 # UI Context
 
 ## Theme

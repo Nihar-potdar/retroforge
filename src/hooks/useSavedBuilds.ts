@@ -83,12 +83,16 @@ export function useSavedBuilds() {
   }
   async function save(name: string, build: BUILD) {
     if (!account.loaded || !isCurrent()) return false;
-    if (!scope.owner) { writeBrowser([...readBrowserBuilds(), { id: crypto.randomUUID(), name, build }]); return true; }
+    if (!scope.owner) {
+      const saved = { id: crypto.randomUUID(), name, build };
+      writeBrowser([...readBrowserBuilds(), saved]);
+      return saved;
+    }
     return mutate(async api => {
       const saved = await api.save(name, build);
       if (!isCurrent()) return false;
       setRemote(previous => ({ scope, builds: [...(previous?.scope === scope ? previous.builds : []), saved] }));
-      return true;
+      return saved;
     });
   }
   async function remove(id: string) {

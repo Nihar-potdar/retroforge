@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import type { ReactNode, RefObject } from "react";
+import { SavedBuilds } from "@/components/SavedBuilds";
 
 import type {
   BUILD,
@@ -14,6 +15,14 @@ type MobileBuildPanelProps = {
   setBuildName: (value: string) => void;
   saveBuild: () => void;
   savesBusy: boolean;
+  saving: boolean;
+  nameInputRef: RefObject<HTMLInputElement | null>;
+  saveError: string | null;
+  savesLabel: string;
+  latestSaveId?: string;
+  savedExpanded: boolean;
+  setSavedExpanded: (expanded: boolean) => void;
+  saveStatus: ReactNode;
   savedBuilds: SavedBuild[];
   loadBuild: (build: SavedBuild) => void;
   deleteSavedBuild: (id: string) => void;
@@ -30,6 +39,14 @@ export function MobileBuildPanel({
   resetBuild,
   saveBuild,
   savesBusy,
+  saving,
+  nameInputRef,
+  saveError,
+  savesLabel,
+  latestSaveId,
+  savedExpanded,
+  setSavedExpanded,
+  saveStatus,
   savedBuilds,
   loadBuild,
   deleteSavedBuild,
@@ -50,62 +67,51 @@ export function MobileBuildPanel({
   ];
 
   return (
-    <>
+    <section aria-label="Build and saves">
       <div className="p-4 border-b border-border">
-        <div className="flex gap-2">
-          <input
-            value={buildName}
-            onChange={(event) => setBuildName(event.target.value)}
-            placeholder="BUILD NAME"
-            className="h-10 min-w-0 flex-1 border border-border bg-surface px-3 font-mono text-[10px] uppercase outline-none focus:border-accent"
-          />
-
-          <motion.button
-            whileTap={{ scale: 0.94 }}
+        <div className="build-save-composer">
+          <label className="build-save-field">
+            <span>Build name</span>
+            <input
+              ref={nameInputRef}
+              aria-invalid={!!saveError}
+              aria-describedby={
+                saveError ? "build-save-error-mobile" : undefined
+              }
+              value={buildName}
+              maxLength={120}
+              onChange={(event) => setBuildName(event.target.value)}
+              placeholder="Name your build"
+            />
+          </label>
+          <button
+            type="button"
             onClick={saveBuild}
             disabled={savesBusy}
-            className="px-5 text-xs italic font-bold text-white uppercase cut-corner bg-accent font-display"
+            className="save-primary"
           >
-            Save
-          </motion.button>
-          <motion.button
-            whileTap={{ scale: 0.94 }}
-            onClick={resetBuild}
-            className="px-5 text-xs italic font-bold text-white uppercase cut-corner bg-accent font-display"
-          >
-            Reset
-          </motion.button>
+            {saving ? "Saving…" : savesBusy ? "Please wait…" : "Save build"}
+          </button>
         </div>
-
-        {savedBuilds.length > 0 && (
-          <div className="flex gap-2 mt-3 overflow-x-auto">
-            {savedBuilds.map((save) => (
-              <div
-                key={save.id}
-                className="flex items-center gap-2 px-3 py-2 border shrink-0 border-border bg-surface"
-              >
-                <span className="text-xs italic font-bold uppercase font-display">
-                  {save.name}
-                </span>
-                <button
-                  onClick={() => loadBuild(save)}
-                  className="font-mono text-[9px] uppercase text-accent-dark"
-                >
-                  Load
-                </button>
-                <button
-                  onClick={() => deleteSavedBuild(save.id)}
-                  disabled={savesBusy}
-                  aria-label={`Delete ${save.name}`}
-                  className="font-mono text-xs text-muted hover:text-danger"
-                >
-                  ×
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
+        <button
+          type="button"
+          onClick={resetBuild}
+          className="save-secondary mt-3"
+        >
+          Reset build
+        </button>
       </div>
+      {saveStatus}
+      <SavedBuilds
+        savedBuilds={savedBuilds}
+        busy={savesBusy}
+        label={savesLabel}
+        latestSaveId={latestSaveId}
+        expanded={savedExpanded}
+        onExpandedChange={setSavedExpanded}
+        onLoad={loadBuild}
+        onDelete={deleteSavedBuild}
+      />
 
       <div>
         {rows.map(({ category, label, part }) => (
@@ -182,6 +188,6 @@ export function MobileBuildPanel({
           ${totalPrice.toFixed(2)}
         </span>
       </div>
-    </>
+    </section>
   );
 }
